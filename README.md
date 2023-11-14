@@ -2,6 +2,14 @@
 
 The Vue3 web application for FractalPM
 
+## Init
+
+- TBD
+
+## Run
+
+- `npm run dev`
+
 ## Model
 
 - for models we use VOs (Value Objects) we don't use **Classes**, with methods to operate with them. Instead, we rely on `interface`-s stored in `VO_NAME-vos.ts` files and accompanied with `VO_NAME-operators.ts` that operate with it, to handle it.
