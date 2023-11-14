@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue'
 
 import AppSettings from './components/settings/AppSettings.vue';
+import AppNotifications from './components/AppNotifications.vue';
 
 const drawer = ref<boolean>(false);
 
@@ -29,6 +30,7 @@ onMounted(() => {
     <!-- <v-toolbar></v-toolbar> -->
     <v-main>
       <v-container fluid>
+        <AppNotifications />
         <router-view></router-view>
       </v-container>
     </v-main>

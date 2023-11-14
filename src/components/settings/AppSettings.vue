@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { ENotifLevel, useNotificationsStore } from '@/stores/notifications';
 // import { onMounted } from 'vue'
 // import { computed } from 'vue'
+
+const notificationsStore = useNotificationsStore();
 
 // onMounted(() => {
 // })
@@ -8,10 +11,13 @@
 // defineProps<{
 //   msg: string
 // }>()
+const tbdClicked = () => {
+  notificationsStore.add({ title: "To be Done", level: ENotifLevel.INFO });
+}
 </script>
 
 <template>
-  Settings
+  Settings <v-btn @click="tbdClicked" size="x-small">TBD</v-btn>
 </template>
 
 <style scoped>
