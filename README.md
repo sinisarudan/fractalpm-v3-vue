@@ -26,6 +26,16 @@ We use [Playwright](https://playwright.dev/) due to its enabling Multi-agent tes
 - `npx playwright show-report`
 - tests are in `./e2e` folder
 
+## Building
+- `npm run build`
+- builds in `dist` folder
+
+### Checking built app
+- go to `dist` folder`
+- run `serve`
+- if not installed:
+  - `yarn global add serve`
+
 ### Advanced DevOps
 
 [DevOps](./DevOps.md)
