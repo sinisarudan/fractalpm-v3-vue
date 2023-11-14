@@ -8,8 +8,9 @@ import * as directives from 'vuetify/directives'
 
 import { createTestingPinia } from '@pinia/testing'
 
-import { ENotifLevel, useNotificationsStore } from '@/stores/notifications'
+import { useNotificationsStore } from '@/stores/notifications'
 import { nextTick } from 'vue'
+import { ENotifLevel } from '@/models/notifications/notifications-vos'
 
 const vuetify = createVuetify({
   components,

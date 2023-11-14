@@ -1,22 +1,5 @@
+import type { NotificationsState, INotification } from '@/models/notifications/notifications-vos'
 import { defineStore } from 'pinia'
-
-export enum ENotifLevel {
-  SUCCESS = 'success',
-  INFO = 'info',
-  WARNING = 'warning',
-  ERROR = 'error'
-}
-export interface INotification {
-  title: string
-  level: ENotifLevel
-  id?: number
-}
-
-interface NotificationsState {
-  notifications: INotification[]
-  visible: boolean
-  expanded: boolean
-}
 
 let notifMaxId: number = 0
 

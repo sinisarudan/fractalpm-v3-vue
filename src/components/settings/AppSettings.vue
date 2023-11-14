@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import { ENotifLevel, useNotificationsStore } from '@/stores/notifications';
+import { ENotifLevel } from '@/models/notifications/notifications-vos';
+import { useNotificationsStore } from '@/stores/notifications';
+import { useSettingsStore } from '@/stores/settings'
 // import { onMounted } from 'vue'
 // import { computed } from 'vue'
 
 const notificationsStore = useNotificationsStore();
+const settingsStore = useSettingsStore();
 
 // onMounted(() => {
 // })
@@ -17,7 +20,7 @@ const tbdClicked = () => {
 </script>
 
 <template>
-  Settings <v-btn @click="tbdClicked" size="x-small">TBD</v-btn>
+  Settings {{ settingsStore.lang }} <v-btn @click="tbdClicked" size="x-small">TBD</v-btn>
 </template>
 
 <style scoped>

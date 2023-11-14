@@ -1,8 +1,9 @@
-import { describe, it, test, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach } from 'vitest'
 
 import { setActivePinia, createPinia } from 'pinia'
 
-import { ENotifLevel, useNotificationsStore } from '@/stores/notifications';
+import { useNotificationsStore } from '@/stores/notifications';
+import { ENotifLevel } from '@/models/notifications/notifications-vos';
 
 describe('Notifications.Store', () => {
   beforeEach(() => {
