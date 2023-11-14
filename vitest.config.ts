@@ -18,11 +18,7 @@ export default mergeConfig(viteConfig, defineConfig({
       ...configDefaults.exclude,
       'e2e/*', 
       'tests', // e2e - playwright
-      'tests-examples', // e2e - playwright
-      // '**/RimaService.spec.ts',
-      // '**/UserSelectorVue.spec.ts',
-      // '**/ManageTeamVue.spec.ts',
-      // '**/src/components/__tests__/RimaService.spec.ts',
+      // '**/UserService.spec.ts',
     ],
     root: fileURLToPath(new URL('./', import.meta.url)),
     coverage: {

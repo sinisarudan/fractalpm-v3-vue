@@ -1,4 +1,7 @@
 {
+  "files": [
+    "./public/config/config.json"
+  ],
   "extends": "./tsconfig.app.json",
   "exclude": [],
   "compilerOptions": {
