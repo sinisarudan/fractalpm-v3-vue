@@ -1,11 +1,12 @@
-<script setup>
-  console.log("HomeView");
-</script>
-
 <template>
-  <div class="home">
-    <div>Organize all your projects in an easy way.</div>
-    <div>Start managing your projects the right way.</div>
+  <div class="about">
+    <h1>FractalPM</h1>
+    <div>
+      Organize all your projects in an easy way.
+    </div>
+    <div>
+      Start managing your projects the right way.
+    </div>
   </div>
 </template>
 
@@ -13,7 +14,7 @@
 $mobile_breakpoint: 1024px;
 
 @media (max-width: #{$mobile_breakpoint}) {
-  .home {
+  .about {
     padding: 20px;
     min-height: 100vh;
     display: flex;
@@ -23,4 +24,3 @@ $mobile_breakpoint: 1024px;
   }
 }
 </style>
-

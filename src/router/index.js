@@ -1,7 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import HomeView from "../views/HomeView.vue";
 import HomeView from "../views/HomeView.vue";
-// import VuetifyIntro from "../views/VuetifyIntro.vue";
 
 const routes = [
   {
@@ -9,7 +7,6 @@ const routes = [
     name: 'home',
     component: HomeView
   },
-  /*
   {
     path: '/about',
     name: 'about',
@@ -25,7 +22,7 @@ const routes = [
     // this generates a separate chunk (UserAccountView.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import('../views/UserAccountView.vue')
-  }*/
+  }
 ]
 
 const router = createRouter({

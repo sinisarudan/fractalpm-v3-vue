@@ -29,7 +29,8 @@ The Vue3 web application for FractalPM
     "standard.vscode-standard",
     "zixuanchen.vitest-explorer",
     "hollowtree.vue-snippets",
-    "cmstead.js-codeformer"
+    "cmstead.js-codeformer",
+    "oouo-diogo-perdigao.docthis"
   ]
 }
 ```

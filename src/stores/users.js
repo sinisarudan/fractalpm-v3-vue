@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 import { UserService } from '@/services/UserService';
-import type { Person } from '@/models/users/users-vos';
+import { Person } from '@/models/users/users-vos';
 
 import { useNotificationsStore } from '@/stores/notifications';
 import { ENotifLevel } from '@/models/notifications/notifications-vos';

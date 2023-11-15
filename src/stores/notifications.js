@@ -1,20 +1,34 @@
-import type { NotificationsState, INotification } from '@/models/notifications/notifications-vos'
+import NotificationsState from '@/models/notifications/NotificationsState';
 import { defineStore } from 'pinia'
 
-let notifMaxId: number = 0
-
+/**
+ * @type {number}
+ * @description Maximum ID for notifications.
+ */
+let notifMaxId = 0
+/** @type {*} */
 export const useNotificationsStore = defineStore('Notifications', {
-  state: (): NotificationsState => {
+  
+  /**
+ * @function
+ * @name state
+ * @returns {NotificationsState} A new instance of NotificationsState.
+ * @description Returns a new `NotificationsState` with default values.
+ */
+  state: () => {
+    // return new NotificationsState([], true, true);
     return {
       notifications: [],
-      /** temporary here, probably should be a local variable in the notifications component */
       visible: true,
-      /** temporary here, probably should be a local variable in the notifications component */
       expanded: true
     }
   },
   getters: {
-    count: (state): number => (state.notifications ? state.notifications.length : 0)
+    /**
+     * @param {NotificationsState} state
+     * @return {*}  {number}
+     */
+    count: (state) => (state.notifications ? state.notifications.length : 0)
   },
   // could also be defined as
   // state: () => ({ count: 0 })
@@ -22,7 +36,12 @@ export const useNotificationsStore = defineStore('Notifications', {
     // increment() {
     //   this.count++
     // },
-    add(notif: INotification): number | undefined {
+
+    /**
+     * @param {INotification} notif
+     * @return {*}  {(number | undefined)}
+     */
+    add(notif) {
       console.log('[notif::actions::show] called')
       if (notif) {
         notif.id = notifMaxId++
@@ -37,7 +56,11 @@ export const useNotificationsStore = defineStore('Notifications', {
         return undefined
       }
     },
-    remove(notifId: number | undefined): void {
+    /**
+     * @param {(number | undefined)} notifId
+     * * @return {*}  {void}
+     */
+    remove(notifId) {
       if (!notifId) {
         return
       }

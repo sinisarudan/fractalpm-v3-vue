@@ -1,8 +1,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
-// import AppSettings from './components/settings/AppSettings.vue';
-// import AppNotifications from './components/AppNotifications.vue';
+import AppSettings from './components/settings/AppSettings.vue';
+import AppNotifications from './components/AppNotifications.vue';
 
 const drawer = ref(false);
 
@@ -30,11 +30,11 @@ onMounted(() => {
     <!-- <v-toolbar></v-toolbar> -->
     <v-main>
       <v-container fluid>
-        <!-- <AppNotifications /> -->
+        <AppNotifications />
         <router-view></router-view>
       </v-container>
     </v-main>
-    <!-- <v-footer app><AppSettings /></v-footer> -->
+    <v-footer app><AppSettings /></v-footer>
   </v-app>
 </template>
 
