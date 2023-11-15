@@ -9,10 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.3.4"
+    "@mdi/font": "^7.3.67",
+    "vue": "^3.3.8",
+    "vue-router": "^4.2.5",
+    "vuetify": "^3.4.1",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.2.3",
-    "vite": "^4.4.5"
+    "@vitejs/plugin-vue": "^4.4.1",
+    "sass": "^1.69.5",
+    "vite": "^4.5.0",
+    "vitest": "^0.34.6"
   }
 }

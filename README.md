@@ -47,11 +47,11 @@ The Vue3 web application for FractalPM
     - `✔ Select a variant: › JavaScript`
 - `cd fractalpm-v3-vue-js`
 - `pnpm install`
-- `pnpm run dev`
+- contine with [Run](#run)
 
 ## Run
 
-- `npm run dev`
+- `pnpm dev`
 
 ## Model
 
@@ -66,27 +66,40 @@ The Vue3 web application for FractalPM
 
 We use [Vitest](https://vitest.dev/) (Jest Compatible) testing framework, because of convenience and speed due to being a *Vite*-native testing framework.
 
-- `npm run test:unit`
-- `npm run test:coverage`
+- `pnpm test:unit`
+- `pnpm test:coverage`
 
 ### E2E Testing
 
 We use [Playwright](https://playwright.dev/) due to its enabling Multi-agent testing in comparison to *Cypress*, etc
 
-- start tests: `npm run test:e2e` (=> `npx playwright test`)
+- start tests: `pnpm test:e2e` (=> `npx playwright test`)
 - `npx playwright show-report`
 - tests are in `./e2e` folder
 
 ## Building
-- `npm run build`
+
+- `pnpm build`
 - builds in `dist` folder
 
 ### Checking built app
+
 - go to `dist` folder`
 - run `serve`
 - if not installed:
   - `yarn global add serve`
 
+## Advanced Dev Guide & Policies
+
 ### Advanced DevOps
 
 [DevOps](./DevOps.md)
+
+### UX/UI
+
+#### Vuetify
+
+##### Icons
+
+- <https://vuetifyjs.com/en/features/icon-fonts/>
+- TBD: after stabilizing the project, performance optimization and customization should be done following the above-link instructions
