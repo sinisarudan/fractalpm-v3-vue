@@ -12,7 +12,7 @@ import router from './router'
 import { loadFonts } from './plugins/webfontloader'
 import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
 
-// import { createPinia } from 'pinia'
+import { createPinia } from 'pinia'
 
 loadFonts()
 
@@ -25,9 +25,9 @@ const vuetify = createVuetify({
   // },
 })
 
-// const pinia = createPinia()
+const pinia = createPinia()
 
 app.use(vuetify)
 app.use(router)
-// app.use(pinia)
+app.use(pinia)
 app.mount('#app')
