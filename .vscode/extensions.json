@@ -1,9 +1,14 @@
 {
   "recommendations": [
-    "Vue.volar",
-    "Vue.vscode-typescript-vue-plugin",
-    "ms-playwright.playwright",
+    "vue.vscode-typescript-vue-plugin",
+    "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
+    "xabikos.javascriptsnippets",
+    "aaron-bond.better-comments",
+    "ms-playwright.playwright",
+    "standard.vscode-standard",
+    "zixuanchen.vitest-explorer",
+    "hollowtree.vue-snippets",
+    "cmstead.js-codeformer"
   ]
 }

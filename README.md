@@ -2,9 +2,52 @@
 
 The Vue3 web application for FractalPM
 
+## Dev Stack
+
+- **JavaScript**
+- Vue 3
+- Vuetify
+- Vite
+- Pinia
+- Vitest
+- Playwright
+
+## Recommended IDE Setup
+
+- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable *Vetur*) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- the project is accompanied by the `vscode` extensions recommendations in `.vscode/extensions.json`. Current recommendations:
+
+```json
+{
+  "recommendations": [
+    "vue.vscode-typescript-vue-plugin",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "xabikos.javascriptsnippets",
+    "aaron-bond.better-comments",
+    "ms-playwright.playwright",
+    "standard.vscode-standard",
+    "zixuanchen.vitest-explorer",
+    "hollowtree.vue-snippets",
+    "cmstead.js-codeformer"
+  ]
+}
+```
+
 ## Init
 
-- TBD
+- `npm install -g pnpm`
+  - We are using [**PNPM**](https://pnpm.io/) for the reasons of speed, storage saving, etc, more at:
+    - <https://medium.com/@buffet_time/why-you-should-move-to-pnpm-82962f332418>
+    - <https://www.youtube.com/watch?v=ZIKDJBrk56k&t=7s&ab_channel=Theo-t3%E2%80%A4gg>
+- This step is  **NOT NEEDED** when initializing the existing project (here only for history reasons):
+  - `pnpm create vite@latest`
+    - `✔ Project name: … fractalpm-v3-vue-js`
+    - `✔ Select a framework: › Vue`
+    - `✔ Select a variant: › JavaScript`
+- `cd fractalpm-v3-vue-js`
+- `pnpm install`
+- `pnpm run dev`
 
 ## Run
 

@@ -1,63 +1,30 @@
-<script setup lang="ts">
-import { ref, onMounted } from 'vue'
-
-import AppSettings from './components/settings/AppSettings.vue';
-import AppNotifications from './components/AppNotifications.vue';
-
-const drawer = ref<boolean>(false);
-
-// lifecycle hooks
-onMounted(() => {
-  
-})
+<script setup>
+import HelloWorld from './components/HelloWorld.vue';
 </script>
 
 <template>
-  <v-app>
-    <v-app-bar app>
-      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <RouterLink to="/"><img src="/assets/logo.png" alt="FractalPM" /></RouterLink>
-      <!-- <v-switch v-model="darkTheme" :label="darkTheme ? 'dark' : 'light'"></v-switch> -->
-    </v-app-bar>
-    <v-navigation-drawer app v-model="drawer" right bottom temporary>
-      <RouterLink @click="drawer = false" class="router-link" to="/">Home</RouterLink>
-      <RouterLink @click="drawer = false" class="router-link" to="/user_account"
-        >My Account</RouterLink
-      >
-      <RouterLink @click="drawer = false" class="router-link" to="/about">About</RouterLink>
-    </v-navigation-drawer>
-
-    <!-- <v-toolbar></v-toolbar> -->
-    <v-main>
-      <v-container fluid>
-        <AppNotifications />
-        <router-view></router-view>
-      </v-container>
-    </v-main>
-    <v-footer app><AppSettings /></v-footer>
-  </v-app>
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
+  </div>
+  <HelloWorld msg="Vite + Vue" />
 </template>
 
-<style lang="scss" scoped>
-.router-link {
-  margin: 10px;
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
 }
-
-.app-name {
-  margin-right: 5px;
-  font-size: 20px;
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
 }
-</style>
-
-<style lang="scss">
-.v-footer {
-  text-align: right !important;
-  right: 0px !important;
-  position: absolute !important;
-  // color: gray !important;
-}
-.v-navigation-drawer__content {
-  display: flex !important;
-  flex-direction: column !important;
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
 }
 </style>
