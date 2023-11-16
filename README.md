@@ -48,7 +48,7 @@ The Vue3 web application for FractalPM
     - `✔ Select a variant: › JavaScript`
 - `cd fractalpm-v3-vue-js`
 - `pnpm install`
-- contine with [Run](#run)
+- continue with [Run](#run)
 
 ## Run
 
@@ -74,9 +74,21 @@ We use [Vitest](https://vitest.dev/) (Jest Compatible) testing framework, becaus
 
 We use [Playwright](https://playwright.dev/) due to its enabling Multi-agent testing in comparison to *Cypress*, etc
 
-- start tests: `pnpm test:e2e` (=> `npx playwright test`)
-- `npx playwright show-report`
+- start tests: `pnpm test:e2e` (=> `pnpm playwright test`)
+- `pnpm playwright show-report`
 - tests are in `./e2e` folder
+
+### advanced
+
+- to avoid errors on tests that include `await page.goto('/');`, check `baseURL` setting in `playwright.config.cjs`
+
+```js
+use: {
+    /* Base URL to use in actions like `await page.goto('/')`. */
+    baseURL: 'http://localhost:5173',
+    // baseURL: 'http://127.0.0.1:3000',
+  },
+```
 
 ## Building
 
