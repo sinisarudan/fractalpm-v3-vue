@@ -54,12 +54,9 @@ The Vue3 web application for FractalPM
 
 - `pnpm dev`
 
-## Model
+## System Design
 
-- for models we use VOs (Value Objects) we don't use **Classes**, with methods to operate with them. Instead, we rely on `interface`-s stored in `VO_NAME-vos.ts` files and accompanied with `VO_NAME-operators.ts` that operate with it, to handle it.
-  - this is for the reason of marshalling interfaces between frontend and backend; plain data without any behavioral logic; while keeping strong typing through interfaces instead of serialized classes
-  - Another, a bit more demanding approach, would be to use classes for all frontend work but accompanied by VO's interface and `serialize` method that serializes class into that interface (e.g. for sending to server)
-  - this approach can be discussed and adjusted
+in [DevOps](./DevOps/DevOps.md)
 
 ## Testing
 
@@ -93,7 +90,7 @@ use: {
 ## Building
 
 - `pnpm build`
-- builds in `dist` folder
+- builds in the `dist` folder
 
 ### Checking built app
 
@@ -102,11 +99,18 @@ use: {
 - if not installed:
   - `yarn global add serve`
 
+## Deployment
+
+- **IMPORTANT**:
+  - to enforce code code styling, check for ESLint errors and correct them
+  - **before committing the code**, run `npx eslint src`
+    - if there are too many errors, most of them can be fixed automatically by running `npx eslint --fix src`
+
 ## Advanced Dev Guide & Policies
 
 ### Advanced DevOps
 
-[DevOps](./DevOps.md)
+[DevOps](./DevOps/DevOps.md)
 
 ### UX/UI
 
