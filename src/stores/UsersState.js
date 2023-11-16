@@ -1,4 +1,4 @@
-import { Person } from '@/models/users/Person';
+import Person from '@/models/users/Person';
 
 /**
  * Represents the Pinia state of users.
