@@ -3,12 +3,20 @@ import { ref, onMounted } from 'vue'
 
 import AppSettings from './components/settings/AppSettings.vue';
 import AppNotifications from './components/AppNotifications.vue';
+//TODO: remove this: for demoing `usersStore` working as expected
+import { useUsersStore } from '@/stores/users';
+import Person from '@/models/users/Person';
 
 const drawer = ref(false);
 
+const usersStore = useUsersStore();
 // lifecycle hooks
-onMounted(() => {
-  
+onMounted( async () => {
+  //TODO: remove this:  `usersStore` working as expected
+  const loggedInUser = await usersStore.login(Person.PersonInit);
+  console.log("[App] loggedInUser", loggedInUser);
+  console.log("[App] loggedInUser.email", loggedInUser.email);
+
 })
 </script>
 

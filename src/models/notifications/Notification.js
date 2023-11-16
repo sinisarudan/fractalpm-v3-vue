@@ -15,20 +15,36 @@ console.log(myNotification.id);    // 1
 */
 
 /**
- * @typedef {Object} Notification
- * @property {string} title - The title of the notification.
- * @property {string} level - The notification level.
- * @property {number} [id] - (Optional) The unique identifier for the notification.
+ * @class
  */
 export default class Notification {
-    /**
-     * @param {string} title - The title of the notification.
-     * @param {string} level - The notification level.
-     * @param {number} [id] - (Optional) The unique identifier for the notification.
-     */
-    constructor(title, level, id) {
-      this.title = title;
-      this.level = level;
-      this.id = id;
-    }
+  /**
+   * The title of the notification.
+   * @type {string}
+   */
+  title;
+
+  /**
+   * The notification level.
+   * @type {ENotifLevel}
+   */
+  level;
+
+  /**
+   * The unique identifier for the notification.
+   * @type {number | undefined}
+   */
+  id;
+
+  /**
+   * Creates a new instance of the Notification class.
+   * @param {string} title - The title of the notification.
+   * @param {ENotifLevel} level - The notification level.
+   * @param {number | undefined} [id] - (Optional) The unique identifier for the notification.
+   */
+  constructor(title, level, id = undefined) {
+    this.title = title;
+    this.level = level;
+    this.id = id;
   }
+}

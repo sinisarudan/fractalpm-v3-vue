@@ -1,4 +1,4 @@
-import NotificationsState from '@/models/notifications/NotificationsState';
+import NotificationsState from '@/stores/NotificationsState';
 import { defineStore } from 'pinia'
 
 /**
@@ -6,17 +6,16 @@ import { defineStore } from 'pinia'
  * @description Maximum ID for notifications.
  */
 let notifMaxId = 0
-/** @type {*} */
+
 export const useNotificationsStore = defineStore('Notifications', {
   
   /**
- * @function
- * @name state
- * @returns {NotificationsState} A new instance of NotificationsState.
- * @description Returns a new `NotificationsState` with default values.
- */
+  * @function
+  * @name state
+  * @returns {NotificationsState} A new instance of NotificationsState.
+  * @description Returns a new `NotificationsState` with default values.
+  */
   state: () => {
-    // return new NotificationsState([], true, true);
     return {
       notifications: [],
       visible: true,
