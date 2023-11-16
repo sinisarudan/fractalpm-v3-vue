@@ -12,8 +12,8 @@ export class Config {
    */
   LOCAL_MOCKUP_DATA;
 
-  constructor(configObj = ConfigDefault) {
-   /**
+  constructor (configObj = ConfigDefault) {
+    /**
      * if `true`: mocking up; if `false`: using axis service -> backend:
      * @type {boolean}
      */
@@ -24,8 +24,7 @@ export class Config {
 /**
  * @type {Config}
  */
-export const ConfigDefault = {LOCAL_MOCKUP_DATA: true};
-
+export const ConfigDefault = { LOCAL_MOCKUP_DATA: true };
 
 /**
  * providing (server-oriented) services for Users
@@ -42,8 +41,8 @@ export class UserService {
    * @param {Person} user - The user to register.
    * @returns {Promise<Person>} A promise that resolves to the registered user.
    */
-  static register(user) {
-    if(UserService.config.LOCAL_MOCKUP_DATA) {
+  static register (user) {
+    if (UserService.config.LOCAL_MOCKUP_DATA) {
       user.id = Person.PersonInit;
       return Promise.resolve(user);
     } else {
@@ -56,8 +55,8 @@ export class UserService {
   * @param {Person} user - The user to log in.
   * @returns {Promise<Person>} A promise that resolves to the logged-in user.
   */
- static login(user) {
-    if(UserService.config.LOCAL_MOCKUP_DATA) {
+  static login (user) {
+    if (UserService.config.LOCAL_MOCKUP_DATA) {
       user.id = Person.PersonMock.id;
       return Promise.resolve(user);
     } else {

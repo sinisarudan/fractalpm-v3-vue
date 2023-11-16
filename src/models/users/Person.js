@@ -38,7 +38,7 @@ export default class Person {
    * @param {string} email - The email address of the person.
    * @param {string} password - The password of the person.
    */
-  constructor(firstName, lastName, email, password, id = undefined) {
+  constructor (firstName, lastName, email, password, id = undefined) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
@@ -50,27 +50,27 @@ export default class Person {
  * a static method
  * @returns {Person} A mock instance of the Person class.
  */
-  static get PersonMock() {
+  static get PersonMock () {
     return {
-      id: '1', //TODO: to fit type
-      firstName: "Sinisa",
-      lastName: "Rudan",
-      email: "sinisa.rudan@gmail.com",
-      password: "pass"
-    }
+      id: '1', // TODO: to fit type
+      firstName: 'Sinisa',
+      lastName: 'Rudan',
+      email: 'sinisa.rudan@gmail.com',
+      password: 'pass'
+    };
   }
-  
-/**
+
+  /**
  * a static method
  * @returns {Person} An empty instance of the Person class.
  */
-  static get PersonInit() {
+  static get PersonInit () {
     return {
       id: undefined,
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: ""
-    }
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: ''
+    };
   }
 }

@@ -1,5 +1,5 @@
-import SettingsState from '@/models/settings/SettingsState'
-import { defineStore } from 'pinia'
+import SettingsState from '@/models/settings/SettingsState';
+import { defineStore } from 'pinia';
 
 export const useSettingsStore = defineStore('Settings', {
   /**
@@ -9,7 +9,7 @@ export const useSettingsStore = defineStore('Settings', {
  * @description Returns a new `SettingsState` with default values.
  */
   state: () => {
-    return { theme: "LIGHT", lang: "EN" }
+    return { theme: 'LIGHT', lang: 'EN' };
   },
 
   actions: {
@@ -17,4 +17,4 @@ export const useSettingsStore = defineStore('Settings', {
     //   this.count++
     // },
   }
-})
+});

@@ -1,8 +1,10 @@
+import { NotifLevel } from './NotifLevel';
+
 /*
 TS-original:
 export interface INotification {
     title: string
-    level: ENotifLevel
+    level: NotifLevel
     id?: number
 }
 
@@ -26,7 +28,7 @@ export default class Notification {
 
   /**
    * The notification level.
-   * @type {ENotifLevel}
+   * @type {NotifLevel}
    */
   level;
 
@@ -39,10 +41,10 @@ export default class Notification {
   /**
    * Creates a new instance of the Notification class.
    * @param {string} title - The title of the notification.
-   * @param {ENotifLevel} level - The notification level.
+   * @param {NotifLevel} level - The notification level.
    * @param {number | undefined} [id] - (Optional) The unique identifier for the notification.
    */
-  constructor(title, level, id = undefined) {
+  constructor (title, level, id = undefined) {
     this.title = title;
     this.level = level;
     this.id = id;

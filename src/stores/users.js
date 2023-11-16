@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { UserService } from '@/services/UserService';
 import Person from '@/models/users/Person';
+import { UsersState } from './UsersState';
 
 import { useNotificationsStore } from '@/stores/notifications';
 import { NotifLevel } from '@/models/notifications/NotifLevel';
@@ -14,18 +15,18 @@ export const useUsersStore = defineStore('Users', {
    * @description Returns a new `UsersState` with default values.
    */
   state: () => {
-    return { user: undefined }
+    return { user: undefined };
   },
 
   actions: {
-   /**
+    /**
    * @function
    * @name login
    * @param {Person} user - The user to log in.
    * @returns {Promise<Person | undefined>} A promise that resolves to the logged-in user or `undefined` if login fails.
    * @description Asynchronously logs in a user and returns a promise that resolves to the logged-in user or `undefined` if login fails.
    */
-    async login(user) {
+    async login (user) {
       try {
         const serverUser = await UserService.login(user);
         this.user = serverUser;
@@ -33,7 +34,7 @@ export const useUsersStore = defineStore('Users', {
       } catch (error) {
         console.error('Login error:', error);
         const notificationsStore = useNotificationsStore();
-        notificationsStore.add({ title: "Login error", level: NotifLevel.ERROR });
+        notificationsStore.add({ title: 'Login error', level: NotifLevel.ERROR });
         return undefined;
       }
     },
@@ -45,7 +46,7 @@ export const useUsersStore = defineStore('Users', {
      * @returns {Promise<Person | undefined>} A promise that resolves to the registered user or undefined if registration fails.
      * @description Asynchronously registers a new user and returns a promise that resolves to the registered user or undefined if registration fails.
      */
-    async register(user) {
+    async register (user) {
       try {
         const serverUser = await UserService.register(user);
         this.user = serverUser;
@@ -53,9 +54,9 @@ export const useUsersStore = defineStore('Users', {
       } catch (error) {
         console.error('Register error:', error);
         const notificationsStore = useNotificationsStore();
-        notificationsStore.add({ title: "Register error", level: NotifLevel.ERROR });
+        notificationsStore.add({ title: 'Register error', level: NotifLevel.ERROR });
         return undefined;
       }
-    },
+    }
   }
-})
+});

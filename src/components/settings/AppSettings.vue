@@ -2,7 +2,7 @@
 import { NotifLevel } from '@/models/notifications/NotifLevel';
 import Notification from '@/models/notifications/Notification';
 import { useNotificationsStore } from '@/stores/notifications';
-import { useSettingsStore } from '@/stores/settings'
+import { useSettingsStore } from '@/stores/settings';
 // import { onMounted } from 'vue'
 // import { computed } from 'vue'
 
@@ -16,8 +16,8 @@ const settingsStore = useSettingsStore();
 //   msg: string
 // }>()
 const tbdClicked = () => {
-  notificationsStore.add( new Notification("To be Done", NotifLevel.WARNING));
-}
+  notificationsStore.add(new Notification('To be Done', NotifLevel.WARNING));
+};
 </script>
 
 <template>

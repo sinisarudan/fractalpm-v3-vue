@@ -1,4 +1,4 @@
-/* 
+/*
 TS-original:
 export interface SettingsState {
     theme: string | undefined,
@@ -12,22 +12,21 @@ export interface SettingsState {
  * @property {string | undefined} lang - The language setting.
  */
 export default class SettingsState {
-    /**
+  /**
      * @param {string | undefined} theme - The theme setting.
      * @param {string | undefined} lang - The language setting.
      */
-    constructor(theme, lang) {
-      /**
+  constructor (theme, lang) {
+    /**
        * The theme setting.
        * @type {string | undefined}
        */
-      this.theme = theme;
-  
-      /**
+    this.theme = theme;
+
+    /**
        * The language setting.
        * @type {string | undefined}
        */
-      this.lang = lang;
-    }
+    this.lang = lang;
   }
-  
+}

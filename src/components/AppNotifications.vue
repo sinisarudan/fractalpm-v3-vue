@@ -1,6 +1,7 @@
 <script setup>
 import { useNotificationsStore } from '@/stores/notifications';
 import { onMounted } from 'vue';
+
 const notifications = useNotificationsStore();
 
 onMounted(() => {
@@ -14,12 +15,12 @@ onMounted(() => {
 // }>()
 
 /**
- * 
- * @param {number | undefined} alertId 
+ *
+ * @param {number | undefined} alertId
  */
 const alertClosed = (alertId) => {
   // console.log('Alert closed.', alertId)
-  notifications.remove(alertId)
+  notifications.remove(alertId);
 };
 </script>
 

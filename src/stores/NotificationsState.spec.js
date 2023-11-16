@@ -1,11 +1,11 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest'
+import { describe, test, expect } from 'vitest';
 
-import NotificationsState from './NotificationsState'
+import NotificationsState from './NotificationsState';
 
 // import { sum } from "../HelloWorld.vue";
 
 describe('NotificationsState', () => {
-  test("constructor", async () => {
+  test('constructor', async () => {
     const notificationsState = new NotificationsState([], true, true);
     expect(notificationsState.notifications.length).toEqual(0);
     expect(notificationsState.visible).toBeTruthy();
@@ -13,4 +13,4 @@ describe('NotificationsState', () => {
     notificationsState.expanded = false;
     expect(notificationsState.expanded).toBeFalsy();
   });
-})
+});
