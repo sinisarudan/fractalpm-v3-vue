@@ -17,7 +17,7 @@ export default mergeConfig(viteConfig, defineConfig({
       ...configDefaults.exclude,
       'e2e/*', 
       'tests', // e2e - playwright
-      // '**/UserService.spec.ts',
+      // '**/UserService.spec.js',
     ],
     root: fileURLToPath(new URL('./', import.meta.url)),
     coverage: {

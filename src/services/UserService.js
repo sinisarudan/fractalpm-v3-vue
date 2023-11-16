@@ -10,7 +10,7 @@ export class Config {
    * if `true`: mocking up; if `false`: using axis service -> backend:
    * @type {boolean}
    */
-  LOCAL_MOCKUP_DATA
+  LOCAL_MOCKUP_DATA;
 
   constructor(configObj = ConfigDefault) {
    /**
