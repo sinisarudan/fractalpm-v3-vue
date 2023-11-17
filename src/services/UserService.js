@@ -74,7 +74,7 @@ export class UserService {
   /**
    * Register a user.
    * @param {Person} user - The user to register.
-   * @returns {Promise<Person> | undefined} A `Promise` that resolves to the registered user or to `undefined` if there was an error in logging in.
+   * @returns {(Promise<Person> | undefined)} A `Promise` that resolves to the registered user or to `undefined` if there was an error in logging in.
    */
   static register (user) {
     if (UserService.config.LOCAL_MOCKUP_DATA) {
@@ -97,7 +97,7 @@ export class UserService {
   /**
   * Login a user.
   * @param {Person} user - The user to log in.
-  * @returns {Promise<Person> | undefined } a user with full data that is found through `user` login info or `undefined` if user is not found among registered.
+  * @returns {(Promise<Person> | undefined) } a user with full data that is found through `user` login info or `undefined` if user is not found among registered.
   */
   static login (user) {
     if (UserService.config.LOCAL_MOCKUP_DATA) {

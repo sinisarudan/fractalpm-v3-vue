@@ -1,6 +1,7 @@
 import NotificationsState from '@/stores/NotificationsState';
 import Notification from '@/models/notifications/Notification';
 import { defineStore } from 'pinia';
+import { NotifLevel } from '@/models/notifications/NotifLevel';
 
 /**
  * @type {number}
@@ -26,9 +27,9 @@ export const useNotificationsStore = defineStore('Notifications', {
   getters: {
     /**
      * @param {NotificationsState} state
-     * @return {*}  {number}
+     * @returns {number} number of notifications
      */
-    count: (state) => (state.notifications ? state.notifications.length : 0)
+    count: (state) => { return (state.notifications ? state.notifications.length : 0); }
   },
   // could also be defined as
   // state: () => ({ count: 0 })
@@ -39,7 +40,7 @@ export const useNotificationsStore = defineStore('Notifications', {
 
     /**
      * @param {Notification} notif
-     * @return {*}  {(number | undefined)}
+     * @returns {(number | undefined)}
      */
     add (notif) {
       console.log('[notif::actions::show] called');
@@ -56,9 +57,10 @@ export const useNotificationsStore = defineStore('Notifications', {
         return undefined;
       }
     },
+
     /**
      * @param {(number | undefined)} notifId
-     * * @return {*}  {void}
+     * @returns {void}
      */
     remove (notifId) {
       if (!notifId) {
@@ -72,6 +74,24 @@ export const useNotificationsStore = defineStore('Notifications', {
     },
     clearNotifications () {
       this.$patch({ notifications: [] }); // Use $patch to empty the notifications array
+    },
+
+    /**
+     * @param { NotifLevel } notifLevel
+     * @returns {number} timeout in **milliseconds** for the provided `NotifLevel` (`-1` means **endless**)
+     */
+    timeout: (notifLevel) => {
+      switch (notifLevel) {
+        case NotifLevel.SUCCESS:
+          return 3000;
+        case NotifLevel.INFO:
+          return 5000;
+        case NotifLevel.WARNING:
+          return -1;
+        case NotifLevel.ERROR:
+        default:
+          return -1;
+      }
     }
   }
 });

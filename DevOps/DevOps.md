@@ -13,6 +13,9 @@
 
 ### IntelliSense (Auto-complete). Documenting (JSDoc). Type hinting
 
+- <https://jsdoc.app/tags-type>
+- <https://jsdoc.app/tags-param>
+- <https://jsdoc.app/tags-returns>
 - **IntelliSense (Auto-complete)** are enabled through JSDoc and accompanied installed VSC extensions (guide in: Readme / Recommended IDE Setup)
 - to enable it, code should be documented like this [src/models/users/Person.js](../src/models/users/Person.js) file:
 
@@ -23,7 +26,7 @@
 export default class Person {
   /**
    * The unique identifier for the person.
-   * @type {string | undefined}
+   * @type {(string | undefined)}
    */
   id;
 
@@ -37,7 +40,7 @@ export default class Person {
 
   /**
    * Creates a new instance of the Person class.
-   * @param {string | undefined} id - The unique identifier for the person.
+   * @param {(string | undefined)} id - The unique identifier for the person.
    * @param {string} firstName - The first name of the person.
    * @param {string} lastName - The last name of the person.
    * @param {string} email - The email address of the person.

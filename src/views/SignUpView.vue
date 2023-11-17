@@ -31,12 +31,12 @@ const showSnackbar = computed({
 });
 
 /**
- * @type {string | undefined}
+ * @type {(string | undefined)}
  */
 const snackbarMessage = ref();
 
 /**
- * @type {string | undefined}
+ * @type {(string | undefined)}
  */
 const hidePass = ref(true);
 
