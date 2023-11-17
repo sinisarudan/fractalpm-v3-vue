@@ -1,0 +1,57 @@
+.
+├── DevOps
+│   ├── DevOps.md
+│   ├── TS-JS-Migration.md
+│   ├── project_tree-JS-4.txt
+│   └── project_tree-JS-5.txt
+├── README.md
+├── index.html
+├── jsconfig.json
+├── package.json
+├── pnpm-lock.yaml
+├── public
+│   ├── assets
+│   │   └── logo.png
+│   └── favicon.ico
+├── src
+│   ├── App.vue
+│   ├── assets
+│   │   └── config
+│   │       └── config.json
+│   ├── components
+│   │   ├── AppNotifications.vue
+│   │   ├── HelloWorld.vue
+│   │   └── settings
+│   │       └── AppSettings.vue
+│   ├── http-common.js
+│   ├── main.js
+│   ├── models
+│   │   ├── notifications
+│   │   │   ├── NotifLevel.js
+│   │   │   └── Notification.js
+│   │   ├── settings
+│   │   │   └── SettingsState.js
+│   │   └── users
+│   │       └── Person.js
+│   ├── plugins
+│   │   ├── vuetify.js
+│   │   └── webfontloader.js
+│   ├── router
+│   │   └── index.js
+│   ├── services
+│   │   └── UserService.js
+│   ├── stores
+│   │   ├── NotificationsState.js
+│   │   ├── UsersState.js
+│   │   ├── notifications.js
+│   │   ├── settings.js
+│   │   └── users.js
+│   ├── style.css
+│   └── views
+│       ├── AboutView.vue
+│       ├── HomeView.vue
+│       └── UserAccountView.vue
+├── vite.config.js
+└── vitest.config.js
+
+18 directories, 37 files

@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "vue.vscode-typescript-vue-plugin",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "xabikos.javascriptsnippets",
+    "aaron-bond.better-comments",
+    "ms-playwright.playwright",
+    "standard.vscode-standard",
+    "zixuanchen.vitest-explorer",
+    "hollowtree.vue-snippets",
+    "cmstead.js-codeformer",
+    "oouo-diogo-perdigao.docthis"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+	"env": "dev",
+	"api": {
+		"dev": {
+			"base_url": "https://localhost",
+			"port": "8443"
+		},
+		"prod": {
+			"base_url": "https://localhost",
+			"port": "8443"
+		}
+	},
+	"OTHER_VALUES": {
+		"env_dev": "dev",
+		"env_prod": "prod",
+		"api": {
+			"base_url_LOCAL": "http://localhost",
+			"base_url_LOCAL_HTTPS": "https://localhost",
+			"port_HTTPS": "8443",
+			"port_standard": "8080"
+		}
+	}
+}
