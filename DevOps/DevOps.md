@@ -1,14 +1,91 @@
 # fractalpm-v3-vue DevOps
 
-## Libraries
+## Libraries. Tech Stack
 
-### Removed
+- TBD
 
-- "test:e2e:ci": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress run'",
-- "roboto-fontface": "*"
+
+
 
 ### Testing
 
+- explained in [Readme](../README.md)
+
+### IntelliSense (Auto-complete). Documenting (JSDoc). Type hinting
+
+- **IntelliSense (Auto-complete)** are enabled through JSDoc and accompanied installed VSC extensions (guide in: Readme / Recommended IDE Setup)
+- to enable it, code should be documented like this [src/models/users/Person.js](../src/models/users/Person.js) file:
+
+```js
+/**
+ * @class
+ */
+export default class Person {
+  /**
+   * The unique identifier for the person.
+   * @type {string | undefined}
+   */
+  id;
+
+  // ...
+
+  /**
+   * The password of the person.
+   * @type {string}
+   */
+  password;
+
+  /**
+   * Creates a new instance of the Person class.
+   * @param {string | undefined} id - The unique identifier for the person.
+   * @param {string} firstName - The first name of the person.
+   * @param {string} lastName - The last name of the person.
+   * @param {string} email - The email address of the person.
+   * @param {string} password - The password of the person.
+   */
+  constructor (firstName, lastName, email, password, id = undefined) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.password = password;
+    this.id = id;
+  }
+
+  /**
+ * a static method
+ * @returns {Person} A mock instance of the Person class.
+ */
+  static get PersonMock () {
+    return {
+      id: '1', // TODO: to fit type
+      firstName: 'Sinisa',
+      lastName: 'Rudan',
+      email: 'sinisa.rudan@gmail.com',
+      password: 'pass'
+    };
+  }
+
+// ...
+}
+```
+
+- a code that uses the class `Person`, e.g. [UserService.js](../src/services/UserService.js) should import it and then use it in definition of `@param {Person}` or `@type {Person}` as below:
+
+```js
+import Person from '@/models/users/Person';
+// ...
+
+export class UserService {
+// ...
+/**
+   * Register a user.
+   * @param {Person} user - The user to register.
+   * @returns {Promise<Person>} A promise that resolves to the registered user.
+   */
+  static register (user) {
+    //... above documenting enables autocomplete for `user.id`
+    user.id = Person.PersonInit;
+```
 
 ### Styling. Formatting
 
