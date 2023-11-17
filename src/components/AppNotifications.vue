@@ -5,8 +5,8 @@ import { onMounted } from 'vue';
 const notifications = useNotificationsStore();
 
 onMounted(() => {
-  // notifications.add({title: "NotifTitleWARNING", level: ENotifLevel.WARNING});
-  // notifications.add({title: "NotifTitleSUCCESS", level: ENotifLevel.SUCCESS});
+  // notifications.add({title: "NotifTitleWARNING", level: NotifLevel.WARNING});
+  // notifications.add({title: "NotifTitleSUCCESS", level: NotifLevel.SUCCESS});
   // notifications.expanded = false;
 });
 

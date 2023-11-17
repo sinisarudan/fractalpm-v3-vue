@@ -34,19 +34,26 @@ export default class Notification {
 
   /**
    * The unique identifier for the notification.
-   * @type {number | undefined}
+   * @type {(number | undefined)}
    */
   id;
+
+  /**
+   * automatically created as a result of `setTimeout`
+   * @type {(number | undefined)}
+   */
+  timeoutId;
 
   /**
    * Creates a new instance of the Notification class.
    * @param {string} title - The title of the notification.
    * @param {NotifLevel} level - The notification level.
-   * @param {number | undefined} [id] - (Optional) The unique identifier for the notification.
+   * @param {(number | undefined)} [id] - (Optional) The unique identifier for the notification.
    */
   constructor (title, level, id = undefined) {
     this.title = title;
     this.level = level;
     this.id = id;
+    this.timeoutId = undefined;
   }
 }

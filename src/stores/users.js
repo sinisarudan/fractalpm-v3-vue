@@ -23,7 +23,7 @@ export const useUsersStore = defineStore('Users', {
    * @function
    * @name login
    * @param {Person} user - The user to log in.
-   * @returns {Promise<Person | undefined>} A promise that resolves to the logged-in user or `undefined` if login fails.
+   * @returns {(Promise<Person | undefined>)} A promise that resolves to the logged-in user or `undefined` if login fails.
    * @description Asynchronously logs in a user and returns a promise that resolves to the logged-in user or `undefined` if login fails.
    */
     async login (user) {
@@ -45,7 +45,7 @@ export const useUsersStore = defineStore('Users', {
      * @function
      * @name register
      * @param {Person} user - The user to register.
-     * @returns {Promise<Person | undefined>} A promise that resolves to the registered user or undefined if registration fails.
+     * @returns {(Promise<Person | undefined>)} A promise that resolves to the registered user or undefined if registration fails.
      * @description Asynchronously registers a new user and returns a promise that resolves to the registered user or undefined if registration fails.
      */
     async register (user) {

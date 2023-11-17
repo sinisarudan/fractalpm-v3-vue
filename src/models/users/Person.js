@@ -4,7 +4,7 @@
 export default class Person {
   /**
    * The unique identifier for the person.
-   * @type {string | undefined}
+   * @type {(string | undefined)}
    */
   id;
 
@@ -32,7 +32,7 @@ export default class Person {
 
   /**
    * Creates a new instance of the Person class.
-   * @param {string | undefined} id - The unique identifier for the person.
+   * @param {(string | undefined)} id - The unique identifier for the person.
    * @param {string} firstName - The first name of the person.
    * @param {string} lastName - The last name of the person.
    * @param {string} email - The email address of the person.
