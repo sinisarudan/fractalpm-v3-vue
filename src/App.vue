@@ -24,7 +24,10 @@ onMounted( async () => {
   <v-app>
     <v-app-bar app>
       <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <RouterLink to="/"><img src="/assets/logo.png" alt="FractalPM" /></RouterLink>
+      <RouterLink class="logo" to="/"><img src="/assets/logo.png" alt="FractalPM" /></RouterLink>
+      <router-link to="/signup">
+        <v-btn variant="outlined">Signup</v-btn>
+      </router-link>
       <!-- <v-switch v-model="darkTheme" :label="darkTheme ? 'dark' : 'light'"></v-switch> -->
     </v-app-bar>
     <v-navigation-drawer app v-model="drawer" right bottom temporary>
@@ -54,6 +57,9 @@ onMounted( async () => {
 .app-name {
   margin-right: 5px;
   font-size: 20px;
+}
+.logo {
+  margin-right: 20px;
 }
 </style>
 

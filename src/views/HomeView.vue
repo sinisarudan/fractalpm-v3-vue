@@ -4,13 +4,18 @@
 
 <template>
   <div class="home">
-    <div>Organize all your projects in an easy way.</div>
+    <div>
+      <h1>Organize all your projects in an easy way.</h1>
+    </div>
     <div>Start managing your projects the right way.</div>
   </div>
 </template>
 
 <style lang="scss">
 $mobile_breakpoint: 1024px;
+.home {
+    text-align: left;
+  }
 
 @media (max-width: #{$mobile_breakpoint}) {
   .home {
