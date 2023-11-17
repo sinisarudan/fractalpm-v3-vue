@@ -39,6 +39,12 @@ export default class Notification {
   id;
 
   /**
+   * automatically created as a result of `setTimeout`
+   * @type {(number | undefined)}
+   */
+  timeoutId;
+
+  /**
    * Creates a new instance of the Notification class.
    * @param {string} title - The title of the notification.
    * @param {NotifLevel} level - The notification level.
@@ -48,5 +54,6 @@ export default class Notification {
     this.title = title;
     this.level = level;
     this.id = id;
+    this.timeoutId = undefined;
   }
 }

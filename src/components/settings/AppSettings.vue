@@ -16,7 +16,7 @@ const settingsStore = useSettingsStore();
 //   msg: string
 // }>()
 const tbdClicked = () => {
-  notificationsStore.add(new Notification('To be Done', NotifLevel.WARNING));
+  notificationsStore.add(new Notification('To be Done', NotifLevel.INFO));
 };
 </script>
 

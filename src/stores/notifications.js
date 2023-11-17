@@ -46,6 +46,14 @@ export const useNotificationsStore = defineStore('Notifications', {
       console.log('[notif::actions::show] called');
       if (notif) {
         notif.id = notifMaxId++;
+
+        // setting timeout based on `notif.level`:
+        if (this.timeout(notif.level) >= 0) {
+          notif.timeoutId = setTimeout(() => {
+            this.remove(notif.id);
+          }, this.timeout(notif.level));
+        }
+
         this.notifications.push(notif);
         console.log('[notif::actions::show]', notif);
         // dispatch({
@@ -69,6 +77,9 @@ export const useNotificationsStore = defineStore('Notifications', {
       const index = this.notifications.findIndex((notif) => notif.id === notifId);
 
       if (index !== -1) {
+        if (this.notifications[index].timeoutId) {
+          clearTimeout(this.notifications[index].timeoutId); // Clear the timeout to prevent it from triggering later
+        }
         this.notifications.splice(index, 1);
       }
     },
