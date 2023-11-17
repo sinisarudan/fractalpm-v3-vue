@@ -57,6 +57,7 @@ export class UserService {
   */
   static login (user) {
     if (UserService.config.LOCAL_MOCKUP_DATA) {
+      // TODO: add logic for retrieving a pre-saved (registered) demo user (with all his data: firstName, ...)
       user.id = Person.PersonMock.id;
       return Promise.resolve(user);
     } else {

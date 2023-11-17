@@ -78,7 +78,10 @@ const validateForm = async () => {
 const userLoggedIn = async (userToLogIn) => {
   const user = (await usersStore.login(userToLogIn));
   if (user) {
-    localStorage.loggedInUser = JSON.stringify(user);
+    // TODO: add security transformations: hash, salt, pass ...
+    // so far password is removed before storing:
+    localStorage.loggedInUser = JSON.stringify({ ...JSON.parse(JSON.stringify(user)), password: undefined });
+
     notificationsStore.add(new Notification(`Welcome ${user.firstName}! You have Successfully Logged In.`, NotifLevel.SUCCESS));
     router.push({ name: 'home' });
   }

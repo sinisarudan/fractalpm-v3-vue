@@ -1,39 +1,22 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue';
 
 import AppSettings from './components/settings/AppSettings.vue';
 import AppNotifications from './components/AppNotifications.vue';
-//TODO: remove this: for demoing `usersStore` working as expected
-import { useUsersStore } from '@/stores/users';
-import Person from '@/models/users/Person';
+import AppNavBar from './components/AppNavBar.vue';
+// import Person from '@/models/users/Person';
 
 const drawer = ref(false);
 
-const usersStore = useUsersStore();
-// lifecycle hooks
-onMounted( async () => {
-  //TODO: remove this:  `usersStore` working as expected
-  const loggedInUser = await usersStore.login(Person.PersonInit);
-  console.log("[App] loggedInUser", loggedInUser);
-  console.log("[App] loggedInUser.email", loggedInUser.email);
-
-})
+const navClicked = () => {
+  drawer.value = !drawer.value;
+};
 </script>
 
 <template>
   <v-app>
     <v-app-bar app>
-      <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <RouterLink class="logo" to="/"><img src="/assets/logo.png" alt="FractalPM" /></RouterLink>
-      <div class="app-actions">
-        <router-link to="/signup">
-          <v-btn variant="outlined">Signup</v-btn>
-        </router-link>
-        <router-link to="/login">
-          <v-btn variant="outlined">Login</v-btn>
-        </router-link>
-        <!-- <v-switch v-model="darkTheme" :label="darkTheme ? 'dark' : 'light'"></v-switch> -->
-      </div>
+      <AppNavBar @navClicked="navClicked" />
     </v-app-bar>
     <v-navigation-drawer app v-model="drawer" right bottom temporary>
       <RouterLink @click="drawer = false" class="router-link" to="/">Home</RouterLink>
@@ -55,10 +38,6 @@ onMounted( async () => {
 </template>
 
 <style lang="scss" scoped>
-.app-actions{
-  display: flex;
-  gap: 20px;
-}
 .router-link {
   margin: 10px;
 }
