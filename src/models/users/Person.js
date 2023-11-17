@@ -46,18 +46,19 @@ export default class Person {
     this.id = id;
   }
 
+  /** used for security reasons, logging etc
+ * @returns {Person} user cleaned of pass.
+ */
+  get userWoPass () {
+    return { ...this, password: '--HIDDEN--' };
+  }
+
   /**
  * a static method
  * @returns {Person} A mock instance of the Person class.
  */
   static get PersonMock () {
-    return {
-      id: '1', // TODO: to fit type
-      firstName: 'Sinisa',
-      lastName: 'Rudan',
-      email: 'sinisa.rudan@gmail.com',
-      password: 'pass'
-    };
+    return new Person('Sinisa', 'Rudan', 'sinisa.rudan@gmail.com', 'pass', '1');
   }
 
   /**
@@ -65,12 +66,6 @@ export default class Person {
  * @returns {Person} An empty instance of the Person class.
  */
   static get PersonInit () {
-    return {
-      id: undefined,
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: ''
-    };
+    return new Person('', '', '');
   }
 }

@@ -84,6 +84,8 @@ const userLoggedIn = async (userToLogIn) => {
 
     notificationsStore.add(new Notification(`Welcome ${user.firstName}! You have Successfully Logged In.`, NotifLevel.SUCCESS));
     router.push({ name: 'home' });
+  } else {
+    notificationsStore.add(new Notification('Login Error.', NotifLevel.ERROR));
   }
 };
 

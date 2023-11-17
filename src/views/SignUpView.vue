@@ -83,12 +83,12 @@ const validateForm = async () => {
 
 /**
  * @function
- * @name userRegistered
+ * @name userSignedUp
  * @param {Person} userToRegister
  * @returns {Promise<void>}
  * @description
  */
-const userRegistered = async (userToRegister) => {
+const userSignedUp = async (userToRegister) => {
   const user = (await usersStore.register(userToRegister));
   if (user) {
     // TODO: add security transformations: hash, salt, pass ...
@@ -97,13 +97,15 @@ const userRegistered = async (userToRegister) => {
 
     notificationsStore.add(new Notification(`Welcome ${user.firstName}! You have Successfully Signed Up.`, NotifLevel.SUCCESS));
     router.push({ name: 'home' });
+  } else {
+    notificationsStore.add(new Notification('Signup Error.', NotifLevel.ERROR));
   }
 };
 
 const submit = async () => {
   if (await validateForm()) {
     // console.log("[submit] user.value", user.value); //WARNING: contains password
-    userRegistered(user.value);
+    userSignedUp(user.value);
   } else {
     snackbarMessage.value = 'Form is not valid';
   }
