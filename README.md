@@ -43,10 +43,10 @@ The Vue3 web application for FractalPM
     - <https://www.youtube.com/watch?v=ZIKDJBrk56k&t=7s&ab_channel=Theo-t3%E2%80%A4gg>
 - This step is  **NOT NEEDED** when initializing the existing project (here only for history reasons):
   - `pnpm create vite@latest`
-    - `✔ Project name: … fractalpm-v3-vue-js`
+    - `✔ Project name: … fractalpm-v3-vue`
     - `✔ Select a framework: › Vue`
     - `✔ Select a variant: › JavaScript`
-- `cd fractalpm-v3-vue-js`
+- `cd fractalpm-v3-vue`
 - `pnpm install`
 - continue with [Run](#run)
 
