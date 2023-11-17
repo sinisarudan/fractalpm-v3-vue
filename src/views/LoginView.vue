@@ -11,15 +11,12 @@ const usersStore = useUsersStore();
 const notificationsStore = useNotificationsStore();
 const router = useRouter();
 
-const FirstNameMaxLength = 30;
-const LastNameMaxLength = 35;
 const EMailMaxLength = 70;
 
 /**
  * @type {Person}
  */
 const user = ref(Person.PersonInit);
-const passwordConfirm = ref('');
 
 const showSnackbar = computed({
   get: () => !!snackbarMessage.value,
@@ -49,16 +46,6 @@ const emailRules = ref([
     !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/.test(v) || 'E-mail must be valid'
 ]);
 
-const fNameRules = ref([
-  (v) => (v && v.length > 0) || 'First name is required',
-  (v) => (v && v.length <= FirstNameMaxLength) || `Maximum ${FirstNameMaxLength} characters`
-]);
-
-const lNameRules = ref([
-  (v) => (v && v.length > 0) || 'Last name is required',
-  (v) => (v && v.length <= LastNameMaxLength) || `Maximum ${LastNameMaxLength} characters`
-]);
-
 const passRules = ref([
   (v) => (v && v.length > 0) || 'Password is required'
 ]);
@@ -83,16 +70,16 @@ const validateForm = async () => {
 
 /**
  * @function
- * @name userRegistered
- * @param {Person} userToRegister
+ * @name userLoggedIn
+ * @param {Person} userToLogIn
  * @returns {Promise<void>}
  * @description
  */
-const userRegistered = async (userToRegister) => {
-  const user = (await usersStore.register(userToRegister));
+const userLoggedIn = async (userToLogIn) => {
+  const user = (await usersStore.login(userToLogIn));
   if (user) {
     localStorage.loggedInUser = JSON.stringify(user);
-    notificationsStore.add(new Notification(`Welcome ${user.firstName}! You have Successfully Signed Up.`, NotifLevel.SUCCESS));
+    notificationsStore.add(new Notification(`Welcome ${user.firstName}! You have Successfully Logged In.`, NotifLevel.SUCCESS));
     router.push({ name: 'home' });
   }
 };
@@ -100,41 +87,21 @@ const userRegistered = async (userToRegister) => {
 const submit = async () => {
   if (await validateForm()) {
     // console.log("[submit] user.value", user.value); //WARNING: contains password
-    userRegistered(user.value);
+    userLoggedIn(user.value);
   } else {
     snackbarMessage.value = 'Form is not valid';
   }
 };
+
 </script>
 
 <template>
-  <v-card class="signup">
-    <div><h1>Create Account</h1></div>
-    <div>Start managing your projects the right way.</div>
+  <v-card class="login">
+    <div>
+      <div><h1>Welcome Back</h1></div>
+      <div>Start managing your projects the right way.</div>
+    </div>
     <v-form class="form" v-model="valid" ref="form">
-
-      <div class="tf-label">First Name</div>
-      <v-text-field
-        class="t-field"
-        v-model="user.firstName"
-        :counter="FirstNameMaxLength"
-        label="Enter your first name"
-        :rules="fNameRules"
-        required
-      >
-      </v-text-field>
-
-      <div class="tf-label">Last Name</div>
-      <v-text-field
-        class="t-field"
-        v-model="user.lastName"
-        :counter="LastNameMaxLength"
-        label="Enter your last name"
-        :rules="lNameRules"
-        required
-      >
-      </v-text-field>
-
       <div class="tf-label">Email</div>
       <v-text-field
       class="t-field"
@@ -151,20 +118,7 @@ const submit = async () => {
       <v-text-field
       class="t-field"
         v-model="user.password"
-        label="Create a Password"
-        :rules="passRules"
-        :type="hidePass ? 'password' : 'text'"
-        :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-        @click:append="hidePass = !hidePass"
-        required
-      >
-      </v-text-field>
-
-      <div class="tf-label">Confirm Password</div>
-      <v-text-field
-      class="t-field"
-        v-model="passwordConfirm"
-        label="Confirm Password"
+        label="Enter your password"
         :rules="passRules"
         :type="hidePass ? 'password' : 'text'"
         :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
@@ -174,10 +128,9 @@ const submit = async () => {
       </v-text-field>
     </v-form>
     <div class="actions">
-      <v-btn color="blue" @click="submit">Create Account</v-btn>
+      <v-btn color="blue" @click="submit">Login</v-btn>
     </div>
-    <div>By signing up, you agree with <a src="">our terms</a> and <a src="">privacy policy</a>.</div>
-    <div>Already have an account?  <RouterLink to="/login">Login</RouterLink></div>
+    <div>Don't have an account? <RouterLink to="/signup">Signup</RouterLink></div>
   </v-card>
   <v-snackbar v-model="showSnackbar" :timeout="3000">
     {{ snackbarMessage }}
@@ -190,7 +143,7 @@ const submit = async () => {
 
 <style lang="scss">
 
-.signup {
+.login {
   min-width: 300px;
   padding: 15px;
   overflow: scroll;

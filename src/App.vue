@@ -25,10 +25,15 @@ onMounted( async () => {
     <v-app-bar app>
       <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <RouterLink class="logo" to="/"><img src="/assets/logo.png" alt="FractalPM" /></RouterLink>
-      <router-link to="/signup">
-        <v-btn variant="outlined">Signup</v-btn>
-      </router-link>
-      <!-- <v-switch v-model="darkTheme" :label="darkTheme ? 'dark' : 'light'"></v-switch> -->
+      <div class="app-actions">
+        <router-link to="/signup">
+          <v-btn variant="outlined">Signup</v-btn>
+        </router-link>
+        <router-link to="/login">
+          <v-btn variant="outlined">Login</v-btn>
+        </router-link>
+        <!-- <v-switch v-model="darkTheme" :label="darkTheme ? 'dark' : 'light'"></v-switch> -->
+      </div>
     </v-app-bar>
     <v-navigation-drawer app v-model="drawer" right bottom temporary>
       <RouterLink @click="drawer = false" class="router-link" to="/">Home</RouterLink>
@@ -50,6 +55,10 @@ onMounted( async () => {
 </template>
 
 <style lang="scss" scoped>
+.app-actions{
+  display: flex;
+  gap: 20px;
+}
 .router-link {
   margin: 10px;
 }
