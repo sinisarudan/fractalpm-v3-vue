@@ -29,8 +29,10 @@ export const useUsersStore = defineStore('Users', {
     async login (user) {
       try {
         const serverUser = await UserService.login(user);
-        this.user = serverUser;
-        return this.user;
+        if (serverUser) {
+          this.user = serverUser;
+        }
+        return serverUser;
       } catch (error) {
         console.error('Login error:', error);
         const notificationsStore = useNotificationsStore();
@@ -49,8 +51,10 @@ export const useUsersStore = defineStore('Users', {
     async register (user) {
       try {
         const serverUser = await UserService.register(user);
-        this.user = serverUser;
-        return this.user;
+        if (serverUser) {
+          this.user = serverUser;
+        }
+        return serverUser;
       } catch (error) {
         console.error('Register error:', error);
         const notificationsStore = useNotificationsStore();
