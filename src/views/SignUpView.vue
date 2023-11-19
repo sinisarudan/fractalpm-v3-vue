@@ -16,6 +16,11 @@ const LastNameMaxLength = 35;
 const EMailMaxLength = 70;
 
 /**
+   * @type {boolean}
+   */
+const SETUP_PASSWORD = false;
+
+/**
  * @type {import('vue').Ref<Person>}
  */
 const user = ref(Person.PersonInit);
@@ -168,31 +173,33 @@ const submit = async () => {
       >
       </v-text-field>
 
-      <div class="tf-label">Password</div>
-      <v-text-field
-      class="t-field"
-        v-model="user.password"
-        label="Create a Password"
-        :rules="passRules"
-        :type="hidePass ? 'password' : 'text'"
-        :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-        @click:append="hidePass = !hidePass"
-        required
-      >
-      </v-text-field>
+      <div v-if="SETUP_PASSWORD">
+        <div class="tf-label">Password</div>
+        <v-text-field
+        class="t-field"
+          v-model="user.password"
+          label="Create a Password"
+          :rules="passRules"
+          :type="hidePass ? 'password' : 'text'"
+          :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
+          @click:append="hidePass = !hidePass"
+          required
+        >
+        </v-text-field>
 
-      <div class="tf-label">Confirm Password</div>
-      <v-text-field
-      class="t-field"
-        v-model="passwordConfirm"
-        label="Confirm Password"
-        :rules="passConfirmRules"
-        :type="hidePass ? 'password' : 'text'"
-        :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-        @click:append="hidePass = !hidePass"
-        required
-      >
+        <div class="tf-label">Confirm Password</div>
+        <v-text-field
+        class="t-field"
+          v-model="passwordConfirm"
+          label="Confirm Password"
+          :rules="passConfirmRules"
+          :type="hidePass ? 'password' : 'text'"
+          :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
+          @click:append="hidePass = !hidePass"
+          required
+        >
       </v-text-field>
+      </div>
     </v-form>
     <div class="actions">
       <v-btn color="#8155FF" block variant="flat" @click="submit">Create Account</v-btn>
