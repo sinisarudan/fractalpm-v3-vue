@@ -74,9 +74,10 @@ export class UserService {
   /**
    * Register a user.
    * @param {Person} user - The user to register.
+   * @param {boolean} [sendConfirmationEmail = true] - if true, the confirmation email is created (default: true).
    * @returns {(Promise<Person> | undefined)} A `Promise` that resolves to the registered user or to `undefined` if there was an error in logging in.
    */
-  static register (user) {
+  static register (user, sendConfirmationEmail = true) {
     if (UserService.config.LOCAL_MOCKUP_DATA) {
       const mockupInstance = UserServiceMockups.getInstance();
 
@@ -88,8 +89,10 @@ export class UserService {
       }
       user.id = mockupInstance.MAX_ID++;
       mockupInstance.registeredUsers.push(user);
+      // TODO: to see if we want to cover `sendConfirmationEmail` in the mock up
       return Promise.resolve(user);
     } else {
+      // TODO: to see if we want to complicate things on backend with the conditional `sendConfirmationEmail` or always to perform it
       return http.post('/register', user);
     }
   }
