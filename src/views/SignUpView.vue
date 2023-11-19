@@ -117,6 +117,7 @@ const userSignedUp = async (userToRegister) => {
     localStorage.loggedInUser = JSON.stringify({ ...JSON.parse(JSON.stringify(user)), password: undefined });
 
     notificationsStore.add(new Notification(`Welcome ${user.firstName}! You have Successfully Signed Up.`, NotifLevel.SUCCESS));
+    notificationsStore.add(new Notification('Check for a confirmation email to set a password.', NotifLevel.WARNING));
     router.push({ name: 'home' });
   } else {
     notificationsStore.add(new Notification('Signup Error.', NotifLevel.ERROR));
