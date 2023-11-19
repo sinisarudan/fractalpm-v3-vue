@@ -16,27 +16,31 @@ const LastNameMaxLength = 35;
 const EMailMaxLength = 70;
 
 /**
- * @type {Person}
+ * @type {import('vue').Ref<Person>}
  */
 const user = ref(Person.PersonInit);
+
+/**
+ * @type {import('vue').Ref<string>}
+ */
 const passwordConfirm = ref('');
 
 const showSnackbar = computed({
   get: () => !!snackbarMessage.value,
 
   /**
-   * @type {boolean}
+   * @type {import('vue').Ref<boolean>}
    */
   set: (val) => (snackbarMessage.value = val ? '' : undefined)
 });
 
 /**
- * @type {(string | undefined)}
+ * @type {import('vue').Ref<(string | undefined)>}
  */
 const snackbarMessage = ref();
 
 /**
- * @type {(string | undefined)}
+ * @type {import('vue').Ref<(string | undefined)>}
  */
 const hidePass = ref(true);
 
@@ -59,12 +63,24 @@ const lNameRules = ref([
   (v) => (v && v.length <= LastNameMaxLength) || `Maximum ${LastNameMaxLength} characters`
 ]);
 
-const passRules = ref([
-  (v) => (v && v.length > 0) || 'Password is required'
+const PassMinLength = 8;
+const PassMaxLength = 100;
+
+const passRulesArray = [
+  (v) => (v && v.length >= PassMinLength && v.length < PassMaxLength) || `At least ${PassMinLength} characters long and maximum of ${PassMaxLength} characters`,
+  (v) => (/[A-Z]/.test(v) && /[a-z]/.test(v)) || 'Has at least 1 uppercase and 1 lowercase character',
+  (v) => /[!@#$%^&*(),.?":{}|<>]/.test(v) || 'Has at least 1 special character',
+  (v) => /\d/.test(v) || 'Has at least 1 digit'
+];
+
+const passRules = ref(passRulesArray);
+
+const passConfirmRules = ref([...passRulesArray,
+  (v) => (v && user.value.password === v) || 'Passwords don\'t match'
 ]);
 
 /**
- * @type {boolean}
+ * @type {import('vue').Ref<boolean>}
  */
 const valid = ref(false);
 
@@ -170,7 +186,7 @@ const submit = async () => {
       class="t-field"
         v-model="passwordConfirm"
         label="Confirm Password"
-        :rules="passRules"
+        :rules="passConfirmRules"
         :type="hidePass ? 'password' : 'text'"
         :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
         @click:append="hidePass = !hidePass"
@@ -179,9 +195,9 @@ const submit = async () => {
       </v-text-field>
     </v-form>
     <div class="actions">
-      <v-btn color="blue" @click="submit">Create Account</v-btn>
+      <v-btn color="#8155FF" block variant="flat" @click="submit">Create Account</v-btn>
     </div>
-    <div>By signing up, you agree with <a src="">our terms</a> and <a src="">privacy policy</a>.</div>
+    <div>By signing up, you agree with <a href="#">our terms</a> and <a href="#">privacy policy</a>.</div>
     <div>Already have an account?  <RouterLink to="/login">Login</RouterLink></div>
   </v-card>
   <v-snackbar v-model="showSnackbar" :timeout="3000">
