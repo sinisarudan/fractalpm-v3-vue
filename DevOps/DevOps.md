@@ -4,20 +4,79 @@
 
 - TBD
 
-
-
-
 ### Testing
 
 - explained in [Readme](../README.md)
 
-### IntelliSense (Auto-complete). Documenting (JSDoc). Type hinting
+### Errors Prevention. IntelliSense (Auto-complete). Documenting (JSDoc). Type hinting
 
 - <https://jsdoc.app/tags-type>
 - <https://jsdoc.app/tags-param>
 - <https://jsdoc.app/tags-returns>
-- **IntelliSense (Auto-complete)** are enabled through JSDoc and accompanied installed VSC extensions (guide in: Readme / Recommended IDE Setup)
-- to enable it, code should be documented like this [src/models/users/Person.js](../src/models/users/Person.js) file:
+- **IntelliSense (Auto-complete)** and Eslint **error detection** are enabled through JSDoc and accompanied installed VSC extensions (guide in: Readme / Recommended IDE Setup)
+- to enable it all, code should be JSDoc documented properly. Following Guides / Patterns show you how:
+
+#### Guide / Pattern #1 - Vue (Ref, ...) & Types not exported
+
+If you don't activate this pattern but simply do:
+
+```js
+import { ref } from 'vue';
+const error = ref();
+error = 'Incorrect format';
+```
+
+... then the above error of not assigning to `error.value` gets unnoticed!
+
+Instead we go for
+
+```js
+import { ref, Ref } from 'vue';
+/**
+ * @type {Ref<string>}
+ */
+const error = ref();
+error = 'Incorrect format';
+```
+
+By informing eslint of the `error` const type, we get an error indication:
+
+<img src ='./img/eslint-ref-benefits-1.jpg' />
+
+We also get type inf on hovering:
+
+<img src ='./img/eslint-ref-benefits-2.jpg' />
+
+But more important, the *intellisense / autocomplete* **speeds up our development and avoids mistyping**:
+
+<img src ='./img/eslint-ref-benefits-3.jpg' />
+
+The only caveat is that the `Ref` type is exported as a part of `*.d.ts` typing that are not accessible to JS code so we ger the error:
+`SyntaxError: The requested module '/node_modules/.vite/deps/vue.js?v=603245f2' does not provide an export named 'Ref'`
+To solve this, we omit `Ref` import and us it in `@type` as `import('vue').Ref`:
+
+```js
+import { ref } from 'vue';
+/**
+ * @type {import('vue').Ref<string>}
+ */
+const error = ref();
+error.value = 'Incorrect format';
+```
+
+More examples of this:
+
+```js
+import axios from 'axios';
+/**
+ * @type {import('axios').AxiosInstance}
+ */
+const apiClient = axios.create({ ...
+```
+
+#### Guide / Pattern  #2 - Types (Classes) Definition and usage
+
+How to document a class to be reused: [src/models/users/Person.js](../src/models/users/Person.js) file:
 
 ```js
 /**
