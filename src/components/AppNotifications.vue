@@ -16,7 +16,7 @@ onMounted(() => {
 
 /**
  *
- * @param {number | undefined} alertId
+ * @param {(number | undefined)} alertId
  */
 const alertClosed = (alertId) => {
   // console.log('Alert closed.', alertId)

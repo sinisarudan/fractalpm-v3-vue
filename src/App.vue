@@ -6,6 +6,9 @@ import AppNotifications from './components/AppNotifications.vue';
 import AppNavBar from './components/AppNavBar.vue';
 // import Person from '@/models/users/Person';
 
+/**
+ * @type {import('vue').Ref<boolean>}
+ */
 const drawer = ref(false);
 
 const navClicked = () => {
