@@ -77,7 +77,7 @@ We use [Playwright](https://playwright.dev/) due to its enabling Multi-agent tes
 
 ### advanced
 
-- to avoid errors on tests that include `await page.goto('/');`, check `baseURL` setting in `playwright.config.cjs`
+- to avoid errors on tests that include `await page.goto('/');`, adjust `baseURL` setting in `playwright.config.cjs` to your server's *address:port*:
 
 ```js
 use: {
@@ -90,11 +90,11 @@ use: {
 ## Building
 
 - `pnpm build`
-- builds in the `dist` folder
+- builds in `dist` folder
 
 ### Checking built app
 
-- go to `dist` folder`
+- go to `dist` folder
 - run `serve`
 - if not installed:
   - `yarn global add serve`
@@ -102,7 +102,7 @@ use: {
 ## Deployment
 
 - **IMPORTANT**:
-  - to enforce code code styling, check for ESLint errors and correct them
+to enforce code styling, check for ESLint errors and correct them
   - **before committing the code**, run `npx eslint src`
     - if there are too many errors, most of them can be fixed automatically by running `npx eslint --fix src`
 
