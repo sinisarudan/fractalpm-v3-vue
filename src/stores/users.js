@@ -45,20 +45,21 @@ export const useUsersStore = defineStore('Users', {
      * @function
      * @name register
      * @param {Person} user - The user to register.
+     * @param {boolean} [sendConfirmationEmail = true] - if true, the confirmation email is created (default: true).
      * @returns {(Promise<Person | undefined>)} A promise that resolves to the registered user or undefined if registration fails.
      * @description Asynchronously registers a new user and returns a promise that resolves to the registered user or undefined if registration fails.
      */
-    async register (user) {
+    async register (user, sendConfirmationEmail = true) {
       try {
-        const serverUser = await UserService.register(user);
+        const serverUser = await UserService.register(user, sendConfirmationEmail);
         if (serverUser) {
           this.user = serverUser;
         }
         return serverUser;
       } catch (error) {
-        console.error('Register error:', error);
+        console.error('Signup error:', error);
         const notificationsStore = useNotificationsStore();
-        notificationsStore.add({ title: 'Register error', level: NotifLevel.ERROR });
+        notificationsStore.add({ title: 'Signup error', level: NotifLevel.ERROR });
         return undefined;
       }
     },
