@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue';
+import AppLayoutWithIntro from '@/components/AppLayoutWithIntro.vue';
 import Person from '@/models/users/Person';
 import { useUsersStore } from '@/stores/users';
 import { useRouter } from 'vue-router';
@@ -135,79 +136,80 @@ const submit = async () => {
 </script>
 
 <template>
-  <v-card class="signup">
-    <div><h1>Create Account</h1></div>
-    <div>Start managing your projects the right way.</div>
-    <v-form class="form" v-model="valid" ref="form">
+  <AppLayoutWithIntro>
+    <div class="signup">
+      <div><h1>Create Account</h1></div>
+      <div><h2>Start managing your projects the right way.</h2></div>
+      <v-form class="form" v-model="valid" ref="form">
 
-      <div class="tf-label">First Name</div>
-      <v-text-field
-        class="t-field"
-        v-model="user.firstName"
-        :counter="FirstNameMaxLength"
-        label="Enter your first name"
-        :rules="fNameRules"
-        required
-      >
-      </v-text-field>
-
-      <div class="tf-label">Last Name</div>
-      <v-text-field
-        class="t-field"
-        v-model="user.lastName"
-        :counter="LastNameMaxLength"
-        label="Enter your last name"
-        :rules="lNameRules"
-        required
-      >
-      </v-text-field>
-
-      <div class="tf-label">Email</div>
-      <v-text-field
-      class="t-field"
-        v-model="user.email"
-        :counter="EMailMaxLength"
-        label="Enter your email"
-        :rules="emailRules"
-        placeholder="johndoe@gmail.com"
-        required
-      >
-      </v-text-field>
-
-      <div v-if="SETUP_PASSWORD">
-        <div class="tf-label">Password</div>
+        <div class="tf-label">First Name</div>
         <v-text-field
-        class="t-field"
-          v-model="user.password"
-          label="Create a Password"
-          :rules="passRules"
-          :type="hidePass ? 'password' : 'text'"
-          :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-          @click:append="hidePass = !hidePass"
+          class="t-field"
+          v-model="user.firstName"
+          :counter="FirstNameMaxLength"
+          label="Enter your first name"
+          :rules="fNameRules"
           required
         >
         </v-text-field>
 
-        <div class="tf-label">Confirm Password</div>
+        <div class="tf-label">Last Name</div>
         <v-text-field
-        class="t-field"
-          v-model="passwordConfirm"
-          label="Confirm Password"
-          :rules="passConfirmRules"
-          :type="hidePass ? 'password' : 'text'"
-          :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-          @click:append="hidePass = !hidePass"
+          class="t-field"
+          v-model="user.lastName"
+          :counter="LastNameMaxLength"
+          label="Enter your last name"
+          :rules="lNameRules"
           required
         >
-      </v-text-field>
+        </v-text-field>
+
+        <div class="tf-label">Email</div>
+        <v-text-field
+        class="t-field"
+          v-model="user.email"
+          :counter="EMailMaxLength"
+          label="Enter your email"
+          :rules="emailRules"
+          placeholder="johndoe@gmail.com"
+          required
+        >
+        </v-text-field>
+
+        <div v-if="SETUP_PASSWORD">
+          <div class="tf-label">Password</div>
+          <v-text-field
+          class="t-field"
+            v-model="user.password"
+            label="Create a Password"
+            :rules="passRules"
+            :type="hidePass ? 'password' : 'text'"
+            :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append="hidePass = !hidePass"
+            required
+          >
+          </v-text-field>
+
+          <div class="tf-label">Confirm Password</div>
+          <v-text-field
+          class="t-field"
+            v-model="passwordConfirm"
+            label="Confirm Password"
+            :rules="passConfirmRules"
+            :type="hidePass ? 'password' : 'text'"
+            :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append="hidePass = !hidePass"
+            required
+          >
+        </v-text-field>
+        </div>
+      </v-form>
+      <div class="actions">
+        <v-btn class="primary-button" block variant="flat" @click="submit">Create Account</v-btn>
+        <div class="agree">By signing up, you agree with <a href="#">our terms</a> and <a href="#">privacy policy</a>.</div>
+        <div>Already have an account?  <RouterLink to="/login">Login</RouterLink></div>
       </div>
-    </v-form>
-    <div class="actions">
-      <v-btn color="#8155FF" block variant="flat" @click="submit">Create Account</v-btn>
-    </div>
-    <div>By signing up, you agree with <a href="#">our terms</a> and <a href="#">privacy policy</a>.</div>
-    <div>Already have an account?  <RouterLink to="/login">Login</RouterLink></div>
-  </v-card>
+  </div>
   <v-snackbar v-model="showSnackbar" :timeout="3000">
     {{ snackbarMessage }}
 
@@ -215,16 +217,37 @@ const submit = async () => {
       <v-btn color="blue" variant="text" @click="snackbarMessage = undefined">OK</v-btn>
     </template>
   </v-snackbar>
+  </AppLayoutWithIntro>
 </template>
 
 <style lang="scss">
 
 .signup {
-  min-width: 300px;
-  padding: 15px;
-  overflow: scroll;
-  text-align: left;
-  // height: 100%;
+  min-width: 440px;
+  // padding: 15px;
+  // overflow: scroll;
+  // text-align: left;
+  // // height: 100%;
+  h1 {
+    //styleName: Hero/S;
+    font-family: Manrope;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 48px;
+    letter-spacing: 0.30000001192092896px;
+    text-align: left;
+    color: #111315;
+  }
+  h2 {
+    //styleName: UI/Text/M/Regular;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #4C4F51;
+  }
   .close {
     margin: 5px;
   }
@@ -232,17 +255,24 @@ const submit = async () => {
     margin-top: 24px;
     // max-height: 350px;
     // overflow-y: scroll;
-    .tf-label{
-      text-align: left;
-    }
-    .t-field{
-      margin-bottom: 12px;
-    }
   }
 }
 .actions {
-  padding: 5px;
+  // padding: 5px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  text-align: left;
+  color: #111315;
+  .agree {
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0.10000000149011612px;
+    text-align: left;
+  }
 }
 </style>
 <style lang="scss" scoped></style>

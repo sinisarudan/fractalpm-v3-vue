@@ -26,7 +26,7 @@ const close = () => {
         </div>
         <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="#8155FF" block variant="flat" @click="close">Continue</v-btn>
+        <v-btn class="primary-button" block variant="flat" @click="close">Continue</v-btn>
         </v-card-actions>
     </v-card>
     <v-btn size="xs" color="transparent" variant="flat" icon @click="close" class="close-button">

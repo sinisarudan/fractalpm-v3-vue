@@ -132,7 +132,7 @@ const resendCode = async () => {
         <div class="forgot-pass-link"></div>
         <v-card-actions>
         <!-- <v-spacer></v-spacer> -->
-        <v-btn color="#8155FF" block variant="flat" :disabled="!valid" @click="next">Continue</v-btn>
+        <v-btn class="primary-button" block variant="flat" :disabled="!valid" @click="next">Continue</v-btn>
         </v-card-actions>
     </v-card>
 </template>

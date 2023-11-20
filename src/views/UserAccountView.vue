@@ -45,9 +45,9 @@ const logout = () => {
   </v-card>
     <div class="app-actions">
       <router-link to="/">
-        <v-btn variant="outlined">Home</v-btn>
+        <v-btn class="primary-button" variant="outlined">Home</v-btn>
       </router-link>
-      <v-btn color="#8155FF" variant="flat" @click="logout">Logout</v-btn>
+      <v-btn class="primary-button" variant="flat" @click="logout">Logout</v-btn>
     </div>
   </div>
 </template>

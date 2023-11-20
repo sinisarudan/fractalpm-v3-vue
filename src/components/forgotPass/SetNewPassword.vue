@@ -124,7 +124,7 @@ const setNewPassword = async () => {
         <div v-if="error" class = "error"><v-icon color="red">mdi-alert-circle</v-icon>{{ error }}</div>
         <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="#8155FF" block variant="flat" @click="setNewPassword">Continue</v-btn>
+        <v-btn class="primary-button" block variant="flat" @click="setNewPassword">Continue</v-btn>
         </v-card-actions>
     </v-card>
 </template>
