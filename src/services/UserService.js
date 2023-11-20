@@ -78,6 +78,7 @@ export class UserService {
    * @returns {(Promise<Person> | undefined)} A `Promise` that resolves to the registered user or to `undefined` if there was an error in logging in.
    */
   static register (user, sendConfirmationEmail = true) {
+    // TODO: add specific error codes and returning those to callers or throwing exception to be caught
     if (UserService.config.LOCAL_MOCKUP_DATA) {
       const mockupInstance = UserServiceMockups.getInstance();
 
@@ -104,6 +105,7 @@ export class UserService {
   */
   static login (user) {
     if (UserService.config.LOCAL_MOCKUP_DATA) {
+      // TODO: add specific error codes and returning those to callers or throwing exception to be caught
       // TODO: add logic for retrieving a pre-saved (registered) demo user (with all his data: firstName, ...)
       // user.id = Person.PersonMock.id;
       const mockupInstance = UserServiceMockups.getInstance();
@@ -114,6 +116,7 @@ export class UserService {
           return Promise.resolve(foundUser);
         } else {
           console.warn(`[UserService:: login] User with email '${user.email}: passwords don't match`);
+          return Promise.resolve(undefined);
         }
       } else {
         console.warn(`[UserService:: login] User with email '${user.email} not found among registered ones'`, user.userWoPass);
