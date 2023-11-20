@@ -1,14 +1,12 @@
 <script setup>
-  console.log("HomeView");
+import AppLayoutWithIntro from '@/components/AppLayoutWithIntro.vue';
+// console.log("HomeView");
 </script>
 
 <template>
-  <div class="home">
-    <div>
-      <h1>Organize all your projects in an easy way.</h1>
-    </div>
-    <div>Start managing your projects the right way.</div>
-  </div>
+    <AppLayoutWithIntro>
+      <div class="home"></div>
+    </AppLayoutWithIntro>
 </template>
 
 <style lang="scss">
@@ -28,4 +26,3 @@ $mobile_breakpoint: 1024px;
   }
 }
 </style>
-
