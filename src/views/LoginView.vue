@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue';
+import AppLayoutWithIntro from '@/components/AppLayoutWithIntro.vue';
 import ForgotPass from '@/components/forgotPass/ForgotPass.vue';
 import OTPDialog from '@/components/forgotPass/OTPDialog.vue';
 import SetNewPassword from '@/components/forgotPass/SetNewPassword.vue';
@@ -47,7 +48,7 @@ const emailRules = ref([
   (v) => (v && v.length > 0) || 'E-mail is required',
   (v) => (v && v.length <= EMailMaxLength) || `Maximum ${EMailMaxLength} characters`,
   (v) =>
-    !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/.test(v) || 'E-mail must be valid'
+    !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/.test(v) || 'The email you used is not valid.'
 ]);
 
 const passRules = ref([
@@ -158,100 +159,102 @@ const successDialogShow = computed({
 </script>
 
 <template>
-  <v-card class="login">
-    <div>
-      <div><h1>Welcome Back</h1></div>
-      <div>Start managing your projects the right way.</div>
-    </div>
-    <v-form class="form" v-model="valid" ref="form">
-      <div class="tf-label">Email</div>
-      <v-text-field
-      class="t-field"
-        v-model="user.email"
-        :counter="EMailMaxLength"
-        label="Enter your email"
-        :rules="emailRules"
-        placeholder="johndoe@gmail.com"
-        required
-      >
-      </v-text-field>
+  <AppLayoutWithIntro>
+    <div class="login">
+        <div>
+          <div><h1>Welcome Back</h1></div>
+          <div><h2>Start managing your projects the right way.</h2></div>
+        </div>
+        <v-form class="form" v-model="valid" ref="form">
+          <div class="tf-label">Email</div>
+          <v-text-field
+          class="t-field"
+            v-model="user.email"
+            :counter="EMailMaxLength"
+            label="Enter your email"
+            :rules="emailRules"
+            placeholder="johndoe@gmail.com"
+            required
+          >
+          </v-text-field>
 
-      <div class="tf-label">Password</div>
-      <v-text-field
-      class="t-field"
-        v-model="user.password"
-        label="Enter your password"
-        :rules="passRules"
-        :type="hidePass ? 'password' : 'text'"
-        :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-        @click:append="hidePass = !hidePass"
-        required
-      >
-      </v-text-field>
-    </v-form>
-    <div class="actions">
-      <div class="forgot-pass-link"><a href="void:" @click.prevent="forgotPasswordShow = true">Forgot Password?</a></div>
-      <v-btn color="#8155FF" block variant="flat" @click="submit">Login</v-btn>
+          <div class="tf-label">Password</div>
+          <v-text-field
+          class="t-field"
+            v-model="user.password"
+            label="Enter your password"
+            :rules="passRules"
+            :type="hidePass ? 'password' : 'text'"
+            :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
+            @click:append="hidePass = !hidePass"
+            required
+          >
+          </v-text-field>
+        </v-form>
+        <div class="actions">
+          <div class="forgot-pass-link"><a href="void:" @click.prevent="forgotPasswordShow = true">Forgot Password?</a></div>
+          <v-btn class="primary-button" block variant="flat" @click="submit">Login</v-btn>
+          <div class="note">Don't have an account? <RouterLink to="/signup">Signup</RouterLink></div>
+        </div>
     </div>
-    <div>Don't have an account? <RouterLink to="/signup">Signup</RouterLink></div>
-  </v-card>
-  <v-snackbar v-model="showSnackbar" :timeout="3000">
-    {{ snackbarMessage }}
+    <v-snackbar v-model="showSnackbar" :timeout="3000">
+      {{ snackbarMessage }}
 
-    <template v-slot:actions>
-      <v-btn color="blue" variant="text" @click="snackbarMessage = undefined">OK</v-btn>
+      <template v-slot:actions>
+        <v-btn color="blue" variant="text" @click="snackbarMessage = undefined">OK</v-btn>
+      </template>
+    </v-snackbar>
+    <template>
+      <v-row justify="center">
+        <v-dialog
+          v-model="forgotPasswordShow"
+          width="auto"
+          persistent
+          data-testid="forgot-password-dialog"
+        >
+          <ForgotPass @continue="forgotPassContinue" />
+          <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
+            <v-icon color="white">mdi-close</v-icon>
+          </v-btn>
+        </v-dialog>
+
+        <v-dialog
+          v-model="otpCodeShow"
+          width="auto"
+          persistent
+          data-testid="otp-code-dialog"
+        >
+          <OTPDialog @verified="hideAllDialogs(); setNewPasswordShow = true;" :forgotRecoveryEmailPhone="forgotRecoveryEmailPhone" />
+          <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
+            <v-icon color="white">mdi-close</v-icon>
+          </v-btn>
+        </v-dialog>
+
+        <v-dialog
+          v-model="setNewPasswordShow"
+          width="auto"
+          persistent
+          data-testid="set-new-password-dialog"
+        >
+          <SetNewPassword @passwordChanged="passwordChanged" :forgotRecoveryEmailPhone="forgotRecoveryEmailPhone" />
+          <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
+            <v-icon color="white">mdi-close</v-icon>
+          </v-btn>
+        </v-dialog>
+        <v-dialog
+          v-model="successDialogShow"
+          width="auto"
+          persistent
+          data-testid="set-new-password-dialog"
+        >
+        <SuccessDialog :message="passwordChangedSuccess" @close="hideAllDialogs" />
+          <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
+            <v-icon color="white">mdi-close</v-icon>
+          </v-btn>
+        </v-dialog>
+      </v-row>
     </template>
-  </v-snackbar>
-  <template>
-    <v-row justify="center">
-      <v-dialog
-        v-model="forgotPasswordShow"
-        width="auto"
-        persistent
-        data-testid="forgot-password-dialog"
-      >
-        <ForgotPass @continue="forgotPassContinue" />
-        <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
-          <v-icon color="white">mdi-close</v-icon>
-        </v-btn>
-      </v-dialog>
-
-      <v-dialog
-        v-model="otpCodeShow"
-        width="auto"
-        persistent
-        data-testid="otp-code-dialog"
-      >
-        <OTPDialog @verified="hideAllDialogs(); setNewPasswordShow = true;" :forgotRecoveryEmailPhone="forgotRecoveryEmailPhone" />
-        <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
-          <v-icon color="white">mdi-close</v-icon>
-        </v-btn>
-      </v-dialog>
-
-      <v-dialog
-        v-model="setNewPasswordShow"
-        width="auto"
-        persistent
-        data-testid="set-new-password-dialog"
-      >
-        <SetNewPassword @passwordChanged="passwordChanged" :forgotRecoveryEmailPhone="forgotRecoveryEmailPhone" />
-        <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
-          <v-icon color="white">mdi-close</v-icon>
-        </v-btn>
-      </v-dialog>
-      <v-dialog
-        v-model="successDialogShow"
-        width="auto"
-        persistent
-        data-testid="set-new-password-dialog"
-      >
-      <SuccessDialog :message="passwordChangedSuccess" @close="hideAllDialogs" />
-        <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
-          <v-icon color="white">mdi-close</v-icon>
-        </v-btn>
-      </v-dialog>
-    </v-row>
-  </template>
+  </AppLayoutWithIntro>
 </template>
 
 <style lang="scss">
@@ -260,9 +263,29 @@ const successDialogShow = computed({
     top: -30px;
     right:0px;
     // margin: 30px;
-  }
+}
+h1 {
+  //styleName: Hero/S;
+  font-family: Manrope;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 48px;
+  letter-spacing: 0.30000001192092896px;
+  text-align: left;
+  color: #111315;
+}
+h2 {
+  //styleName: UI/Text/M/Regular;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0px;
+  text-align: left;
+  color: #4C4F51;
+}
 .login {
-  min-width: 400px;
+  min-width: 438px;
   padding: 15px;
   overflow: scroll;
   text-align: left;
@@ -275,20 +298,26 @@ const successDialogShow = computed({
     margin-top: 24px;
     // max-height: 350px;
     // overflow-y: scroll;
-    .tf-label{
-      text-align: left;
-    }
-    .t-field{
-      margin-bottom: 12px;
-    }
   }
   .forgot-pass-link {
     text-align: right;
   }
+  .note {
+    //styleName: UI/Text/M/Medium;
+    font-family: Inter;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-align: left;
+  }
 }
 .actions {
-  padding: 5px;
+  // padding: 5px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
 }
 </style>
 <style lang="scss" scoped></style>
