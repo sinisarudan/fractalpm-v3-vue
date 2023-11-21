@@ -24,7 +24,7 @@ const tbdClicked = () => {
   Settings {{ settingsStore.lang }} <v-btn @click="tbdClicked" size="x-small">TBD</v-btn>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 h1 {
   font-weight: 500;
   font-size: 2.6rem;

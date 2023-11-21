@@ -14,7 +14,7 @@ import AppIntro from '@/components/AppIntro.vue';
 </template>
 
 <style lang="scss">
-
+@import "../variables";
 .container {
   display: flex;
   flex-direction: row;
@@ -24,10 +24,11 @@ import AppIntro from '@/components/AppIntro.vue';
     margin-right: 20px;
     width: 438px !important;
     padding: 0px, 0px, 17px, 0px;
+    max-height: 100% !important;
   }
 }
 .app-intro {
-  @media (max-width: 1024px) {
+  @media (max-width: #{$wide_breakpoint}) {
     display: none;
   }
 }

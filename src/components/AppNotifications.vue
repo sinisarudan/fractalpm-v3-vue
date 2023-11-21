@@ -52,7 +52,7 @@ const alertClosed = (alertId) => {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .alert {
   margin: 2px;
 }

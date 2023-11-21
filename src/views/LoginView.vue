@@ -258,6 +258,7 @@ const successDialogShow = computed({
 </template>
 
 <style lang="scss">
+@import "../variables";
 .close-button {
     position: absolute;
     top: -30px;
@@ -272,7 +273,7 @@ h1 {
   line-height: 48px;
   letter-spacing: 0.30000001192092896px;
   text-align: left;
-  color: #111315;
+  color: $main-color;
 }
 h2 {
   //styleName: UI/Text/M/Regular;
@@ -282,7 +283,7 @@ h2 {
   line-height: 24px;
   letter-spacing: 0px;
   text-align: left;
-  color: #4C4F51;
+  color: $secondary-color;
 }
 .login {
   min-width: 438px;
@@ -320,4 +321,6 @@ h2 {
   gap: 19px;
 }
 </style>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "../variables";
+</style>
