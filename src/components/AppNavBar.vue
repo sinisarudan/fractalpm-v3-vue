@@ -13,7 +13,7 @@ import { useRouter } from 'vue-router';
 const usersStore = useUsersStore();
 const router = useRouter();
 
-const emit = defineEmits(['navClicked']);
+const emit = defineEmits(['nav-clicked']);
 
 onMounted(() => {
   // keeping user login session:
@@ -46,7 +46,7 @@ const showLogin = computed(
  */
 const showSignUp = computed(
   () =>
-  router.currentRoute.value.path !== '/signup' && !usersStore.user
+    router.currentRoute.value.path !== '/signup' && !usersStore.user
 );
 
 /**
@@ -60,7 +60,7 @@ const showUserAccountBtn = computed(
   });
 
 const navClicked = () => {
-  emit('navClicked');
+  emit('nav-clicked');
 };
 
 const openUserAccount = () => {
@@ -77,14 +77,35 @@ const openUserAccount = () => {
 </script>
 
 <template>
-  <v-app-bar-nav-icon variant="text" @click.stop="navClicked"></v-app-bar-nav-icon>
-  <RouterLink class="logo" to="/"><img src="/assets/logo.png" alt="FractalPM" /></RouterLink>
+  <v-app-bar-nav-icon
+    variant="text"
+    @click.stop="navClicked"
+  />
+  <RouterLink
+    class="logo"
+    to="/"
+  >
+    <img
+      src="/assets/logo.png"
+      alt="FractalPM"
+    >
+  </RouterLink>
   <div class="app-actions">
-    <router-link v-if="showSignUp" to="/signup">
-      <v-btn variant="outlined">Signup</v-btn>
+    <router-link
+      v-if="showSignUp"
+      to="/signup"
+    >
+      <v-btn variant="outlined">
+        Signup
+      </v-btn>
     </router-link>
-    <router-link v-if="showLogin" to="/login">
-      <v-btn variant="outlined">Login</v-btn>
+    <router-link
+      v-if="showLogin"
+      to="/login"
+    >
+      <v-btn variant="outlined">
+        Login
+      </v-btn>
     </router-link>
     <!-- <v-switch v-model="darkTheme" :label="darkTheme ? 'dark' : 'light'"></v-switch> -->
     <!-- version with one button for login/register <v-btn
@@ -94,12 +115,13 @@ const openUserAccount = () => {
         >{{ usersStore.user ? usersStore.user.firstName : "Login/Register"
         }}<v-icon>mdi-account-cog</v-icon></v-btn
       > -->
-      <v-btn
-        @click="openUserAccount"
-        v-if="showUserAccountBtn"
-        variant="outlined"
-        >{{ usersStore.user?.firstName }}<v-icon>mdi-account-cog</v-icon></v-btn
-      >
+    <v-btn
+      v-if="showUserAccountBtn"
+      variant="outlined"
+      @click="openUserAccount"
+    >
+      {{ usersStore.user?.firstName }}<v-icon>mdi-account-cog</v-icon>
+    </v-btn>
   </div>
 </template>
 

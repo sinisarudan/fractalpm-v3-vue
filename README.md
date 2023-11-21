@@ -103,8 +103,8 @@ use: {
 
 - **IMPORTANT**:
 to enforce code styling, check for ESLint errors and correct them
-  - **before committing the code**, run `npx eslint src`
-    - if there are too many errors, most of them can be fixed automatically by running `npx eslint --fix src`
+  - **before committing the code**, run `pnpm eslint --ext .js,.vue src`
+    - if there are too many errors, most of them can be fixed automatically by running `pnpm eslint --fix --ext .js,.vue src`
 
 ## Advanced Dev Guide & Policies
 

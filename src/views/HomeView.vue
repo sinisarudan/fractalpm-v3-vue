@@ -5,7 +5,7 @@ import AppIntro from '@/components/AppIntro.vue';
 </script>
 
 <template>
-    <AppIntro />
+  <AppIntro />
 </template>
 
 <style lang="scss">

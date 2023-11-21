@@ -3,14 +3,14 @@ import AppIntro from '@/components/AppIntro.vue';
 </script>
 
 <template>
-   <div class="container vertical-center">
+  <div class="container vertical-center">
     <div class="app-intro">
       <AppIntro />
     </div>
     <div class="right-component">
       <slot />
-      </div>
     </div>
+  </div>
 </template>
 
 <style lang="scss">

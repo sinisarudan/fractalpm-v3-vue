@@ -5,7 +5,8 @@ module.exports = {
   },
   extends: [
     'standard',
-    'plugin:vue/vue3-essential'
+    'plugin:vue/vue3-essential', // essential vue rules that should not be turned off
+    'plugin:vue/vue3-recommended' // advanced, but still vue recommended rules
   ],
   overrides: [
     {
@@ -25,11 +26,11 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: [
-    'vue',
+    'vue', // https://eslint.vuejs.org/
     'jsdoc'
   ],
   rules: {
-    semi: ['error', 'always'],
-    'jsdoc/no-undefined-types': 1
+    semi: ['error', 'always'], // `;` is required (at the end of command/line, etc)
+    'jsdoc/no-undefined-types': 1 // to avoid rising error on imports that are not used except for `JSDoc` typing
   }
 };

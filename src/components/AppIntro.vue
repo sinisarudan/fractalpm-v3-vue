@@ -8,12 +8,14 @@
     </div> -->
     <div class="welcome">
       <h1>Organize all your projects in an easy way.</h1>
-      <div class="description">Start managing your projects the right way.</div>
+      <div class="description">
+        Start managing your projects the right way.
+      </div>
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped >
+<style lang="scss" scoped>
 .intro {
     min-width: 879px;
     min-height: 1000px;

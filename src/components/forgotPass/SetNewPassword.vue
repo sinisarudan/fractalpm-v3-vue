@@ -11,7 +11,7 @@ const usersStore = useUsersStore();
 // const notificationsStore = useNotificationsStore();
 // const router = useRouter();
 
-const emit = defineEmits(['passwordChanged']);
+const emit = defineEmits(['password-changed']);
 
 const MaxLength = 100;
 const MinLength = 8;
@@ -81,7 +81,7 @@ const setNewPassword = async () => {
     if (result) {
       error.value = undefined;
       status.value = 'Successful Password Reset';
-      emit('passwordChanged');
+      emit('password-changed');
     } else {
       error.value = 'Unable to reset password';
       status.value = undefined;
@@ -92,41 +92,70 @@ const setNewPassword = async () => {
 </script>
 
 <template>
-    <v-card class="set-new-password">
-        <v-card-title class="text-h5">Set New Password</v-card-title>
-        <v-form class="form" v-model="valid" ref="form">
-          <div class="tf-label">Password</div>
-          <v-text-field
-            class="t-field"
-                v-model="password"
-                label="Enter your password"
-                :rules="passRules"
-                :type="hidePass ? 'password' : 'text'"
-                :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-                @click:append="hidePass = !hidePass"
-                required
-            >
-            </v-text-field>
-            <div class="tf-label">Confirm Password</div>
-            <v-text-field
-            class="t-field"
-                v-model="passwordConfirm"
-                label="Enter your password"
-                :rules="passConfirmRules"
-                :type="hidePass ? 'password' : 'text'"
-                :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-                @click:append="hidePass = !hidePass"
-                required
-            >
-            </v-text-field>
-        </v-form>
-        <div v-if="status" class = "status"><v-icon color="green">mdi-checkbox-marked-circle</v-icon>{{ status }}</div>
-        <div v-if="error" class = "error"><v-icon color="red">mdi-alert-circle</v-icon>{{ error }}</div>
-        <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn class="primary-button" block variant="flat" @click="setNewPassword">Continue</v-btn>
-        </v-card-actions>
-    </v-card>
+  <v-card class="set-new-password">
+    <v-card-title class="text-h5">
+      Set New Password
+    </v-card-title>
+    <v-form
+      ref="form"
+      v-model="valid"
+      class="form"
+    >
+      <div class="tf-label">
+        Password
+      </div>
+      <v-text-field
+        v-model="password"
+        class="t-field"
+        label="Enter your password"
+        :rules="passRules"
+        :type="hidePass ? 'password' : 'text'"
+        :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
+        required
+        @click:append="hidePass = !hidePass"
+      />
+      <div class="tf-label">
+        Confirm Password
+      </div>
+      <v-text-field
+        v-model="passwordConfirm"
+        class="t-field"
+        label="Enter your password"
+        :rules="passConfirmRules"
+        :type="hidePass ? 'password' : 'text'"
+        :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
+        required
+        @click:append="hidePass = !hidePass"
+      />
+    </v-form>
+    <div
+      v-if="status"
+      class="status"
+    >
+      <v-icon color="green">
+        mdi-checkbox-marked-circle
+      </v-icon>{{ status }}
+    </div>
+    <div
+      v-if="error"
+      class="error"
+    >
+      <v-icon color="red">
+        mdi-alert-circle
+      </v-icon>{{ error }}
+    </div>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        class="primary-button"
+        block
+        variant="flat"
+        @click="setNewPassword"
+      >
+        Continue
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <style lang="scss" scoped>

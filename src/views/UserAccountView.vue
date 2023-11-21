@@ -31,22 +31,46 @@ const logout = () => {
   <AppLayoutWithIntro>
     <div class="user-account">
       <div><h2>User Account Page</h2></div>
-      <div class="info" v-if="usersStore.user">
+      <div
+        v-if="usersStore.user"
+        class="info"
+      >
         <h1>{{ usersStore.user?.firstName }}'s account</h1>
-          <div class="info-field"><span>E-mail: </span><span>{{ usersStore.user?.email }}</span></div>
-          <div class="info-field"><span>First Name: </span><span>{{ usersStore.user?.firstName }}</span></div>
-          <div class="info-field"><span>Last Name: </span><span>{{ usersStore.user?.lastName }}</span></div>
+        <div class="info-field">
+          <span>E-mail: </span><span>{{ usersStore.user?.email }}</span>
+        </div>
+        <div class="info-field">
+          <span>First Name: </span><span>{{ usersStore.user?.firstName }}</span>
+        </div>
+        <div class="info-field">
+          <span>Last Name: </span><span>{{ usersStore.user?.lastName }}</span>
+        </div>
       </div>
-      <div class="info-field" v-else>
+      <div
+        v-else
+        class="info-field"
+      >
         You are not logged in.
       </div>
       <div class="app-actions">
         <router-link to="/">
-          <v-btn class="primary-button" variant="outlined">Home</v-btn>
+          <v-btn
+            class="primary-button"
+            variant="outlined"
+          >
+            Home
+          </v-btn>
         </router-link>
-        <v-btn v-if="usersStore.user" class="primary-button" variant="flat" @click="logout">Logout</v-btn>
+        <v-btn
+          v-if="usersStore.user"
+          class="primary-button"
+          variant="flat"
+          @click="logout"
+        >
+          Logout
+        </v-btn>
       </div>
-  </div>
+    </div>
   </AppLayoutWithIntro>
 </template>
 
