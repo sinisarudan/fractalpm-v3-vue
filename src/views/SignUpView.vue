@@ -221,7 +221,7 @@ const submit = async () => {
 </template>
 
 <style lang="scss">
-
+@import "../variables";
 .signup {
   min-width: 440px;
   // padding: 15px;
@@ -236,7 +236,7 @@ const submit = async () => {
     line-height: 48px;
     letter-spacing: 0.30000001192092896px;
     text-align: left;
-    color: #111315;
+    color: $main-color;
   }
   h2 {
     //styleName: UI/Text/M/Regular;
@@ -246,7 +246,7 @@ const submit = async () => {
     line-height: 24px;
     letter-spacing: 0px;
     text-align: left;
-    color: #4C4F51;
+    color: $secondary-color;
   }
   .close {
     margin: 5px;
@@ -264,7 +264,7 @@ const submit = async () => {
   flex-direction: column;
   gap: 24px;
   text-align: left;
-  color: #111315;
+  color: $main-color;
   .agree {
     font-family: Inter;
     font-size: 14px;
@@ -275,4 +275,6 @@ const submit = async () => {
   }
 }
 </style>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  @import "../variables";
+</style>

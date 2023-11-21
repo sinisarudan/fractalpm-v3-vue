@@ -41,6 +41,7 @@ const navClicked = () => {
 </template>
 
 <style lang="scss" scoped>
+@import "variables";
 #app {
   background-color: white;
   min-height: 100vh;
@@ -63,6 +64,7 @@ const navClicked = () => {
 </style>
 
 <style lang="scss">
+@import "variables";
 .primary-button {
   border-radius: var(--v-btn-border-radius, 12px) !important;
   background-color: #8155FF !important;
@@ -93,7 +95,7 @@ const navClicked = () => {
 .v-messages__message::before {
   content: url('https://api.iconify.design/mdi/alert-circle.svg');
   color: #FF7676 !important;
-  margin-right: 8px !important; /* Adjust the space between the icon and the text */
+  margin-right: 8px !important;
   filter: invert(59%) sepia(94%) saturate(2816%) hue-rotate(345deg) brightness(100%) contrast(105%);
 }
 .v-footer {
@@ -117,7 +119,7 @@ const navClicked = () => {
   line-height: 20px;
   letter-spacing: 0.10000000149011612px;
   text-align: left;
-  color: #4C4F51;
+  color: $secondary-color;
 }
 .t-field{
   margin-bottom: 12px;
