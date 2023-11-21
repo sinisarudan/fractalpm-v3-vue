@@ -103,7 +103,7 @@ const openUserAccount = () => {
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .app-actions{
   display: flex;
   gap: 20px;

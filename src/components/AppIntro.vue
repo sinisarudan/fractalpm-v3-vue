@@ -17,14 +17,14 @@
 .intro {
     min-width: 879px;
     min-height: 1000px;
-    background-image: url('/assets/app-intro-image.jpg'); /* Set the path to your image */
-    background-size: 879px 677px; /* Set the specific size of the background image */
-    background-position: bottom right; /* Position the background at the bottom right */
-    // background-attachment: fixed; /* Fix the background so it doesn't scroll with the content */
+    background-image: url('/assets/app-intro-image.jpg');
+    background-size: 879px 677px;
+    background-position: bottom right;
+    // background-attachment: fixed;
     // border: 1px solid black;
     .welcome {
         margin-left: 96px;
-        margin-top: 50px;
+        padding-top: 150px;
         text-align: left;
         width: 472px;
         h1 {
@@ -45,11 +45,5 @@
             text-align: left;
         }
     }
-    // .intro-image{
-    //     position: absolute;
-    //     bottom: 0px;
-    //     right: 0px;
-    // }
-
 }
 </style>
