@@ -140,83 +140,113 @@ const submit = async () => {
     <div class="signup">
       <div><h1>Create Account</h1></div>
       <div><h2>Start managing your projects the right way.</h2></div>
-      <v-form class="form" v-model="valid" ref="form">
-
-        <div class="tf-label">First Name</div>
+      <v-form
+        ref="form"
+        v-model="valid"
+        class="form"
+      >
+        <div class="tf-label">
+          First Name
+        </div>
         <v-text-field
-          class="t-field"
           v-model="user.firstName"
+          class="t-field"
           :counter="FirstNameMaxLength"
           label="Enter your first name"
           :rules="fNameRules"
           required
-        >
-        </v-text-field>
+        />
 
-        <div class="tf-label">Last Name</div>
+        <div class="tf-label">
+          Last Name
+        </div>
         <v-text-field
-          class="t-field"
           v-model="user.lastName"
+          class="t-field"
           :counter="LastNameMaxLength"
           label="Enter your last name"
           :rules="lNameRules"
           required
-        >
-        </v-text-field>
+        />
 
-        <div class="tf-label">Email</div>
+        <div class="tf-label">
+          Email
+        </div>
         <v-text-field
-        class="t-field"
           v-model="user.email"
+          class="t-field"
           :counter="EMailMaxLength"
           label="Enter your email"
           :rules="emailRules"
           placeholder="johndoe@gmail.com"
           required
-        >
-        </v-text-field>
+        />
 
         <div v-if="SETUP_PASSWORD">
-          <div class="tf-label">Password</div>
+          <div class="tf-label">
+            Password
+          </div>
           <v-text-field
-          class="t-field"
             v-model="user.password"
+            class="t-field"
             label="Create a Password"
             :rules="passRules"
             :type="hidePass ? 'password' : 'text'"
             :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-            @click:append="hidePass = !hidePass"
             required
-          >
-          </v-text-field>
+            @click:append="hidePass = !hidePass"
+          />
 
-          <div class="tf-label">Confirm Password</div>
+          <div class="tf-label">
+            Confirm Password
+          </div>
           <v-text-field
-          class="t-field"
             v-model="passwordConfirm"
+            class="t-field"
             label="Confirm Password"
             :rules="passConfirmRules"
             :type="hidePass ? 'password' : 'text'"
             :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-            @click:append="hidePass = !hidePass"
             required
-          >
-        </v-text-field>
+            @click:append="hidePass = !hidePass"
+          />
         </div>
       </v-form>
       <div class="actions">
-        <v-btn class="primary-button" block variant="flat" @click="submit">Create Account</v-btn>
-        <div class="agree">By signing up, you agree with <a href="#">our terms</a> and <a href="#">privacy policy</a>.</div>
-        <div>Already have an account?  <RouterLink to="/login">Login</RouterLink></div>
+        <v-btn
+          class="primary-button"
+          block
+          variant="flat"
+          @click="submit"
+        >
+          Create Account
+        </v-btn>
+        <div class="agree">
+          By signing up, you agree with <a href="#">our terms</a> and <a href="#">privacy policy</a>.
+        </div>
+        <div>
+          Already have an account?  <RouterLink to="/login">
+            Login
+          </RouterLink>
+        </div>
       </div>
-  </div>
-  <v-snackbar v-model="showSnackbar" :timeout="3000">
-    {{ snackbarMessage }}
+    </div>
+    <v-snackbar
+      v-model="showSnackbar"
+      :timeout="3000"
+    >
+      {{ snackbarMessage }}
 
-    <template v-slot:actions>
-      <v-btn color="blue" variant="text" @click="snackbarMessage = undefined">OK</v-btn>
-    </template>
-  </v-snackbar>
+      <template #actions>
+        <v-btn
+          color="blue"
+          variant="text"
+          @click="snackbarMessage = undefined"
+        >
+          OK
+        </v-btn>
+      </template>
+    </v-snackbar>
   </AppLayoutWithIntro>
 </template>
 

@@ -12,7 +12,12 @@ const usersStore = useUsersStore();
 // const notificationsStore = useNotificationsStore();
 // const router = useRouter();
 
-const props = defineProps(['forgotRecoveryEmailPhone']);
+const props = defineProps({
+  forgotRecoveryEmailPhone: {
+    type: String,
+    default: ''
+  }
+});
 
 const emit = defineEmits(['verified']);
 
@@ -111,30 +116,72 @@ const resendCode = async () => {
 </script>
 
 <template>
-    <v-card class="otp-code" @paste="handlePaste($event)">
-        <v-card-title class="text-h5">Enter the code</v-card-title>
-        <div class="hint">You can simply paste the 4-digits code</div>
-        <v-form class="form" ref="form">
-          <div v-for="(digit, index) in otpArray" :key="index" class="otp-digit">
-            <v-text-field class="otp-input"
-              v-model="otpArray[index]"
-              @paste="handlePaste($event)"
-              @input="handleDigitChange(index, $event)"
-              maxlength="1"
-              ref="otpInputs"
-              placeholder="0"
-            />
-          </div>
-        </v-form>
-        <div v-if="error" class = "error"><v-icon color="red">mdi-alert-circle</v-icon>{{ error }}</div>
-        <div v-if="status" class = "status"><v-icon color="green">mdi-checkbox-marked-circle</v-icon>{{ status }}</div>
-        <div class="txt-center">Didn’t get a link? <a href="void:" @click.prevent="resendCode">Resend code</a></div>
-        <div class="forgot-pass-link"></div>
-        <v-card-actions>
-        <!-- <v-spacer></v-spacer> -->
-        <v-btn class="primary-button" block variant="flat" :disabled="!valid" @click="next">Continue</v-btn>
-        </v-card-actions>
-    </v-card>
+  <v-card
+    class="otp-code"
+    @paste="handlePaste($event)"
+  >
+    <v-card-title class="text-h5">
+      Enter the code
+    </v-card-title>
+    <div class="hint">
+      You can simply paste the 4-digits code
+    </div>
+    <v-form
+      ref="form"
+      class="form"
+    >
+      <div
+        v-for="(digit, index) in otpArray"
+        :key="index"
+        class="otp-digit"
+      >
+        <v-text-field
+          ref="otpInputs"
+          v-model="otpArray[index]"
+          class="otp-input"
+          maxlength="1"
+          placeholder="0"
+          @paste="handlePaste($event)"
+          @input="handleDigitChange(index, $event)"
+        />
+      </div>
+    </v-form>
+    <div
+      v-if="error"
+      class="error"
+    >
+      <v-icon color="red">
+        mdi-alert-circle
+      </v-icon>{{ error }}
+    </div>
+    <div
+      v-if="status"
+      class="status"
+    >
+      <v-icon color="green">
+        mdi-checkbox-marked-circle
+      </v-icon>{{ status }}
+    </div>
+    <div class="txt-center">
+      Didn’t get a link? <a
+        href="void:"
+        @click.prevent="resendCode"
+      >Resend code</a>
+    </div>
+    <div class="forgot-pass-link" />
+    <v-card-actions>
+      <!-- <v-spacer></v-spacer> -->
+      <v-btn
+        class="primary-button"
+        block
+        variant="flat"
+        :disabled="!valid"
+        @click="next"
+      >
+        Continue
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <style lang="scss" scoped>

@@ -161,47 +161,78 @@ const successDialogShow = computed({
 <template>
   <AppLayoutWithIntro>
     <div class="login">
-        <div>
-          <div><h1>Welcome Back</h1></div>
-          <div><h2>Start managing your projects the right way.</h2></div>
+      <div>
+        <div><h1>Welcome Back</h1></div>
+        <div><h2>Start managing your projects the right way.</h2></div>
+      </div>
+      <v-form
+        ref="form"
+        v-model="valid"
+        class="form"
+      >
+        <div class="tf-label">
+          Email
         </div>
-        <v-form class="form" v-model="valid" ref="form">
-          <div class="tf-label">Email</div>
-          <v-text-field
+        <v-text-field
+          v-model="user.email"
           class="t-field"
-            v-model="user.email"
-            :counter="EMailMaxLength"
-            label="Enter your email"
-            :rules="emailRules"
-            placeholder="johndoe@gmail.com"
-            required
-          >
-          </v-text-field>
+          :counter="EMailMaxLength"
+          label="Enter your email"
+          :rules="emailRules"
+          placeholder="johndoe@gmail.com"
+          required
+        />
 
-          <div class="tf-label">Password</div>
-          <v-text-field
-          class="t-field"
-            v-model="user.password"
-            label="Enter your password"
-            :rules="passRules"
-            :type="hidePass ? 'password' : 'text'"
-            :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
-            @click:append="hidePass = !hidePass"
-            required
-          >
-          </v-text-field>
-        </v-form>
-        <div class="actions">
-          <div class="forgot-pass-link"><a href="void:" @click.prevent="forgotPasswordShow = true">Forgot Password?</a></div>
-          <v-btn class="primary-button" block variant="flat" @click="submit">Login</v-btn>
-          <div class="note">Don't have an account? <RouterLink to="/signup">Signup</RouterLink></div>
+        <div class="tf-label">
+          Password
         </div>
+        <v-text-field
+          v-model="user.password"
+          class="t-field"
+          label="Enter your password"
+          :rules="passRules"
+          :type="hidePass ? 'password' : 'text'"
+          :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
+          required
+          @click:append="hidePass = !hidePass"
+        />
+      </v-form>
+      <div class="actions">
+        <div class="forgot-pass-link">
+          <a
+            href="void:"
+            @click.prevent="forgotPasswordShow = true"
+          >Forgot Password?</a>
+        </div>
+        <v-btn
+          class="primary-button"
+          block
+          variant="flat"
+          @click="submit"
+        >
+          Login
+        </v-btn>
+        <div class="note">
+          Don't have an account? <RouterLink to="/signup">
+            Signup
+          </RouterLink>
+        </div>
+      </div>
     </div>
-    <v-snackbar v-model="showSnackbar" :timeout="3000">
+    <v-snackbar
+      v-model="showSnackbar"
+      :timeout="3000"
+    >
       {{ snackbarMessage }}
 
-      <template v-slot:actions>
-        <v-btn color="blue" variant="text" @click="snackbarMessage = undefined">OK</v-btn>
+      <template #actions>
+        <v-btn
+          color="blue"
+          variant="text"
+          @click="snackbarMessage = undefined"
+        >
+          OK
+        </v-btn>
       </template>
     </v-snackbar>
     <template>
@@ -213,8 +244,17 @@ const successDialogShow = computed({
           data-testid="forgot-password-dialog"
         >
           <ForgotPass @continue="forgotPassContinue" />
-          <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
-            <v-icon color="white">mdi-close</v-icon>
+          <v-btn
+            size="xs"
+            color="transparent"
+            variant="flat"
+            icon
+            class="close-button"
+            @click="hideAllDialogs();"
+          >
+            <v-icon color="white">
+              mdi-close
+            </v-icon>
           </v-btn>
         </v-dialog>
 
@@ -224,9 +264,21 @@ const successDialogShow = computed({
           persistent
           data-testid="otp-code-dialog"
         >
-          <OTPDialog @verified="hideAllDialogs(); setNewPasswordShow = true;" :forgotRecoveryEmailPhone="forgotRecoveryEmailPhone" />
-          <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
-            <v-icon color="white">mdi-close</v-icon>
+          <OTPDialog
+            :forgot-recovery-email-phone="forgotRecoveryEmailPhone"
+            @verified="hideAllDialogs(); setNewPasswordShow = true;"
+          />
+          <v-btn
+            size="xs"
+            color="transparent"
+            variant="flat"
+            icon
+            class="close-button"
+            @click="hideAllDialogs();"
+          >
+            <v-icon color="white">
+              mdi-close
+            </v-icon>
           </v-btn>
         </v-dialog>
 
@@ -236,9 +288,21 @@ const successDialogShow = computed({
           persistent
           data-testid="set-new-password-dialog"
         >
-          <SetNewPassword @passwordChanged="passwordChanged" :forgotRecoveryEmailPhone="forgotRecoveryEmailPhone" />
-          <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
-            <v-icon color="white">mdi-close</v-icon>
+          <SetNewPassword
+            :forgot-recovery-email-phone="forgotRecoveryEmailPhone"
+            @password-changed="passwordChanged"
+          />
+          <v-btn
+            size="xs"
+            color="transparent"
+            variant="flat"
+            icon
+            class="close-button"
+            @click="hideAllDialogs();"
+          >
+            <v-icon color="white">
+              mdi-close
+            </v-icon>
           </v-btn>
         </v-dialog>
         <v-dialog
@@ -247,9 +311,21 @@ const successDialogShow = computed({
           persistent
           data-testid="set-new-password-dialog"
         >
-        <SuccessDialog :message="passwordChangedSuccess" @close="hideAllDialogs" />
-          <v-btn size="xs" color="transparent" variant="flat" icon @click="hideAllDialogs();" class="close-button">
-            <v-icon color="white">mdi-close</v-icon>
+          <SuccessDialog
+            :message="passwordChangedSuccess"
+            @close="hideAllDialogs"
+          />
+          <v-btn
+            size="xs"
+            color="transparent"
+            variant="flat"
+            icon
+            class="close-button"
+            @click="hideAllDialogs();"
+          >
+            <v-icon color="white">
+              mdi-close
+            </v-icon>
           </v-btn>
         </v-dialog>
       </v-row>

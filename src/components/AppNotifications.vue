@@ -40,15 +40,15 @@ const alertClosed = (alertId) => {
   ></v-alert> -->
   <div>
     <v-alert
-      class="alert"
       v-for="notification in notifications.notifications"
-      v-bind:key="notification.id"
+      :key="notification.id"
+      class="alert"
       :type="notification.level"
       closable
       :text="notification.title"
-      @click:close="alertClosed(notification.id)"
       data-test="alert"
-    ></v-alert>
+      @click:close="alertClosed(notification.id)"
+    />
   </div>
 </template>
 

@@ -70,26 +70,47 @@ const enterCode = async () => {
 </script>
 
 <template>
-    <v-card class="forgot-password">
-        <v-card-title class="text-h5">Trouble logging in?</v-card-title>
-        <v-form class="form" v-model="valid" ref="form">
-        <div class="tf-label">Email or phone number</div>
-        <v-text-field
+  <v-card class="forgot-password">
+    <v-card-title class="text-h5">
+      Trouble logging in?
+    </v-card-title>
+    <v-form
+      ref="form"
+      v-model="valid"
+      class="form"
+    >
+      <div class="tf-label">
+        Email or phone number
+      </div>
+      <v-text-field
+        v-model="forgotRecoveryEmailPhone"
         class="t-field"
-            v-model="forgotRecoveryEmailPhone"
-            :counter="MaxLength"
-            :rules="emailPhoneRules"
-            placeholder="johndoe@gmail.com"
-            required
-        >
-        </v-text-field>
-        </v-form>
-        <div v-if="error" class = "error"><v-icon color="red">mdi-alert-circle</v-icon>{{ error }}</div>
-        <v-card-actions>
-        <v-spacer></v-spacer>
-        <v-btn class="primary-button" block variant="flat" @click="enterCode">Continue</v-btn>
-        </v-card-actions>
-    </v-card>
+        :counter="MaxLength"
+        :rules="emailPhoneRules"
+        placeholder="johndoe@gmail.com"
+        required
+      />
+    </v-form>
+    <div
+      v-if="error"
+      class="error"
+    >
+      <v-icon color="red">
+        mdi-alert-circle
+      </v-icon>{{ error }}
+    </div>
+    <v-card-actions>
+      <v-spacer />
+      <v-btn
+        class="primary-button"
+        block
+        variant="flat"
+        @click="enterCode"
+      >
+        Continue
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <style lang="scss" scoped>
