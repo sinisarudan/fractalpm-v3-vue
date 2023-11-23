@@ -6,7 +6,8 @@ module.exports = {
   extends: [
     'standard',
     'plugin:vue/vue3-essential', // essential vue rules that should not be turned off
-    'plugin:vue/vue3-recommended' // advanced, but still vue recommended rules
+    'plugin:vue/vue3-recommended', // advanced, but still vue recommended rules
+    'plugin:vuetify/base'
   ],
   overrides: [
     {
@@ -31,6 +32,14 @@ module.exports = {
   ],
   rules: {
     semi: ['error', 'always'], // `;` is required (at the end of command/line, etc)
-    'jsdoc/no-undefined-types': 1 // to avoid rising error on imports that are not used except for `JSDoc` typing
+    'jsdoc/no-undefined-types': 1, // to avoid rising error on imports that are not used except for `JSDoc` typing,
+    'vue/max-attributes-per-line': ['error', {
+      singleline: {
+        max: 3
+      },
+      multiline: {
+        max: 3
+      }
+    }]
   }
 };
