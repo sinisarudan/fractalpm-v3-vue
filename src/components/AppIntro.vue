@@ -1,12 +1,16 @@
 <script setup>
+// import { useTheme } from 'vuetify';
+// const theme = useTheme();
+import { useDark } from '@vueuse/core';
+const isDark = useDark();
 </script>
 
 <template>
-  <div class="intro">
+  <div :class="{intro: true, 'dark-intro': isDark}">
     <!-- <div>
         <img class="intro-image" src="/assets/app-intro-image.jpg" alt="Organize all your projects in an easy way." />
     </div> -->
-    <div class="welcome">
+    <div class="welcome on-background-darken-1">
       <h1>Organize all your projects in an easy way.</h1>
       <div class="description">
         Start managing your projects the right way.
@@ -16,9 +20,14 @@
 </template>
 
 <style lang="scss" scoped>
+.dark-intro {
+  background-image: url('/assets/app-intro-image-dark.png') !important;
+  background-size: 748px 704px !important;
+}
 .intro {
     min-width: 879px;
     min-height: 1000px;
+    // background-image: url(isDark ? '/assets/app-intro-image-dark.jpg' : '/assets/app-intro-image.jpg');
     background-image: url('/assets/app-intro-image.jpg');
     background-size: 879px 677px;
     background-position: bottom right;

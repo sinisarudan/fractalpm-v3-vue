@@ -161,9 +161,13 @@ const successDialogShow = computed({
 <template>
   <AppLayoutWithIntro>
     <div class="login">
-      <div>
-        <div><h1>Welcome Back</h1></div>
-        <div><h2>Start managing your projects the right way.</h2></div>
+      <div class="on-background">
+        <div class="on-background-darken-1">
+          <h1>Welcome Back</h1>
+        </div>
+        <div>
+          <h2>Start managing your projects the right way.</h2>
+        </div>
       </div>
       <v-form
         ref="form"
@@ -175,7 +179,6 @@ const successDialogShow = computed({
         </div>
         <v-text-field
           v-model="user.email"
-          class="t-field"
           :counter="EMailMaxLength"
           label="Enter your email"
           :rules="emailRules"
@@ -188,7 +191,6 @@ const successDialogShow = computed({
         </div>
         <v-text-field
           v-model="user.password"
-          class="t-field"
           label="Enter your password"
           :rules="passRules"
           :type="hidePass ? 'password' : 'text'"
@@ -197,7 +199,7 @@ const successDialogShow = computed({
           @click:append="hidePass = !hidePass"
         />
       </v-form>
-      <div class="actions">
+      <div class="actions on-background-darken-1">
         <div class="forgot-pass-link">
           <a
             href="void:"
@@ -207,7 +209,6 @@ const successDialogShow = computed({
         <v-btn
           class="primary-button"
           block
-          variant="flat"
           @click="submit"
         >
           Login
@@ -349,7 +350,7 @@ h1 {
   line-height: 48px;
   letter-spacing: 0.30000001192092896px;
   text-align: left;
-  color: $main-color;
+  // color: $main-color;
 }
 h2 {
   //styleName: UI/Text/M/Regular;
@@ -359,7 +360,7 @@ h2 {
   line-height: 24px;
   letter-spacing: 0px;
   text-align: left;
-  color: $secondary-color;
+  // color: $secondary-color;
 }
 .login {
   min-width: 438px;

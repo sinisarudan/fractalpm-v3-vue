@@ -94,8 +94,7 @@ use: {
 
 ### Checking built app
 
-- go to `dist` folder
-- run `serve`
+- run `serve dist` (or go to `dist` folder and run `serve`)
 - if not installed:
   - `yarn global add serve`
 

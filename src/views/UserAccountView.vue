@@ -33,7 +33,7 @@ const logout = () => {
       <div><h2>User Account Page</h2></div>
       <div
         v-if="usersStore.user"
-        class="info"
+        class="user-info"
       >
         <h1>{{ usersStore.user?.firstName }}'s account</h1>
         <div class="info-field">
@@ -84,7 +84,7 @@ h1 {
     line-height: 48px;
     letter-spacing: 0.30000001192092896px;
     text-align: left;
-    color: $main-color;
+    // color: $main-color;
   }
   h2 {
     //styleName: UI/Text/M/Regular;
@@ -107,7 +107,7 @@ h1 {
   margin: 15px;
   padding: 15px;
   min-width: 400px;
-  .info {
+  .user-info {
     display: flex;
     flex-direction: column;
     gap: 20px;

@@ -23,10 +23,13 @@ const close = () => {
 </script>
 
 <template>
-  <v-card class="success-dialog">
+  <v-card class="success-dialog on-background-darken-2">
     <img
+      class="success-image"
       src="/assets/success.jpg"
-      alt="Your Password has been set successfully"
+      :alt="props.message"
+      width="258"
+      height="148"
     >
     <div
       v-if="props.message"
@@ -39,7 +42,7 @@ const close = () => {
       <v-spacer />
       <v-btn
         class="primary-button"
-        block
+        width="400px"
         variant="flat"
         @click="close"
       >
@@ -63,12 +66,20 @@ const close = () => {
 
 <style lang="scss" scoped>
 .success-dialog {
+    .success-image {
+      margin-bottom: 24px;
+    }
     padding: 35px;
     text-align: center;
+    align-items: center;
     .status {
-      color: #0D0D0D;
+      font-family: Manrope;
       font-size: 18px;
       font-weight: 800;
+      line-height: 24px;
+      letter-spacing: 0.30000001192092896px;
+      text-align: center;
+
     }
   }
 </style>

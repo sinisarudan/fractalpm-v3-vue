@@ -71,7 +71,7 @@ const enterCode = async () => {
 
 <template>
   <v-card class="forgot-password">
-    <v-card-title class="text-h5">
+    <v-card-title class="on-background-darken-1">
       Trouble logging in?
     </v-card-title>
     <v-form
@@ -93,7 +93,7 @@ const enterCode = async () => {
     </v-form>
     <div
       v-if="error"
-      class="error"
+      class="text-error"
     >
       <v-icon color="red">
         mdi-alert-circle
@@ -116,10 +116,10 @@ const enterCode = async () => {
 <style lang="scss" scoped>
 .forgot-password {
     padding: 35px;
-    .error {
-      color: red;
-      font-size: 12px;
-    }
+    // .error {
+    //   color: red;
+    //   font-size: 12px;
+    // }
   .form {
     margin-top: 24px;
     // max-height: 350px;
