@@ -18,32 +18,60 @@ const navClicked = () => {
 
 <template>
   <v-app id="app">
-    <v-app-bar :elevation="0" app>
-      <AppNavBar @navClicked="navClicked" />
+    <v-app-bar
+      :elevation="0"
+    >
+      <AppNavBar @nav-clicked="navClicked" />
     </v-app-bar>
-    <v-navigation-drawer app v-model="drawer" right bottom temporary>
-      <RouterLink @click="drawer = false" class="router-link" to="/">Home</RouterLink>
-      <RouterLink @click="drawer = false" class="router-link" to="/user_account"
-        >My Account</RouterLink
+    <v-navigation-drawer
+      v-model="drawer"
+      temporary
+    >
+      <RouterLink
+        class="router-link"
+        to="/"
+        @click="drawer = false"
       >
-      <RouterLink @click="drawer = false" class="router-link" to="/about">About</RouterLink>
+        Home
+      </RouterLink>
+      <RouterLink
+        class="router-link"
+        to="/user_account"
+        @click="drawer = false"
+      >
+        My Account
+      </RouterLink>
+      <RouterLink
+        class="router-link"
+        to="/about"
+        @click="drawer = false"
+      >
+        About
+      </RouterLink>
     </v-navigation-drawer>
 
     <!-- <v-toolbar></v-toolbar> -->
     <v-main>
       <v-container fluid>
         <AppNotifications />
-        <router-view></router-view>
+        <router-view />
       </v-container>
     </v-main>
-    <v-footer app><AppSettings /></v-footer>
+    <v-bottom-navigation :elevation="0" color="transparent">
+      <AppSettings class="app-settings" />
+    </v-bottom-navigation>
   </v-app>
 </template>
 
 <style lang="scss" scoped>
 @import "variables";
+.v-application {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif !important;
+  background-color: rgb(var(--v-theme-background)) !important;
+  color: rgb(var(--v-theme-on-background)) !important;
+}
 #app {
-  background-color: white;
+  // background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -65,51 +93,29 @@ const navClicked = () => {
 
 <style lang="scss">
 @import "variables";
-.primary-button {
-  border-radius: var(--v-btn-border-radius, 12px) !important;
-  background-color: #8155FF !important;
-  color: white !important;
-  // height: 48px !important;
-  //styleName: UI/Text/M/Medium;
-  font-family: Inter !important;
-  font-size: 16px !important;
-  font-weight: 500 !important;
-  line-height: 24px !important;
-  letter-spacing: 0px !important;
-  text-transform: none !important;
-  // padding-left: 0px !important;
-  // padding-right: 0px !important;
-}
-.v-messages__message {
-  // background-color: yellow !important;
-  //styleName: UI/Text/XS/Medium;
-  font-family: Inter !important;
-  font-size: 12px !important;
-  font-weight: 500 !important;
-  line-height: 16px !important;
-  letter-spacing: 0.20000000298023224px !important;
-  text-align: left !important;
-  color: #FF7676 !important;
-  margin-top: 10px !important;
-}
-.v-messages__message::before {
-  content: url('https://api.iconify.design/mdi/alert-circle.svg');
-  color: #FF7676 !important;
-  margin-right: 8px !important;
-  filter: invert(59%) sepia(94%) saturate(2816%) hue-rotate(345deg) brightness(100%) contrast(105%);
-}
-.v-footer {
-  text-align: right !important;
-  right: 0px !important;
-  position: absolute !important;
-  // color: gray !important;
-}
-.v-navigation-drawer__content {
-  display: flex !important;
-  flex-direction: column !important;
-}
-.v-text-field .v-input__details {
-    padding-inline: 0px !important;
+// .dark {
+//   color: white;
+//   background-color: rgb(40, 40, 40);
+// }
+// [theme='dark'] {
+//   background: #252525;
+//   color: white;
+// }
+// [theme='dim'] {
+//   background: gray;
+//   color: white;
+// }
+// [theme='cafe'] {
+//   background: #c0acac;
+//   color: black;
+// }
+// .v-bottom-navigation {
+//   // display: flex;
+//   // flex-direction: row;
+// }
+.app-settings {
+  margin-left: auto;
+  margin-right: 100px;
 }
 .tf-label{
   //styleName: UI/Text/S/Medium;
@@ -121,15 +127,22 @@ const navClicked = () => {
   text-align: left;
   color: $secondary-color;
 }
-.t-field{
-  margin-bottom: 12px;
-  //styleName: UI/Text/M/Light;
-  font-family: Inter;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  letter-spacing: 0px;
-  text-align: left;
-  margin-bottom: 24px !important;
+.v-card {
+  border-radius: 16px !important;
 }
+.v-field__input {
+  border: 1px solid rgb(var(--v-theme-text-field-border)) !important; //#EDEAFA
+  border-radius: 8px !important;
+  background-color: rgb(var(--v-theme-text-field-background)) !important;
+}
+
+.v-field__overlay {
+  border: 1px solid rgb(var(--v-theme-text-field-border)) !important; //#EDEAFA
+  border-radius: 8px !important;
+  // background-color: rgb(var(--v-theme-text-field-background)) !important;
+}
+.v-bottom-navigation {
+  background: rgb(var(--v-theme-background)) !important;
+}
+
 </style>
