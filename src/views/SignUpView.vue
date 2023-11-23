@@ -150,7 +150,6 @@ const submit = async () => {
         </div>
         <v-text-field
           v-model="user.firstName"
-          class="t-field"
           :counter="FirstNameMaxLength"
           label="Enter your first name"
           :rules="fNameRules"
@@ -162,7 +161,6 @@ const submit = async () => {
         </div>
         <v-text-field
           v-model="user.lastName"
-          class="t-field"
           :counter="LastNameMaxLength"
           label="Enter your last name"
           :rules="lNameRules"
@@ -174,7 +172,6 @@ const submit = async () => {
         </div>
         <v-text-field
           v-model="user.email"
-          class="t-field"
           :counter="EMailMaxLength"
           label="Enter your email"
           :rules="emailRules"
@@ -188,7 +185,7 @@ const submit = async () => {
           </div>
           <v-text-field
             v-model="user.password"
-            class="t-field"
+
             label="Create a Password"
             :rules="passRules"
             :type="hidePass ? 'password' : 'text'"
@@ -202,7 +199,7 @@ const submit = async () => {
           </div>
           <v-text-field
             v-model="passwordConfirm"
-            class="t-field"
+
             label="Confirm Password"
             :rules="passConfirmRules"
             :type="hidePass ? 'password' : 'text'"
@@ -212,11 +209,9 @@ const submit = async () => {
           />
         </div>
       </v-form>
-      <div class="actions">
+      <div class="actions on-background-darken-1">
         <v-btn
-          class="primary-button"
           block
-          variant="flat"
           @click="submit"
         >
           Create Account
@@ -266,7 +261,7 @@ const submit = async () => {
     line-height: 48px;
     letter-spacing: 0.30000001192092896px;
     text-align: left;
-    color: $main-color;
+    // color: $main-color;
   }
   h2 {
     //styleName: UI/Text/M/Regular;
@@ -294,7 +289,7 @@ const submit = async () => {
   flex-direction: column;
   gap: 24px;
   text-align: left;
-  color: $main-color;
+  // color: $main-color;
   .agree {
     font-family: Inter;
     font-size: 14px;

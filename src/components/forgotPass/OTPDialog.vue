@@ -120,10 +120,10 @@ const resendCode = async () => {
     class="otp-code"
     @paste="handlePaste($event)"
   >
-    <v-card-title class="text-h5">
+    <v-card-title class="on-background-darken-1">
       Enter the code
     </v-card-title>
-    <div class="hint">
+    <div class="hint on-background-lighten-1">
       You can simply paste the 4-digits code
     </div>
     <v-form
@@ -142,13 +142,13 @@ const resendCode = async () => {
           maxlength="1"
           placeholder="0"
           @paste="handlePaste($event)"
-          @input="handleDigitChange(index, $event)"
+          @update:model-value="handleDigitChange(index, $event)"
         />
       </div>
     </v-form>
     <div
       v-if="error"
-      class="error"
+      class="text-error"
     >
       <v-icon color="red">
         mdi-alert-circle
@@ -162,7 +162,7 @@ const resendCode = async () => {
         mdi-checkbox-marked-circle
       </v-icon>{{ status }}
     </div>
-    <div class="txt-center">
+    <div class="txt-center on-background-lighten-1">
       Didn’t get a link? <a
         href="void:"
         @click.prevent="resendCode"
@@ -193,10 +193,10 @@ const resendCode = async () => {
       color: gray;
       padding: 3px;
     }
-    .error {
-      color: red;
-      font-size: 12px;
-    }
+    // .error {
+    //   color: red;
+    //   font-size: 12px;
+    // }
     .status {
       color: darkgreen;
       font-size: 12px;
@@ -226,4 +226,21 @@ const resendCode = async () => {
 //   padding: 5px;
 //   margin: auto;
 // }
+</style>
+<style lang="scss">
+.otp-code {
+  .v-card-title {
+  //styleName: Hero/XS;
+  font-family: Manrope;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 48px;
+  letter-spacing: 0.30000001192092896px;
+  text-align: left;
+}
+.v-field__input {
+  border: 1px solid rgb(var(--v-theme-on-background-darken-1)) !important;
+  border-radius: 6px !important;
+}
+}
 </style>

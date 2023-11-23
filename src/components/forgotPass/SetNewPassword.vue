@@ -93,7 +93,7 @@ const setNewPassword = async () => {
 
 <template>
   <v-card class="set-new-password">
-    <v-card-title class="text-h5">
+    <v-card-title class="on-background-darken-1">
       Set New Password
     </v-card-title>
     <v-form
@@ -138,7 +138,7 @@ const setNewPassword = async () => {
     </div>
     <div
       v-if="error"
-      class="error"
+      class="text-error"
     >
       <v-icon color="red">
         mdi-alert-circle
@@ -161,10 +161,10 @@ const setNewPassword = async () => {
 <style lang="scss" scoped>
 .set-new-password {
     padding: 35px;
-    .error {
-      color: red;
-      font-size: 12px;
-    }
+    // .error {
+    //   color: red;
+    //   font-size: 12px;
+    // }
   .form {
     margin-top: 24px;
     // max-height: 350px;
@@ -181,4 +181,16 @@ const setNewPassword = async () => {
 //   padding: 5px;
 //   margin: auto;
 // }
+</style>
+
+<style lang="scss">
+.v-card-title {
+  //styleName: Hero/XS;
+  font-family: Manrope;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 48px;
+  letter-spacing: 0.30000001192092896px;
+  text-align: left;
+}
 </style>
