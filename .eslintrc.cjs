@@ -40,6 +40,7 @@ module.exports = {
       multiline: {
         max: 3
       }
-    }]
+    }],
+    camelcase: ['error', { properties: 'never' }]
   }
 };
