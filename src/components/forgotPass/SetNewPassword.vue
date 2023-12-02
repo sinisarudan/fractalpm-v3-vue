@@ -81,7 +81,7 @@ const setNewPassword = async () => {
     if (result) {
       error.value = undefined;
       status.value = 'Successful Password Reset';
-      emit('password-changed');
+      emit('password-changed', password.value);
     } else {
       error.value = 'Unable to reset password';
       status.value = undefined;
@@ -161,6 +161,7 @@ const setNewPassword = async () => {
 <style lang="scss" scoped>
 .set-new-password {
     padding: 35px;
+    // min-width: 300px;
     // .error {
     //   color: red;
     //   font-size: 12px;
