@@ -112,7 +112,7 @@ const openUserAccount = () => {
         @click="openUserAccount"
         v-if="showUserAccountBtn"
         variant="outlined"
-        >{{ usersStore.user ? usersStore.user.firstName : "Login/Register"
+        >{{ usersStore.user ? usersStore.user.first_name : "Login/Register"
         }}<v-icon>mdi-account-cog</v-icon></v-btn
       > -->
     <v-btn
@@ -120,7 +120,7 @@ const openUserAccount = () => {
       variant="outlined"
       @click="openUserAccount"
     >
-      {{ usersStore.user?.firstName }}<v-icon>mdi-account-cog</v-icon>
+      {{ usersStore.user?.first_name }}<v-icon>mdi-account-cog</v-icon>
     </v-btn>
   </div>
 </template>

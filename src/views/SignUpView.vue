@@ -12,8 +12,8 @@ const usersStore = useUsersStore();
 const notificationsStore = useNotificationsStore();
 const router = useRouter();
 
-const FirstNameMaxLength = 30;
-const LastNameMaxLength = 35;
+const first_nameMaxLength = 30;
+const last_nameMaxLength = 35;
 const EMailMaxLength = 70;
 
 /**
@@ -61,12 +61,12 @@ const emailRules = ref([
 
 const fNameRules = ref([
   (v) => (v && v.length > 0) || 'First name is required',
-  (v) => (v && v.length <= FirstNameMaxLength) || `Maximum ${FirstNameMaxLength} characters`
+  (v) => (v && v.length <= first_nameMaxLength) || `Maximum ${first_nameMaxLength} characters`
 ]);
 
 const lNameRules = ref([
   (v) => (v && v.length > 0) || 'Last name is required',
-  (v) => (v && v.length <= LastNameMaxLength) || `Maximum ${LastNameMaxLength} characters`
+  (v) => (v && v.length <= last_nameMaxLength) || `Maximum ${last_nameMaxLength} characters`
 ]);
 
 const PassMinLength = 8;
@@ -111,17 +111,15 @@ const validateForm = async () => {
  * @description
  */
 const userSignedUp = async (userToRegister) => {
-  const user = (await usersStore.register(userToRegister));
+  const user = (await usersStore.signup(userToRegister));
   if (user) {
     // TODO: add security transformations: hash, salt, pass ...
     // so far password is removed before storing:
     localStorage.loggedInUser = JSON.stringify({ ...JSON.parse(JSON.stringify(user)), password: undefined });
 
-    notificationsStore.add(new Notification(`Welcome ${user.firstName}! You have Successfully Signed Up.`, NotifLevel.SUCCESS));
+    notificationsStore.add(new Notification(`Welcome ${user.first_name}! You have Successfully Signed Up.`, NotifLevel.SUCCESS));
     notificationsStore.add(new Notification('Check for a confirmation email to set a password.', NotifLevel.WARNING));
     router.push({ name: 'home' });
-  } else {
-    notificationsStore.add(new Notification('Signup Error.', NotifLevel.ERROR));
   }
 };
 
@@ -149,8 +147,8 @@ const submit = async () => {
           First Name
         </div>
         <v-text-field
-          v-model="user.firstName"
-          :counter="FirstNameMaxLength"
+          v-model="user.first_name"
+          :counter="first_nameMaxLength"
           label="Enter your first name"
           :rules="fNameRules"
           required
@@ -160,8 +158,8 @@ const submit = async () => {
           Last Name
         </div>
         <v-text-field
-          v-model="user.lastName"
-          :counter="LastNameMaxLength"
+          v-model="user.last_name"
+          :counter="last_nameMaxLength"
           label="Enter your last name"
           :rules="lNameRules"
           required
