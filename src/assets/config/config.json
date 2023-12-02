@@ -2,8 +2,8 @@
 	"env": "dev",
 	"api": {
 		"dev": {
-			"base_url": "https://localhost",
-			"port": "8443"
+			"base_url": "http://localhost",
+			"port": "8080"
 		},
 		"prod": {
 			"base_url": "https://localhost",

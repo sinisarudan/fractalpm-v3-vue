@@ -10,7 +10,7 @@ if (env === 'dev') {
 /**
  * @type {string}
  */
-const BASE_URL = config.api[env].base_url + ':' + config.api[env].port + '/api';
+const BASE_URL = config.api[env].base_url + ':' + config.api[env].port;
 
 /**
  * @type {import('axios').AxiosInstance}
