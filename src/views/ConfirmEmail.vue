@@ -6,7 +6,7 @@ import SetNewPassword from '@/components/forgotPass/SetNewPassword.vue';
 import Person from '@/models/users/Person';
 import { useUsersStore } from '@/stores/users';
 // import { useRouter } from 'vue-router';
-import Notification from '@/models/notifications/Notification';
+// import Notification from '@/models/notifications/Notification';
 import { useNotificationsStore } from '@/stores/notifications';
 import { NotifLevel } from '@/models/notifications/NotifLevel';
 
@@ -47,14 +47,16 @@ onMounted(async () => {
   }
 });
 
-const resend = () => {};
+const resend = () => {
+  notificationsStore.add({ title: 'To be developed', level: NotifLevel.INFO });
+};
 
 /**
  * @type {import('vue').Ref<(boolean)>}
  */
 const setNewPasswordShow = computed(
   () =>
-    confirmState.value === 'confirmed'
+    confirmState.value === 'confirmed' && confirmState.value !== 'set-password-failed'
 );
 
 /**
@@ -62,11 +64,14 @@ const setNewPasswordShow = computed(
    *
    * @param {string} password - The token to be validated.
    */
-const passwordChanged = (password) => {
-  usersStore.setNewPassword(password);
-  confirmState.value = 'changed';
+const passwordChanged = async (password) => {
+  user.value = await usersStore.confirmEmail(props.uid, props.token, password);
+  if (user.value) {
+    confirmState.value = 'changed';
+  } else {
+    confirmState.value = 'set-password-failed';
+  }
   // console.log("password", password);
-  notificationsStore.add(new Notification('Your Password has been set successfully.', NotifLevel.SUCCESS));
 };
 
 </script>
@@ -76,8 +81,13 @@ const passwordChanged = (password) => {
     <div class="confirm-email">
       <div><h1>Welcome</h1></div>
       <div>
-        <div v-if="confirmState==='failed'">
-          <h2>Email not confirmed</h2>
+        <div v-if="confirmState==='failed' || confirmState === 'set-password-failed'">
+          <h2 v-if="confirmState==='failed'">
+            Email not confirmed
+          </h2>
+          <h2 v-else-if="confirmState==='set-password-failed'">
+            Password setting failed.
+          </h2>
           <v-btn
             block
             @click="resend"
