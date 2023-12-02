@@ -266,7 +266,7 @@ const successDialogShow = computed({
           v-model="otpCodeShow"
           persistent
           :fullscreen="mobile"
-          :max-width="mobile ? 'none' : '400px'"
+          :max-width="mobile ? 'none' : '500px'"
           data-testid="otp-code-dialog"
         >
           <OTPDialog
@@ -315,7 +315,7 @@ const successDialogShow = computed({
           persistent
           :fullscreen="mobile"
           :max-width="mobile ? 'none' : '400px'"
-          data-testid="set-new-password-dialog"
+          data-testid="success-dialog"
         >
           <SuccessDialog
             :message="passwordChangedSuccess"

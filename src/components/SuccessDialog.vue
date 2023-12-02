@@ -42,7 +42,7 @@ const close = () => {
       <v-spacer />
       <v-btn
         class="primary-button"
-        width="400px"
+        width="300px"
         variant="flat"
         @click="close"
       >

@@ -187,6 +187,8 @@ const resendCode = async () => {
 <style lang="scss" scoped>
 .otp-code {
     padding: 35px;
+    text-align: center;
+    align-items: center;
     .hint {
       text-align: center;
       font-size: 12px;
