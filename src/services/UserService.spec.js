@@ -43,7 +43,7 @@ describe('UserService', () => {
   test('register', async () => {
     const user = Person.PersonMock;
     user.id = undefined;
-    const userFromService = await UserService.register(user);
+    const userFromService = await UserService.signup(user);
     expect(userFromService.id).toBeDefined();
     expect(userFromService.email).toEqual(user.email);
   });
@@ -54,7 +54,7 @@ describe('UserService', () => {
     const getHttpGetSpy = vi.spyOn(http, 'post');
     getHttpGetSpy.mockResolvedValue({ data: Person.PersonMock });
 
-    const result = await UserService.register(Person.PersonMock);
+    const result = await UserService.signup(Person.PersonMock);
 
     expect(getHttpGetSpy.mock.calls.length).toBe(1);
     expect(getHttpGetSpy).toHaveBeenCalled();
