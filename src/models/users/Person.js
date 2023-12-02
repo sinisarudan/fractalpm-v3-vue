@@ -11,12 +11,12 @@ export default class Person {
   /**
    * @type {string}
    */
-  firstName;
+  first_name;
 
   /**
    * @type {string}
    */
-  lastName;
+  last_name;
 
   /**
    * The email address of the person.
@@ -33,14 +33,14 @@ export default class Person {
   /**
    * Creates a new instance of the Person class.
    * @param {(string | undefined)} id - The unique identifier for the person.
-   * @param {string} firstName - The first name of the person.
-   * @param {string} lastName - The last name of the person.
+   * @param {string} first_name - The first name of the person.
+   * @param {string} last_name - The last name of the person.
    * @param {string} email - The email address of the person.
    * @param {string} password - The password of the person.
    */
-  constructor (firstName, lastName, email, password, id = undefined) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  constructor (first_name, last_name, email, password, id = undefined) {
+    this.first_name = first_name;
+    this.last_name = last_name;
     this.email = email;
     this.password = password;
     this.id = id;

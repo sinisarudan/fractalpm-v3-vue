@@ -1,13 +1,13 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useUsersStore } from '@/stores/users';
+// import { useUsersStore } from '@/stores/users';
 // import Person from '@/models/users/Person';
 // import { useRouter } from 'vue-router';
 // import Notification from '@/models/notifications/Notification';
 // import { useNotificationsStore } from '@/stores/notifications';
 // import { NotifLevel } from '@/models/notifications/NotifLevel';
 
-const usersStore = useUsersStore();
+// const usersStore = useUsersStore();
 // const notificationsStore = useNotificationsStore();
 // const router = useRouter();
 
@@ -77,15 +77,9 @@ const validateForm = async () => {
 const setNewPassword = async () => {
   if (await validateForm()) {
     console.log('[enterCode] valid');
-    const result = await usersStore.setNewPassword(password);
-    if (result) {
-      error.value = undefined;
-      status.value = 'Successful Password Reset';
-      emit('password-changed');
-    } else {
-      error.value = 'Unable to reset password';
-      status.value = undefined;
-    }
+    error.value = undefined;
+    // status.value = 'Successful Password Reset';
+    emit('password-changed', password.value);
   }
 };
 
@@ -161,6 +155,7 @@ const setNewPassword = async () => {
 <style lang="scss" scoped>
 .set-new-password {
     padding: 35px;
+    // min-width: 300px;
     // .error {
     //   color: red;
     //   font-size: 12px;

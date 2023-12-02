@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue';
+import { useDisplay } from 'vuetify';
 import AppLayoutWithIntro from '@/components/AppLayoutWithIntro.vue';
 import ForgotPass from '@/components/forgotPass/ForgotPass.vue';
 import OTPDialog from '@/components/forgotPass/OTPDialog.vue';
@@ -15,6 +16,7 @@ import { NotifLevel } from '@/models/notifications/NotifLevel';
 const usersStore = useUsersStore();
 const notificationsStore = useNotificationsStore();
 const router = useRouter();
+const { mobile } = useDisplay();
 
 const EMailMaxLength = 70;
 
@@ -87,7 +89,7 @@ const userLoggedIn = async (userToLogIn) => {
     // so far password is removed before storing:
     localStorage.loggedInUser = JSON.stringify({ ...JSON.parse(JSON.stringify(user)), password: undefined });
 
-    notificationsStore.add(new Notification(`Welcome ${user.firstName}! You have Successfully Logged In.`, NotifLevel.SUCCESS));
+    notificationsStore.add(new Notification(`Welcome ${user.first_name}! You have Successfully Logged In.`, NotifLevel.SUCCESS));
     router.push({ name: 'home' });
   } else {
     notificationsStore.add(new Notification('Login Error.', NotifLevel.ERROR));
@@ -240,8 +242,9 @@ const successDialogShow = computed({
       <v-row justify="center">
         <v-dialog
           v-model="forgotPasswordShow"
-          width="auto"
           persistent
+          :fullscreen="mobile"
+          :max-width="mobile ? 'none' : '400px'"
           data-testid="forgot-password-dialog"
         >
           <ForgotPass @continue="forgotPassContinue" />
@@ -261,8 +264,9 @@ const successDialogShow = computed({
 
         <v-dialog
           v-model="otpCodeShow"
-          width="auto"
           persistent
+          :fullscreen="mobile"
+          :max-width="mobile ? 'none' : '500px'"
           data-testid="otp-code-dialog"
         >
           <OTPDialog
@@ -285,12 +289,12 @@ const successDialogShow = computed({
 
         <v-dialog
           v-model="setNewPasswordShow"
-          width="auto"
           persistent
+          :fullscreen="mobile"
+          :max-width="mobile ? 'none' : '400px'"
           data-testid="set-new-password-dialog"
         >
           <SetNewPassword
-            :forgot-recovery-email-phone="forgotRecoveryEmailPhone"
             @password-changed="passwordChanged"
           />
           <v-btn
@@ -308,9 +312,10 @@ const successDialogShow = computed({
         </v-dialog>
         <v-dialog
           v-model="successDialogShow"
-          width="auto"
           persistent
-          data-testid="set-new-password-dialog"
+          :fullscreen="mobile"
+          :max-width="mobile ? 'none' : '400px'"
+          data-testid="success-dialog"
         >
           <SuccessDialog
             :message="passwordChangedSuccess"

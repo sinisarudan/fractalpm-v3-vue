@@ -170,7 +170,10 @@ const vuetify = createVuetify({
       darken: 2
     }
   },
-  defaults: defaultsOptions
+  defaults: defaultsOptions,
+  display: {
+    mobileBreakpoint: 'sm'
+  }
 });
 
 const pinia = createPinia();
