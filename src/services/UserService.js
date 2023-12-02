@@ -101,13 +101,10 @@ export class UserService {
     } else {
       // TODO: to see if we want to complicate things on backend with the conditional `sendConfirmationEmail` or always to perform it
       /**
-       * @type {Promise<ServerResponse>}
+       * @type {ServerResponse}
        */
       let response;
       try {
-        /**
-         * @type {ServerResponse}
-         */
         response = await http.post('/signup', user);
         console.log(`[response=${response}`);
         return response.data;
@@ -187,10 +184,10 @@ export class UserService {
    * @param {string} uid - user uid
    * @param {string} token - The token to be validated.
    * @param {string} [password = undefined] - optional - if provided confirmation will also set password.
-   * @returns {Promise<Person | undefined>} A promise that resolves to `Person` whose token is checked, otherwise to `undefined`.
+   * @returns {(Promise<ServerResponse>)} A `Promise` that resolves to the ServerResponse, containing `Person` whose token is checked or an error info.
    */
   static async confirmEmail (uid, token, password = undefined) {
-    console.log(`[confirmEmail uid=${uid} ; token=${token}`);
+    console.log(`[confirmEmail uid=${uid} ; token=${token}; password=${password}`);
     if (UserService.config.LOCAL_MOCKUP_DATA) {
       const DEMO_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpbmlzYS5ydWRhbkBnbWFpbC5jb20iLCJleHAiOjE3MDE0NjI5MTZ9.Ahfwea2jKfHbqWaTdCfVS8vm3FLuW5eMTZW5VIBkeSo';
 
@@ -200,9 +197,13 @@ export class UserService {
         return new Promise(resolve => setTimeout(() => resolve(undefined), 1000));
       }
     } else {
+      /**
+       * @type {ServerResponse}
+       */
+      let response;
       try {
-        const response = await http.get(`/check_confirm_email?uid=${uid}&token=${token}` + password ? `password=${password}` : '');
-        console.log(`[confirmEmail user=${response.data}`);
+        response = await http.get(`/check_confirm_email?uid=${uid}&token=${token}` + (password ? `&password=${password}` : ''));
+        console.log(`[response=${response}`);
         return response.data;
       } catch (error) {
         // Handle error, including 400 Bad Request
@@ -210,6 +211,11 @@ export class UserService {
           // The request was made, and the server responded with a status code
           console.warn('Response status:', error.response.status);
           console.warn('Response data:', error.response.data);
+
+          // if (error.response.data.code === '...') {
+          //   console.warn('...'));
+          // }
+          return error.response.data;
         } else if (error.request) {
           // The request was made, but no response was received
           console.log('No response received');
@@ -217,7 +223,7 @@ export class UserService {
           // Something happened in setting up the request that triggered an Error
           console.error('Error during request setup:', error.message);
         }
-        return undefined;
+        return new ServerResponse(ServerResponseCode.ERROR_REQUEST, false);
       }
     }
   }

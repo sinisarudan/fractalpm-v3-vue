@@ -52,26 +52,20 @@ export const useUsersStore = defineStore('Users', {
      */
     async signup (user, sendConfirmationEmail = true) {
       const notificationsStore = useNotificationsStore();
-      try {
-        /**
-         * @type {ServerResponse}
-         */
-        const response = await UserService.signup(user, sendConfirmationEmail);
-        if (response.status) {
-          this.user = response.data;
-        } else {
-          let title = 'Signup error';
-          if (response.code === ServerResponseUserServiceCode.EMAIL_EXISTS) {
-            title = 'Email already exists.';
-          }
-          notificationsStore.add({ title, level: NotifLevel.ERROR });
+      /**
+       * @type {ServerResponse}
+       */
+      const response = await UserService.signup(user, sendConfirmationEmail);
+      if (response.status) {
+        this.user = response.data;
+      } else {
+        let title = 'Signup error';
+        if (response.code === ServerResponseUserServiceCode.EMAIL_EXISTS) {
+          title = 'Email already exists.';
         }
-        return this.user;
-      } catch (error) {
-        console.error('Signup error:', error);
-        notificationsStore.add({ title: 'Signup error', level: NotifLevel.ERROR });
-        return undefined;
+        notificationsStore.add({ title, level: NotifLevel.ERROR });
       }
+      return this.user;
     },
     /**
      * Sends an OTP code to the specified email address.
@@ -106,25 +100,27 @@ export const useUsersStore = defineStore('Users', {
    *
    * @param {string} uid - user uid
    * @param {string} token - The token to be validated.
+   * @param {string} [password = undefined] - optional - if provided confirmation will also set password.
    * @returns {Promise<Person | undefined>} A promise that resolves to `Person` whose token is checked, otherwise to `undefined`.
    */
-    async confirmEmail (uid, token) {
-      console.log('[confirmEmail]', token);
-      return UserService.confirmEmail(uid, token);
-    },
-    /**
-   * Sets new password for a user.
-   *
-   * @param {string} password - The new password.
-   * @returns {Promise<boolean>} A promise that resolves to `true` if password resetting was successful, otherwise `false`.
-   */
-    async setNewPassword (password) {
-      console.log('[usersStore::sendOTPCode]', password);
-      if (password) {
-        // TODO: add call to service; support memorizing of user for whom we reset password, etc
-        return true;
+    async confirmEmail (uid, token, password = undefined) {
+      console.log('[users/Store::confirmEmail]', uid, token, password);
+      const notificationsStore = useNotificationsStore();
+      /**
+       * @type {ServerResponse}
+       */
+      const response = await UserService.confirmEmail(uid, token, password);
+      if (response.status) {
+        this.user = response.data;
+      } else {
+        const title = 'Confirm Email Error';
+        // if (response.code === ServerResponseUserServiceCode.EMAIL_EXISTS) {
+        //   title = 'Email already exists.';
+        // }
+        notificationsStore.add({ title, level: NotifLevel.ERROR });
+        this.user = undefined;
       }
-      return false;
+      return this.user;
     }
   }
 });
