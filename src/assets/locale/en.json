@@ -150,7 +150,7 @@
   "others": "Others",
   "ortext": "or login using",
   "registermssg": "By register you agree with our",
-  "terms": "terms and conditons",
+  "terms": "terms and conditions",
   "privacy": "privacy policy.",
   "forgot": "Forgot password?",
   "signup": "Sign up",
@@ -213,9 +213,9 @@
   "pleaseClick": "Please click 'create project' button to add a project to this organization.",
   "sureRemove": "Are you sure you want to remove",
   "emailConfirmation": "Email not confirmed",
-  "confirmMessage": "To add members in this orgnaization please confirm your email address by clicking on the confirmation link sent to {email}.",
+  "confirmMessage": "To add members in this organization please confirm your email address by clicking on the confirmation link sent to {email}.",
   "resendConfirmation": "Resend Confirmation",
-  "confirmResend": "If you didn't recieve a confirmation email, please click on the resend confirmation button below to recieve one."
+  "confirmResend": "If you didn't receive a confirmation email, please click on the resend confirmation button below to receive one."
  },
  "tasks": {
   "myTasks": "My Tasks",
