@@ -96,12 +96,12 @@ const setNewPassword = async () => {
       class="form"
     >
       <div class="tf-label">
-        Password
+        {{ $t('placeholders.password') }}
       </div>
       <v-text-field
         v-model="password"
         class="t-field"
-        label="Enter your password"
+        :label="$t('placeholders.enterPassword')"
         :rules="passRules"
         :type="hidePass ? 'password' : 'text'"
         :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
@@ -109,12 +109,12 @@ const setNewPassword = async () => {
         @click:append="hidePass = !hidePass"
       />
       <div class="tf-label">
-        Confirm Password
+        {{ $t('placeholders.confirmPassword') }}
       </div>
       <v-text-field
         v-model="passwordConfirm"
         class="t-field"
-        label="Enter your password"
+        :label="$t('placeholders.enterPassword')"
         :rules="passConfirmRules"
         :type="hidePass ? 'password' : 'text'"
         :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"

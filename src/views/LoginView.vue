@@ -178,23 +178,23 @@ const successDialogShow = computed({
         class="form"
       >
         <div class="tf-label">
-          Email
+          {{ $t("placeholders.email") }}
         </div>
         <v-text-field
           v-model="user.email"
           :counter="EMailMaxLength"
-          label="Enter your email"
+          :label="$t('placeholders.enterEmail')"
           :rules="emailRules"
           placeholder="johndoe@gmail.com"
           required
         />
 
         <div class="tf-label">
-          Password
+          {{ $t("placeholders.password") }}
         </div>
         <v-text-field
           v-model="user.password"
-          label="Enter your password"
+          :label="$t('placeholders.enterPassword')"
           :rules="passRules"
           :type="hidePass ? 'password' : 'text'"
           :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
@@ -207,18 +207,18 @@ const successDialogShow = computed({
           <a
             href="void:"
             @click.prevent="forgotPasswordShow = true"
-          >Forgot Password?</a>
+          ><h2>{{ $t("login.forgot") }}</h2></a>
         </div>
         <v-btn
           class="primary-button"
           block
           @click="submit"
         >
-          Login
+        {{ $t("login.login") }}
         </v-btn>
         <div class="note">
-          Don't have an account? <RouterLink to="/signup">
-            Signup
+          {{ $t("login.noAccount") }} <RouterLink to="/signup">
+            {{ $t("login.signup") }}
           </RouterLink>
         </div>
       </div>

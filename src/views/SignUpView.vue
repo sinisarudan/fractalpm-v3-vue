@@ -136,42 +136,42 @@ const submit = async () => {
 <template>
   <AppLayoutWithIntro>
     <div class="signup">
-      <div><h1>Create Account</h1></div>
-      <div><h2>Start managing your projects the right way.</h2></div>
+      <div><h1>{{ $t('signup.createAccount') }}</h1></div>
+      <div><h2>{{ $t("login.submessage") }}</h2></div>
       <v-form
         ref="form"
         v-model="valid"
         class="form"
       >
         <div class="tf-label">
-          First Name
+          {{ $t('common.firstName') }}
         </div>
         <v-text-field
           v-model="user.first_name"
           :counter="first_nameMaxLength"
-          label="Enter your first name"
+          :label="$t('placeholders.enterFirstName')"
           :rules="fNameRules"
           required
         />
 
         <div class="tf-label">
-          Last Name
+          {{ $t('common.lastName') }}
         </div>
         <v-text-field
           v-model="user.last_name"
           :counter="last_nameMaxLength"
-          label="Enter your last name"
+          :label="$t('placeholders.enterLastName')"
           :rules="lNameRules"
           required
         />
 
         <div class="tf-label">
-          Email
+          {{ $t('placeholders.email') }}
         </div>
         <v-text-field
           v-model="user.email"
           :counter="EMailMaxLength"
-          label="Enter your email"
+          :label="$t('placeholders.enterEmail')"
           :rules="emailRules"
           placeholder="johndoe@gmail.com"
           required
@@ -179,7 +179,7 @@ const submit = async () => {
 
         <div v-if="SETUP_PASSWORD">
           <div class="tf-label">
-            Password
+            {{ $t('placeholders.password') }}
           </div>
           <v-text-field
             v-model="user.password"
@@ -193,7 +193,7 @@ const submit = async () => {
           />
 
           <div class="tf-label">
-            Confirm Password
+            {{ $t('placeholders.confirmPassword') }}
           </div>
           <v-text-field
             v-model="passwordConfirm"
@@ -212,14 +212,14 @@ const submit = async () => {
           block
           @click="submit"
         >
-          Create Account
+          {{ $t('signup.createAccount') }}
         </v-btn>
         <div class="agree">
           By signing up, you agree with <a href="#">our terms</a> and <a href="#">privacy policy</a>.
         </div>
         <div>
-          Already have an account?  <RouterLink to="/login">
-            Login
+          {{ $t('signup.already') }}  <RouterLink to="/login">
+            {{ $t('login.login') }}
           </RouterLink>
         </div>
       </div>

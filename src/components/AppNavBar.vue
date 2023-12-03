@@ -96,7 +96,7 @@ const openUserAccount = () => {
       to="/signup"
     >
       <v-btn variant="outlined">
-        Signup
+        {{ $t("login.signup") }}
       </v-btn>
     </router-link>
     <router-link
@@ -104,7 +104,7 @@ const openUserAccount = () => {
       to="/login"
     >
       <v-btn variant="outlined">
-        Login
+        {{ $t("login.login") }}
       </v-btn>
     </router-link>
     <!-- <v-switch v-model="darkTheme" :label="darkTheme ? 'dark' : 'light'"></v-switch> -->

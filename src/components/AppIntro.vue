@@ -11,9 +11,9 @@ const isDark = useDark();
         <img class="intro-image" src="/assets/app-intro-image.jpg" alt="Organize all your projects in an easy way." />
     </div> -->
     <div class="welcome on-background-darken-1">
-      <h1>Organize all your projects in an easy way.</h1>
+      <h1>{{ $t("application.organizeProjects") }}</h1>
       <div class="description">
-        Start managing your projects the right way.
+        {{ $t("login.submessage") }}
       </div>
     </div>
   </div>

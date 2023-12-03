@@ -1,5 +1,4 @@
 <script setup>
-import { inject } from 'vue';
 
 import { useDark } from '@vueuse/core';
 // import { NotifLevel } from '@/models/notifications/NotifLevel';
