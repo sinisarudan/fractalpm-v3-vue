@@ -156,7 +156,7 @@
   "google": "گوگل",
   "others": "دوسرے",
   "ortext": "یا استعمال کرکے لاگ ان کریں۔",
-  "registermssg": "رجسٹر کرکے آپ ہماری بات سے اتفاق کرتے ہیں۔",
+  "registermssg": "اردو:By signing up, you agree with",
   "terms": "شرائط و ضوابط",
   "privacy": "رازداری",
   "forgot": "پاسورڈ بھول گے؟",
@@ -172,7 +172,8 @@
   "signup": "سائن اپ",
   "already": "پہلے سے اکاؤنٹ ہے؟",
   "settingUp": "ہم پہلی بار آپ کا اکاؤنٹ ترتیب دے رہے ہیں...",
-  "holdon": "رکو!"
+  "holdon": "رکو!",
+  "outTerms": "اردو:our terms"
  },
  "forgot": {
   "forgot": "ری سیٹ",

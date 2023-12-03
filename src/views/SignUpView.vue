@@ -215,7 +215,7 @@ const submit = async () => {
           {{ $t('signup.createAccount') }}
         </v-btn>
         <div class="agree">
-          By signing up, you agree with <a href="#">our terms</a> and <a href="#">privacy policy</a>.
+          {{ $t('login.registermssg') }} <a href="#">{{ $t('signup.outTerms') }}</a> {{ $t('common.and') }} <a href="#">{{ $t('login.privacy') }}</a>
         </div>
         <div>
           {{ $t('signup.already') }}  <RouterLink to="/login">

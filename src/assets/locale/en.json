@@ -156,7 +156,7 @@
   "google": "Google",
   "others": "Others",
   "ortext": "or login using",
-  "registermssg": "By register you agree with our",
+  "registermssg": "By signing up, you agree with",
   "terms": "terms and conditions",
   "privacy": "privacy policy.",
   "forgot": "Forgot password?",
@@ -172,7 +172,8 @@
   "signup": "Sign up",
   "already": "Already have an account?",
   "settingUp": "We're setting up your account for the first time...",
-  "holdon": "Hold on!"
+  "holdon": "Hold on!",
+  "outTerms": "our terms"
  },
  "forgot": {
   "forgot": "Reset",
