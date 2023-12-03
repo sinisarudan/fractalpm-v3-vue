@@ -4,7 +4,8 @@
   "english": "English",
   "urdu": "اردو",
   "enCode": "En",
-  "urCode": "یو آر"
+  "urCode": "یو آر",
+  "organizeProjects": "اردو:Organize all your projects in an easy way."
  },
  "table": {
   "rowsPerPage": "قطار فی صفحہ",
@@ -115,6 +116,7 @@
  "placeholders": {
   "username": "صارف نام",
   "password": "پاس ورڈ",
+  "confirmPassword": "اردو:Confirm Password",
   "name": "نام",
   "email": "ای میل",
   "search": "تلاش کریں",
@@ -122,7 +124,11 @@
   "searchTask": "کوئی کام تلاش کریں",
   "orgName": "تنظیم کا نام",
   "projectName": "پراجیکٹ کا نام",
-  "role": "کردار"
+  "role": "کردار",
+  "enterEmail": "اردو:Enter your email",
+  "enterFirstName": "اردو:Enter your first name",
+  "enterLastName": "اردو:Enter your last name",
+  "enterPassword": "اردو:Enter your password"
  },
  "success": {
   "success": "کامیابی"
@@ -132,6 +138,7 @@
   "orgNameError": "اسے بنانے کے لیے تنظیم کا نام درکار ہے۔",
   "projNameError": "اسے بنانے کے لیے پروجیکٹ کا نام درکار ہے۔",
   "currPasswordError": "موجودہ پاس ورڈ درکار ہے۔",
+  "passwordRequired": "اردو:Password is required",
   "newPasswordError": "نیا پاس ورڈ درکار ہے۔",
   "invalidEmail": "غلط ای میل درج کی گئی۔",
   "deadlineRequired": "آخری تاریخ درکار ہے۔",
@@ -155,11 +162,13 @@
   "forgot": "پاسورڈ بھول گے؟",
   "signup": "سائن اپ",
   "login": "لاگ ان کریں",
-  "logout": "لاگ آوٹ"
+  "logout": "لاگ آوٹ",
+  "noAccount": "اردو:Don't have an account?"
  },
  "signup": {
   "create": "بنانا",
   "account": "کھاتہ",
+  "createAccount": "اردو:Create Account",
   "signup": "سائن اپ",
   "already": "پہلے سے اکاؤنٹ ہے؟",
   "settingUp": "ہم پہلی بار آپ کا اکاؤنٹ ترتیب دے رہے ہیں...",

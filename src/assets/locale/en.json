@@ -4,7 +4,8 @@
   "english": "English",
   "urdu": "اردو",
   "enCode": "En",
-  "urCode": "یو آر"
+  "urCode": "یو آر",
+  "organizeProjects": "Organize all your projects in an easy way."
  },
  "table": {
   "rowsPerPage": "Rows per page",
@@ -57,8 +58,8 @@
   "hrs": "hrs",
   "mins": "mins",
   "dueDate": "Due date",
-  "firstName": "First name",
-  "lastName": "Last name",
+  "firstName": "First Name",
+  "lastName": "Last Name",
   "comingSoon": "Coming Soon!",
   "organization": "Organization",
   "editProfile": "Edit profile",
@@ -115,6 +116,7 @@
  "placeholders": {
   "username": "Username",
   "password": "Password",
+  "confirmPassword": "Confirm Password",
   "name": "Name",
   "email": "Email",
   "search": "Search",
@@ -122,7 +124,11 @@
   "searchTask": "Search a task",
   "orgName": "Organization name",
   "projectName": "Project name",
-  "role": "Role"
+  "role": "Role", 
+  "enterEmail": "Enter your email",
+  "enterFirstName": "Enter your first name",
+  "enterLastName": "Enter your last name",
+  "enterPassword": "Enter your password"
  },
  "success": {
   "success": "Success"
@@ -132,6 +138,7 @@
   "orgNameError": "Organization name is required to create it",
   "projNameError": "Project name is required to create it",
   "currPasswordError": "Current password is required",
+  "passwordRequired": "Password is required",
   "newPasswordError": "New password is required",
   "invalidEmail": "Invalid email entered",
   "deadlineRequired": "Deadline is required",
@@ -142,7 +149,7 @@
   "digit": "Has 1 digit"
  },
  "login": {
-  "welcome": "Welcome",
+  "welcome": "Welcome Back",
   "submessage": "Start managing your projects the right way.",
   "continue": "Continue with",
   "facebook": "Facebook",
@@ -153,13 +160,15 @@
   "terms": "terms and conditions",
   "privacy": "privacy policy.",
   "forgot": "Forgot password?",
-  "signup": "Sign up",
-  "login": "Log In",
-  "logout": "Log Out"
+  "signup": "Signup",
+  "login": "Login",
+  "logout": "Log Out",
+  "noAccount": "Don't have an account?"
  },
  "signup": {
   "create": "Create",
   "account": "Account",
+  "createAccount": "Create Account",
   "signup": "Sign up",
   "already": "Already have an account?",
   "settingUp": "We're setting up your account for the first time...",
