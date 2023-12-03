@@ -165,10 +165,11 @@ const successDialogShow = computed({
     <div class="login">
       <div class="on-background">
         <div class="on-background-darken-1">
-          <h1>Welcome Back</h1>
+          <!-- TODO: <h1>Welcome Back</h1> -->
+          <h1>{{ $t("login.welcome") }}</h1>
         </div>
         <div>
-          <h2>Start managing your projects the right way.</h2>
+          <h2>{{ $t("login.submessage") }}</h2>
         </div>
       </div>
       <v-form

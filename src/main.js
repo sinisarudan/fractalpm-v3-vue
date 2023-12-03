@@ -15,6 +15,10 @@ import router from './router';
 import { loadFonts } from './plugins/webfontloader';
 import '@mdi/font/css/materialdesignicons.css'; // Ensure you are using css-loader
 
+import { createI18n } from 'vue-i18n';
+import en from '@/assets/locale/en.json';
+import ur from '@/assets/locale/ur.json';
+
 import { createPinia } from 'pinia';
 
 loadFonts();
@@ -154,6 +158,16 @@ const defaultsOptions = {
   }
 };
 
+const messages = { en, ur };
+
+export const i18n = createI18n({
+  legacy: false, // you must set `false`, to use Composition API
+  locale: 'en',
+  // locale: 'ur',
+  fallbackLocale: 'en', 
+  messages
+});
+
 const app = createApp(App);
 const vuetify = createVuetify({
   // components,
@@ -181,4 +195,5 @@ const pinia = createPinia();
 app.use(vuetify);
 app.use(router);
 app.use(pinia);
+app.use(i18n);
 app.mount('#app');
