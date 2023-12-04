@@ -32,21 +32,21 @@ const navClicked = () => {
         to="/"
         @click="drawer = false"
       >
-        Home
+        {{ $t('common.home') }}
       </RouterLink>
       <RouterLink
         class="router-link"
         to="/user_account"
         @click="drawer = false"
       >
-        My Account
+        {{ $t('sidebar.myAccount') }}
       </RouterLink>
       <RouterLink
         class="router-link"
         to="/about"
         @click="drawer = false"
       >
-        About
+        {{ $t('sidebar.about') }}
       </RouterLink>
     </v-navigation-drawer>
 
