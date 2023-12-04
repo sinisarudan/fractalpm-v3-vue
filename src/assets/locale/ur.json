@@ -118,7 +118,8 @@
   "currentPassword": "موجودہ خفیہ لفظ",
   "newPassword": "نیا پاس ورڈ",
   "userAccount": "اردو:User Account Page",
-  "nameAccount": "اردو:{name}'s account"
+  "nameAccount": "اردو:{name}'s account",
+  "dearUser": "اردو:Dear user"
  },
  "placeholders": {
   "username": "صارف نام",
@@ -193,7 +194,8 @@
   "resendCode": "اردو:Resend code",
   "setNewPassword": "اردو:Set New Password",
   "passSetSuccess": "اردو:Your Password has been set successfully",
-  "notLoggedIn": "اردو:You are not logged in."
+  "notLoggedIn": "اردو:You are not logged in.",
+  "nameLoggedOut": "اردو:{name}, you have successfully logged out"
  },
  "signup": {
   "create": "بنانا",

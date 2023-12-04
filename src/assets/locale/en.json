@@ -118,7 +118,8 @@
   "currentPassword": "Current Password",
   "newPassword": "New Password",
   "userAccount": "User Account Page",
-  "nameAccount": "{name}'s account"
+  "nameAccount": "{name}'s account",
+  "dearUser": "Dear user"
  },
  "placeholders": {
   "username": "Username",
@@ -194,7 +195,8 @@
   "resendCode": "Resend code",
   "setNewPassword": "Set New Password",
   "passSetSuccess": "Your Password has been set successfully",
-  "notLoggedIn": "You are not logged in."
+  "notLoggedIn": "You are not logged in.",
+  "nameLoggedOut": "{name}, you have successfully logged out"
  },
  "signup": {
   "create": "Create",
