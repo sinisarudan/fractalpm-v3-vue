@@ -46,7 +46,7 @@ const close = () => {
         variant="flat"
         @click="close"
       >
-        Continue
+        {{ $t('common.continue') }}
       </v-btn>
     </v-card-actions>
   </v-card>

@@ -6,6 +6,9 @@ import { useUsersStore } from '@/stores/users';
 // import Notification from '@/models/notifications/Notification';
 // import { useNotificationsStore } from '@/stores/notifications';
 // import { NotifLevel } from '@/models/notifications/NotifLevel';
+import { useI18n } from 'vue-i18n';
+
+const i18n = useI18n();
 
 const usersStore = useUsersStore();
 // const notificationsStore = useNotificationsStore();
@@ -13,17 +16,17 @@ const usersStore = useUsersStore();
 
 const emit = defineEmits(['continue']);
 
-const MaxLength = 100;
+const MaxLength = 70;
 
 const form = ref();
 
 const emailPhoneRules = ref([
-  (v) => (v && v.length > 0) || 'E-mail or Phone is required',
-  (v) => (v && v.length <= MaxLength) || `Maximum ${MaxLength} characters`,
+  (v) => (v && v.length > 0) || i18n.t('errors.emailOrPhoneRequired'),
+  (v) => (v && v.length <= MaxLength) || i18n.t('errors.maximum', { no: MaxLength }),
   (v) =>
     !v ||
     /^(?:\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+|\s*(?:\+?\d|\d)(?:\s*-*\s*\d){6,30}\s*)$/.test(v) ||
-    'E-mail or Phone must be valid'
+    i18n.t('errors.invalidEmailOrPhone')
 ]);
 
 /**
@@ -62,7 +65,7 @@ const enterCode = async () => {
       error.value = undefined;
       emit('continue', forgotRecoveryEmailPhone.value);
     } else {
-      error.value = 'Unable to send code';
+      error.value = i18n.t('errors.sendCode');
     }
   }
 };
@@ -72,7 +75,7 @@ const enterCode = async () => {
 <template>
   <v-card class="forgot-password">
     <v-card-title class="on-background-darken-1">
-      Trouble logging in?
+      {{ $t('login.trouble') }}
     </v-card-title>
     <v-form
       ref="form"
@@ -80,7 +83,7 @@ const enterCode = async () => {
       class="form"
     >
       <div class="tf-label">
-        Email or phone number
+        {{ $t('login.emailPhone') }}
       </div>
       <v-text-field
         v-model="forgotRecoveryEmailPhone"
@@ -107,7 +110,7 @@ const enterCode = async () => {
         variant="flat"
         @click="enterCode"
       >
-        Continue
+        {{ $t('common.continue') }}
       </v-btn>
     </v-card-actions>
   </v-card>
