@@ -57,7 +57,7 @@ const navClicked = () => {
         <router-view />
       </v-container>
     </v-main>
-    <v-bottom-navigation :elevation="0" color="transparent">
+    <v-bottom-navigation :elevation="0">
       <AppSettings class="app-settings" />
     </v-bottom-navigation>
   </v-app>
@@ -109,13 +109,18 @@ const navClicked = () => {
 //   background: #c0acac;
 //   color: black;
 // }
-// .v-bottom-navigation {
-//   // display: flex;
-//   // flex-direction: row;
-// }
+.v-bottom-navigation {
+  // display: flex;
+  // flex-direction: row;
+  height: 36px !important;
+  // background-color: red;
+}
 .app-settings {
   margin-left: auto;
   margin-right: 100px;
+  height: 24px !important;
+  padding: 3px;
+  // background-color: orange;
 }
 .tf-label{
   //styleName: UI/Text/S/Medium;

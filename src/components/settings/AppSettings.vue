@@ -50,8 +50,8 @@ const setLanguage = (languageCode) => {
 </script>
 
 <template>
-  <div>
-    <!-- <div class="theme-switch-wrapped">
+  <div class="app-settings">
+    <div class="theme-switch-wrapped">
       <v-switch
         v-model="isDark"
         class="theme-switch"
@@ -67,8 +67,8 @@ const setLanguage = (languageCode) => {
           </v-icon>
         </template>
       </v-switch>
-    </div> -->
-    <div>
+    </div>
+    <div class="lang-selector">
       <v-menu>
         <template #activator="{ props }">
           <v-btn
@@ -95,72 +95,79 @@ const setLanguage = (languageCode) => {
           </v-list-item>
         </v-list>
       </v-menu>
-    <!-- <v-btn @click="i18n.locale.value = 'ur'; console.log('i18n', i18n);">
-      ur
-    </v-btn>
-    <v-btn @click="i18n.locale.value = 'en'; console.log('i18n', i18n);">
-      en
-    </v-btn> -->
     </div>
   </div>
 </template>
 
 <style lang="scss">
-.v-list-item__content {
-  display: flex !important;
-  flex-direction: row !important;
-  vertical-align: middle !important;
-}
-.lang-btn {
-  border-radius: 12px !important;
-}
-.v-btn__content {
-  display: flex !important;
-  flex-direction: row !important;
-  vertical-align: middle !important;
-}
-.lang-flag-image {
-  width: 12px !important;
-  height: 12px !important;
-  margin-right: 4px !important;
-}
-.img-text {
+@use '@/styles/settings';
+.app-settings {
   display: flex;
+  height: 24px !important;
   flex-direction: row;
-}
-// @use '@/styles/settings';
-.v-switch__thumb {
+  vertical-align: top !important;
+  .theme-switch-wrapped {
+    // background-color: yellow;
+    // margin: 0px !important;
+    // padding: 0px !important;
+    // height: 24px !important;
+    .v-switch__thumb {
       transform: none !important;
+      // width: 24px !important;
+      // height: 24px !important;
+      // left: -4px !important;
     }
-
-.theme-switch-wrapped {
-  // .theme-switch {
-
-  // }
-  position: relative;
-  .light {
-    position: absolute;
-    left: 10px;
-    // top: 10px;
-    // z-index: 1000 !important;
-    pointer-events: none;
-  }
-  .dark {
-    position: absolute;
-    right: 28px;
-    // top: 10px;
-    // z-index: 1000 !important;
-    pointer-events: none;
+    .v-switch .v-selection-control {
+      min-height: 24px !important;
+      height: 24px !important;
+    }
+    // opacity: 0.3;
+    position: relative;
+    .theme-switch {
+      // width: 16px !important;
+      // height: 12px !important;
+    }
+    .light {
+      position: absolute;
+      left: 5px;
+      // top: 10px;
+      // z-index: 1000 !important;
+      pointer-events: none;
+    }
+    .dark {
+      position: absolute;
+      right: 20px;
+      // top: 23px;
+      // z-index: 1000 !important;
+      pointer-events: none;
+    }
   }
 }
-.custom-class {
-    background: rgb(var(--v-theme-primary));
-    color: rgba(var(--v-theme-on-primary), 0.9);
+.lang-selector {
+    .lang-btn {
+      border-radius: 12px !important;
+      height: 24px !important;
+      padding-top: 5px !important;
+      // color: yellow !important;
+    }
+    .v-btn__content {
+      display: flex !important;
+      flex-direction: row !important;
+      vertical-align: middle !important;
+    }
   }
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
+  .v-list-item__content {
+      display: flex !important;
+      flex-direction: row !important;
+      vertical-align: middle !important;
+    }
+  .lang-flag-image {
+      width: 12px !important;
+      height: 12px !important;
+      margin-right: 4px !important;
+    }
+    .img-text {
+      display: flex;
+      flex-direction: row;
+    }
 </style>
