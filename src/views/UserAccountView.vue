@@ -5,24 +5,27 @@ import { useRouter } from 'vue-router';
 import Notification from '@/models/notifications/Notification';
 import { useNotificationsStore } from '@/stores/notifications';
 import { NotifLevel } from '@/models/notifications/NotifLevel';
+import { useI18n } from 'vue-i18n';
+
+const i18n = useI18n();
 
 const usersStore = useUsersStore();
 const notificationsStore = useNotificationsStore();
 const router = useRouter();
 
 const logout = () => {
-  let first_name = usersStore.user.first_name;
-  if (!first_name) {
+  let firstName = usersStore.user.first_name;
+  if (!firstName) {
     try {
-      first_name = JSON.parse(JSON.parse(localStorage.loggedInUser)).first_name;
+      firstName = JSON.parse(JSON.parse(localStorage.loggedInUser)).first_name;
     } catch (ex) {
-      first_name = 'Dear user';
+      firstName = i18n.t('user.dearUser');
     }
   }
 
   usersStore.user = undefined;
   localStorage.loggedInUser = null;
-  notificationsStore.add(new Notification(`${first_name}, you have Successfully Logged Out.`, NotifLevel.SUCCESS));
+  notificationsStore.add(new Notification(i18n.t('login.nameLoggedOut', { name: firstName }), NotifLevel.SUCCESS));
   router.push({ name: 'home' });
 };
 </script>
@@ -35,7 +38,7 @@ const logout = () => {
         v-if="usersStore.user"
         class="user-info"
       >
-        <h1>{{ $t('user.nameAccount', {'name': usersStore.user?.first_name}) }}</h1>
+        <h1>{{ $t('user.nameAccount', { name: usersStore.user?.first_name}) }}</h1>
         <div class="info-field">
           <span>{{ $t('placeholders.email') }}: </span><span>{{ usersStore.user?.email }}</span>
         </div>
@@ -50,7 +53,7 @@ const logout = () => {
         v-else
         class="info-field"
       >
-      {{ $t('login.notLoggedIn') }}
+        {{ $t('login.notLoggedIn') }}
       </div>
       <div class="app-actions">
         <router-link to="/">
@@ -67,7 +70,7 @@ const logout = () => {
           variant="flat"
           @click="logout"
         >
-        {{ $t('common.logout') }}
+          {{ $t('common.logout') }}
         </v-btn>
       </div>
     </div>
