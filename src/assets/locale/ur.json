@@ -79,7 +79,8 @@
   "maxLength": "زیادہ سے زیادہ {limit} حروف",
   "of": "کی",
   "in": "میں",
-  "left": "باقی"
+  "left": "باقی",
+  "ok": "اردو:OK"
  },
  "notifications": {
   "noNotifications": "کوئی اطلاع نہیں۔"
@@ -138,15 +139,22 @@
   "orgNameError": "اسے بنانے کے لیے تنظیم کا نام درکار ہے۔",
   "projNameError": "اسے بنانے کے لیے پروجیکٹ کا نام درکار ہے۔",
   "currPasswordError": "موجودہ پاس ورڈ درکار ہے۔",
+  "firstNameRequired": "اردو:The first name is required",
+  "lastNameRequired": "اردو:The last name is required",
+  "emailRequired": "اردو:E-mail is required",
   "passwordRequired": "اردو:Password is required",
+  "passwordsMatching": "اردو:Passwords don't match",
   "newPasswordError": "نیا پاس ورڈ درکار ہے۔",
-  "invalidEmail": "غلط ای میل درج کی گئی۔",
+  "invalidEmail": "اردو:The email you used is not valid",
   "deadlineRequired": "آخری تاریخ درکار ہے۔",
   "passwordRequirementError": "براہ کرم یقینی بنائیں کہ آپ کا پاس ورڈ ضروریات کو پورا کرتا ہے:",
   "charLength": "کم از کم 8 حروف طویل اور زیادہ سے زیادہ 100 حروف",
-  "specialChar": "1 خصوصی کردار ہے۔",
+  "specialChar": "اردو:Has at least 1 special character",
   "upperLower": "کم از کم ایک بڑے اور ایک چھوٹے حروف کا حامل ہے۔",
-  "digit": "1 ہندسہ ہے"
+  "digit": "اردو:Has at least 1 digit",
+  "maximum": "اردو:Maximum {no} characters",
+  "minimumMaximum": "اردو:At least {min} characters long and maximum of {max} characters",
+  "formNotValid": "اردو:The form is not valid."
  },
  "login": {
   "welcome": "خوش آمدید",
@@ -156,14 +164,15 @@
   "google": "گوگل",
   "others": "دوسرے",
   "ortext": "یا استعمال کرکے لاگ ان کریں۔",
-  "registermssg": "اردو:By signing up, you agree with",
+  "signupAgree": "اردو:By signing up, you agree with",
   "terms": "شرائط و ضوابط",
   "privacy": "رازداری",
   "forgot": "پاسورڈ بھول گے؟",
   "signup": "سائن اپ",
   "login": "لاگ ان کریں",
   "logout": "لاگ آوٹ",
-  "noAccount": "اردو:Don't have an account?"
+  "noAccount": "اردو:Don't have an account?",
+  "error": "اردو:Login error"
  },
  "signup": {
   "create": "بنانا",
@@ -173,7 +182,13 @@
   "already": "پہلے سے اکاؤنٹ ہے؟",
   "settingUp": "ہم پہلی بار آپ کا اکاؤنٹ ترتیب دے رہے ہیں...",
   "holdon": "رکو!",
-  "outTerms": "اردو:our terms"
+  "outTerms": "اردو:our terms",
+  "success": "اردو:You have successfully signed up.",
+  "welcomeName": "اردو:Welcome {name}",
+  "checkConfirmationEmail": "اردو:Check for a confirmation email to set a password.",
+  "emailOccupied": "اردو:An account with this email already exists",
+  "error": "اردو:Signup error",
+  "confirmationError": "اردو:Confirmation email error"
  },
  "forgot": {
   "forgot": "ری سیٹ",

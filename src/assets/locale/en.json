@@ -79,7 +79,8 @@
   "maxLength": "Max {limit} characters",
   "of": "of",
   "in": "In",
-  "left": "left"
+  "left": "left",
+  "ok": "OK"
  },
  "buttons": {
   "delete": "Delete",
@@ -138,15 +139,23 @@
   "orgNameError": "Organization name is required to create it",
   "projNameError": "Project name is required to create it",
   "currPasswordError": "Current password is required",
+  "firstNameRequired": "The first name is required",
+  "lastNameRequired": "The last name is required",
+  "emailRequired": "E-mail is required",
   "passwordRequired": "Password is required",
+  "passwordsMatching": "Passwords don't match",
   "newPasswordError": "New password is required",
-  "invalidEmail": "Invalid email entered",
+  "invalidEmail": "The email you used is not valid",
   "deadlineRequired": "Deadline is required",
   "passwordRequirementError": "Please make sure you fulfil the below requirements:",
   "charLength": "At least 8 characters long and maximum of 100 characters",
-  "specialChar": "Has 1 special character",
+  "specialChar": "Has at least 1 special character",
   "upperLower": "Has at least one uppercase and one lowercase character",
-  "digit": "Has 1 digit"
+  "digit": "Has at least 1 digit",
+  "maximum": "Maximum {no} characters",
+  "minimumMaximum": "At least {min} characters long and maximum of {max} characters",
+  "formNotValid": "The form is not valid."
+  
  },
  "login": {
   "welcome": "Welcome Back",
@@ -156,14 +165,15 @@
   "google": "Google",
   "others": "Others",
   "ortext": "or login using",
-  "registermssg": "By signing up, you agree with",
+  "signupAgree": "By signing up, you agree with",
   "terms": "terms and conditions",
   "privacy": "privacy policy.",
   "forgot": "Forgot password?",
   "signup": "Signup",
   "login": "Login",
   "logout": "Log Out",
-  "noAccount": "Don't have an account?"
+  "noAccount": "Don't have an account?",
+  "error": "Login error"
  },
  "signup": {
   "create": "Create",
@@ -173,7 +183,13 @@
   "already": "Already have an account?",
   "settingUp": "We're setting up your account for the first time...",
   "holdon": "Hold on!",
-  "outTerms": "our terms"
+  "outTerms": "our terms",
+  "success": "You have successfully signed up.",
+  "welcomeName": "Welcome {name}",
+  "checkConfirmationEmail": "Check for a confirmation email to set a password.",
+  "emailOccupied": "An account with this email already exists",
+  "error": "Signup error",
+  "confirmationError": "Confirmation email error"
  },
  "forgot": {
   "forgot": "Reset",
