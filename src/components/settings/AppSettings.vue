@@ -1,4 +1,5 @@
 <script setup>
+
 import { useDark } from '@vueuse/core';
 // import { NotifLevel } from '@/models/notifications/NotifLevel';
 // import Notification from '@/models/notifications/Notification';
@@ -7,9 +8,18 @@ import { useDark } from '@vueuse/core';
 // import { onMounted, computed } from 'vue';
 // import { ref } from 'vue';
 import { useTheme } from 'vuetify';
-import { JSONsafeStringify } from '@/utils/JSONHelpers';
+// import { JSONsafeStringify } from '@/utils/JSONHelpers';
+
+import { useI18n } from 'vue-i18n';
+
+const i18n = useI18n();
 
 const theme = useTheme();
+const languages = [
+  { title: 'en' },
+  { title: 'ur' }
+];
+
 // const darkMode = ref(false);
 
 /**
@@ -25,225 +35,139 @@ const setTheme = () => {
   theme.global.name.value = isDark.value ? 'fractalPMDarkTheme' : 'fractalPMLightTheme';
   // Optional: Get value of current theme
   console.log(`Current theme is dark? ${theme.global.current.value.dark}`);
-  console.log('[AppSettings] theme.global.current', JSONsafeStringify(theme.global.current));
+  // console.log('[AppSettings] theme.global.current', JSONsafeStringify(theme.global.current));
+  console.log('i18n.locale', i18n.locale.value);
 };
 
-// const toggleTheme = () => {
-//   isDark.value = !isDark.value;
-//   setTheme();
-// };
-
-// onMounted(() => {
-// })
-
-// defineProps<{
-//   msg: string
-// }>()
-// const tbdClicked = () => {
-//   notificationsStore.add(new Notification('To be Done', NotifLevel.INFO));
-// };
-
-/*
-
-const colorMode = useColorMode({
-  modes: {
-    dim: 'dim',
-    cafe: 'cafe'
-  },
-  attribute: 'theme'
-}); // 'light' or 'dark'
-*/
+/**
+   * changes the language.
+   * @param {string} languageCode
+   */
+const setLanguage = (languageCode) => {
+  i18n.locale.value = languageCode;
+};
 
 </script>
 
 <template>
-  <!-- theme btn (instead of switch): <v-btn
-    :icon="true"
-    size="small"
-    @click="toggleTheme"
-  >
-    <span>
-      <v-icon
-        color="on-primary"
+  <div class="app-settings">
+    <div class="theme-switch-wrapped">
+      <v-switch
+        v-model="isDark"
+        class="theme-switch"
+        inset flat
+        @update:model-value="setTheme()"
       >
-        {{
-          isDark
-            ? "mdi-white-balance-sunny"
-            : "mdi-moon-waxing-crescent"
-        }}
-      </v-icon>
-    </span>
-  </v-btn> -->
+        <template #append>
+          <v-icon class="light" size="12">
+            mdi-white-balance-sunny
+          </v-icon>
+          <v-icon class="dark" size="12">
+            mdi-moon-waxing-crescent
+          </v-icon>
+        </template>
+      </v-switch>
+    </div>
+    <div class="lang-selector">
+      <v-menu>
+        <template #activator="{ props }">
+          <v-btn
+            class="lang-btn"
+            block
+            v-bind="props"
+          >
+            <div class="img-text">
+              <v-img :src="`/assets/${i18n.locale.value}-flag.png`" class="lang-flag-image" />
+              {{ $t(`application.${i18n.locale.value}Code`) }}
+              <v-icon>mdi-chevron-down</v-icon>
+            </div>
+          </v-btn>
+        </template>
 
-  <!-- <v-container>
-    <v-responsive class="d-flex align-center text-center">
-      <v-row class="d-flex align-center justify-center">
-        <v-col cols="auto">
-          <v-btn color="primary">
-            Primary
-          </v-btn>
-        </v-col>
-        <v-col cols="auto">
-          <v-btn color="secondary">
-            Secondary
-          </v-btn>
-        </v-col>
-        <v-col cols="auto">
-          <v-btn color="error">
-            Error
-          </v-btn>
-        </v-col>
-      </v-row>
-
-      <v-row class="d-flex align-center justify-center">
-        <v-col cols="auto">
-          <v-btn color="info">
-            Info
-          </v-btn>
-        </v-col>
-        <v-col cols="auto">
-          <v-btn color="success">
-            Success
-          </v-btn>
-        </v-col>
-        <v-col cols="auto">
-          <v-btn color="warning">
-            Warning
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-responsive>
-  </v-container> -->
-
-  <div class="theme-switch-wrapped">
-    <!-- <v-icon class="light">
-      mdi-white-balance-sunny
-    </v-icon>
-    <v-icon class="dark">
-      mdi-moon-waxing-crescent
-    </v-icon> -->
-    <v-switch
-      v-model="isDark"
-      class="theme-switch"
-      inset flat
-      @update:model-value="setTheme()"
-    >
-      <template #append>
-        <v-icon class="light" size="12">
-          mdi-white-balance-sunny
-        </v-icon>
-        <v-icon class="dark" size="12">
-          mdi-moon-waxing-crescent
-        </v-icon>
-      </template>
-    </v-switch>
+        <v-list>
+          <v-list-item
+            v-for="(language, index) in languages"
+            :key="index"
+            @click="setLanguage(language.title)"
+          >
+            <v-img :src="`/assets/${language.title}-flag.png`" class="lang-flag-image" />
+            <v-list-item-title>{{ $t(`application.${language.title}Code`) }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    </div>
   </div>
-  <!-- <div>
-    isDark: {{ isDark }}
-    <v-btn @click="isDark = !isDark">
-      Is Dark: {{ isDark }}
-    </v-btn>
-    {{ colorMode }}
-    <button @click="colorMode = 'dark'">
-      Dark Mode
-    </button>
-    <button @click="colorMode = 'light'">
-      Light Mode
-    </button>
-    <button @click="colorMode = 'dim'">
-      Dim Mode
-    </button>
-    <button @click="colorMode = 'cafe'">
-      Cafe Mode
-    </button>
-  </div> -->
-
-  <!-- <div class="">
-    <div class="bg-primary on-primary">
-      background color with appropriate text color contrast
-    </div>
-
-    <div class="bg-error on-error">
-      error background color with appropriate text color contrast
-    </div>
-
-    <div class="text-primary">
-      text color primary
-    </div>
-
-    <div class="text-primary-lighten-1">
-      text-primary-lighten-1
-    </div>
-
-    <div class="text-primary-darken-1">
-      text-primary-darken-1
-    </div>
-
-    <div class="text-primary-darken-2">
-      text-primary-darken-2
-    </div>
-
-    <div class="text-secondary">
-      text color secondary
-    </div>
-
-    <div class="text-error">
-      text error
-    </div>
-
-    <div
-      class="border-primary"
-      style="border: 5px solid rgba(var(--v-theme-primary), 1);"
-    >
-      border color
-    </div>
-    <div class="custom-class">
-      custom
-    </div>
-  </div> -->
-  <!-- {{ settingsStore.lang }}  -->
-  <!-- <v-btn
-    size="x-small"
-    @click="tbdClicked"
-  >
-    TBD
-  </v-btn> -->
 </template>
 
 <style lang="scss">
-// @use '@/styles/settings';
-.v-switch__thumb {
+@use '@/styles/settings';
+.app-settings {
+  display: flex;
+  height: 24px !important;
+  flex-direction: row;
+  vertical-align: top !important;
+  .theme-switch-wrapped {
+    // background-color: yellow;
+    // margin: 0px !important;
+    // padding: 0px !important;
+    // height: 24px !important;
+    .v-switch__thumb {
       transform: none !important;
+      // width: 24px !important;
+      // height: 24px !important;
+      // left: -4px !important;
     }
-
-.theme-switch-wrapped {
-  // .theme-switch {
-
-  // }
-  position: relative;
-  .light {
-    position: absolute;
-    left: 10px;
-    // top: 10px;
-    // z-index: 1000 !important;
-    pointer-events: none;
-  }
-  .dark {
-    position: absolute;
-    right: 28px;
-    // top: 10px;
-    // z-index: 1000 !important;
-    pointer-events: none;
+    .v-switch .v-selection-control {
+      min-height: 24px !important;
+      height: 24px !important;
+    }
+    // opacity: 0.3;
+    position: relative;
+    .theme-switch {
+      // width: 16px !important;
+      // height: 12px !important;
+    }
+    .light {
+      position: absolute;
+      left: 5px;
+      // top: 10px;
+      // z-index: 1000 !important;
+      pointer-events: none;
+    }
+    .dark {
+      position: absolute;
+      right: 20px;
+      // top: 23px;
+      // z-index: 1000 !important;
+      pointer-events: none;
+    }
   }
 }
-.custom-class {
-    background: rgb(var(--v-theme-primary));
-    color: rgba(var(--v-theme-on-primary), 0.9);
+.lang-selector {
+    .lang-btn {
+      border-radius: 12px !important;
+      height: 24px !important;
+      padding-top: 5px !important;
+      // color: yellow !important;
+    }
+    .v-btn__content {
+      display: flex !important;
+      flex-direction: row !important;
+      vertical-align: middle !important;
+    }
   }
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
+  .v-list-item__content {
+      display: flex !important;
+      flex-direction: row !important;
+      vertical-align: middle !important;
+    }
+  .lang-flag-image {
+      width: 12px !important;
+      height: 12px !important;
+      margin-right: 4px !important;
+    }
+    .img-text {
+      display: flex;
+      flex-direction: row;
+    }
 </style>

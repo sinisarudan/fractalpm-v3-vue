@@ -4,7 +4,8 @@ import { ServerResponse, ServerResponseCode } from './ServerResponse';
 
 export const ServerResponseUserServiceCode = {
   ...ServerResponseCode,
-  EMAIL_EXISTS: 'EMAIL_EXISTS'
+  EMAIL_EXISTS: 'EMAIL_EXISTS',
+  SIGNUP_ERROR: 'SIGNUP_ERROR'
 };
 
 /**

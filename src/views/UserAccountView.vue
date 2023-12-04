@@ -5,24 +5,27 @@ import { useRouter } from 'vue-router';
 import Notification from '@/models/notifications/Notification';
 import { useNotificationsStore } from '@/stores/notifications';
 import { NotifLevel } from '@/models/notifications/NotifLevel';
+import { useI18n } from 'vue-i18n';
+
+const i18n = useI18n();
 
 const usersStore = useUsersStore();
 const notificationsStore = useNotificationsStore();
 const router = useRouter();
 
 const logout = () => {
-  let first_name = usersStore.user.first_name;
-  if (!first_name) {
+  let firstName = usersStore.user.first_name;
+  if (!firstName) {
     try {
-      first_name = JSON.parse(JSON.parse(localStorage.loggedInUser)).first_name;
+      firstName = JSON.parse(JSON.parse(localStorage.loggedInUser)).first_name;
     } catch (ex) {
-      first_name = 'Dear user';
+      firstName = i18n.t('user.dearUser');
     }
   }
 
   usersStore.user = undefined;
   localStorage.loggedInUser = null;
-  notificationsStore.add(new Notification(`${first_name}, you have Successfully Logged Out.`, NotifLevel.SUCCESS));
+  notificationsStore.add(new Notification(i18n.t('login.nameLoggedOut', { name: firstName }), NotifLevel.SUCCESS));
   router.push({ name: 'home' });
 };
 </script>
@@ -30,27 +33,27 @@ const logout = () => {
 <template>
   <AppLayoutWithIntro>
     <div class="user-account">
-      <div><h2>User Account Page</h2></div>
+      <div><h2>{{ $t('user.userAccount') }}</h2></div>
       <div
         v-if="usersStore.user"
         class="user-info"
       >
-        <h1>{{ usersStore.user?.first_name }}'s account</h1>
+        <h1>{{ $t('user.nameAccount', { name: usersStore.user?.first_name}) }}</h1>
         <div class="info-field">
-          <span>E-mail: </span><span>{{ usersStore.user?.email }}</span>
+          <span>{{ $t('placeholders.email') }}: </span><span>{{ usersStore.user?.email }}</span>
         </div>
         <div class="info-field">
-          <span>First Name: </span><span>{{ usersStore.user?.first_name }}</span>
+          <span>{{ $t('common.firstName') }}: </span><span>{{ usersStore.user?.first_name }}</span>
         </div>
         <div class="info-field">
-          <span>Last Name: </span><span>{{ usersStore.user?.last_name }}</span>
+          <span>{{ $t('common.lastName') }}: </span><span>{{ usersStore.user?.last_name }}</span>
         </div>
       </div>
       <div
         v-else
         class="info-field"
       >
-        You are not logged in.
+        {{ $t('login.notLoggedIn') }}
       </div>
       <div class="app-actions">
         <router-link to="/">
@@ -58,7 +61,7 @@ const logout = () => {
             class="primary-button"
             variant="outlined"
           >
-            Home
+            {{ $t('common.home') }}
           </v-btn>
         </router-link>
         <v-btn
@@ -67,7 +70,7 @@ const logout = () => {
           variant="flat"
           @click="logout"
         >
-          Logout
+          {{ $t('common.logout') }}
         </v-btn>
       </div>
     </div>

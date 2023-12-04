@@ -10,11 +10,14 @@ import { ref, onMounted } from 'vue';
 // const usersStore = useUsersStore();
 // const notificationsStore = useNotificationsStore();
 // const router = useRouter();
+import { useI18n } from 'vue-i18n';
+
+const i18n = useI18n();
 
 const emit = defineEmits(['password-changed']);
 
-const MaxLength = 100;
-const MinLength = 8;
+const PassMaxLength = 100;
+const PassMinLength = 8;
 
 const form = ref();
 
@@ -24,16 +27,16 @@ const form = ref();
 const hidePass = ref(true);
 
 const passRulesArray = [
-  (v) => (v && v.length >= MinLength && v.length < MaxLength) || `At least ${MinLength} characters long and maximum of ${MaxLength} characters`,
-  (v) => (/[A-Z]/.test(v) && /[a-z]/.test(v)) || 'Has at least 1 uppercase and 1 lowercase character',
-  (v) => /[!@#$%^&*(),.?":{}|<>]/.test(v) || 'Has at least 1 special character',
-  (v) => /\d/.test(v) || 'Has at least 1 digit'
+  (v) => (v && v.length >= PassMinLength && v.length < PassMaxLength) || i18n.t('errors.minimumMaximum', { min: PassMinLength, max: PassMaxLength }),
+  (v) => (/[A-Z]/.test(v) && /[a-z]/.test(v)) || i18n.t('errors.upperLower'),
+  (v) => /[!@#$%^&*(),.?":{}|<>]/.test(v) || i18n.t('errors.specialChar'),
+  (v) => /\d/.test(v) || i18n.t('errors.digit')
 ];
 
 const passRules = ref(passRulesArray);
 
 const passConfirmRules = ref([...passRulesArray,
-  (v) => (v && password.value === v) || 'Passwords don\'t match'
+  (v) => (v && password.value === v) || i18n.t('errors.passwordsMatching')
 ]);
 
 /**
@@ -88,7 +91,7 @@ const setNewPassword = async () => {
 <template>
   <v-card class="set-new-password">
     <v-card-title class="on-background-darken-1">
-      Set New Password
+      {{ $t('login.setNewPassword') }}
     </v-card-title>
     <v-form
       ref="form"
@@ -96,12 +99,12 @@ const setNewPassword = async () => {
       class="form"
     >
       <div class="tf-label">
-        Password
+        {{ $t('placeholders.password') }}
       </div>
       <v-text-field
         v-model="password"
         class="t-field"
-        label="Enter your password"
+        :label="$t('placeholders.enterPassword')"
         :rules="passRules"
         :type="hidePass ? 'password' : 'text'"
         :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
@@ -109,12 +112,12 @@ const setNewPassword = async () => {
         @click:append="hidePass = !hidePass"
       />
       <div class="tf-label">
-        Confirm Password
+        {{ $t('placeholders.confirmPassword') }}
       </div>
       <v-text-field
         v-model="passwordConfirm"
         class="t-field"
-        label="Enter your password"
+        :label="$t('placeholders.enterPassword')"
         :rules="passConfirmRules"
         :type="hidePass ? 'password' : 'text'"
         :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
@@ -146,7 +149,7 @@ const setNewPassword = async () => {
         variant="flat"
         @click="setNewPassword"
       >
-        Continue
+        {{ $t('common.continue') }}
       </v-btn>
     </v-card-actions>
   </v-card>

@@ -1,9 +1,13 @@
 // https://vuetifyjs.com/en/features/sass-variables/
-/* // this can be uncommented when used
+// this can be uncommented when used
 // it's all setup, but when empty, rises error
 @use 'vuetify/settings' with (
     // $button-height: 40px,
     // $switch-inset-thumb-off-height: 44px,
-    // $switch-thumb-color: 'red'
+    $switch-track-height: 24px,
+    $switch-track-width: 48px,
+    $switch-inset-track-height: 24px,
+    $switch-inset-track-width: 48px,
+    // $switch-thumb-color: 'rgb(var(--v-theme-on-surface))',
+    $switch-track-background: #F2F1FA
 );
-*/

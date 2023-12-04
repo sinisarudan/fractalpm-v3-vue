@@ -1,6 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useUsersStore } from '@/stores/users';
+import { useI18n } from 'vue-i18n';
+
+const i18n = useI18n();
 
 // import Person from '@/models/users/Person';
 // import { useRouter } from 'vue-router';
@@ -22,13 +25,6 @@ const props = defineProps({
 const emit = defineEmits(['verified']);
 
 const form = ref();
-
-// const emailRules = ref([
-//   (v) => (v && v.length > 0) || 'E-mail is required',
-//   (v) => (v && v.length <= EMailMaxLength) || `Maximum ${EMailMaxLength} characters`,
-//   (v) =>
-//     !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/.test(v) || 'E-mail must be valid'
-// ]);
 
 /**
  * @type {import('vue').Ref<boolean>}
@@ -59,10 +55,10 @@ const checkCodeValidity = async (code) => {
   valid.value = await usersStore.checkCodeValidity(code);
   if (valid.value) {
     otpArray.value = Array(4).fill('✓');
-    status.value = 'Successful Verification';
+    status.value = i18n.t('signup.successVerification');
     setTimeout(next, 1000);
   } else {
-    error.value = 'The code is not valid';
+    error.value = i18n.t('errors.codeNotValid');
   }
 };
 
@@ -79,7 +75,7 @@ const handlePaste = (event) => {
     otpArray.value = pastedText.split('');
     checkCodeValidity(pastedText);
   } else {
-    error.value = 'Incorrect format. A 4-digit code is expected.';
+    error.value = i18n.t('errors.incorrectFormat') + ' ' + i18n.t('login.fourDigitCode');
   }
 };
 
@@ -110,7 +106,7 @@ const resendCode = async () => {
     error.value = undefined;
     status.value = 'Code sent'; setTimeout(() => { status.value = undefined; }, 2000);
   } else {
-    error.value = 'Unable to send code';
+    error.value = i18n.t('errors.sendCode');
   }
 };
 </script>
@@ -121,10 +117,10 @@ const resendCode = async () => {
     @paste="handlePaste($event)"
   >
     <v-card-title class="on-background-darken-1">
-      Enter the code
+      {{ $t('login.enterCode') }}
     </v-card-title>
     <div class="hint on-background-lighten-1">
-      You can simply paste the 4-digits code
+      {{ $t('login.pasteCode') }}
     </div>
     <v-form
       ref="form"
@@ -163,10 +159,10 @@ const resendCode = async () => {
       </v-icon>{{ status }}
     </div>
     <div class="txt-center on-background-lighten-1">
-      Didn’t get a link? <a
+      {{ $t('login.notGettingLink') }} <a
         href="void:"
         @click.prevent="resendCode"
-      >Resend code</a>
+      >{{ $t('login.resendCode') }}</a>
     </div>
     <div class="forgot-pass-link" />
     <v-card-actions>
@@ -178,7 +174,7 @@ const resendCode = async () => {
         :disabled="!valid"
         @click="next"
       >
-        Continue
+        {{ $t('common.continue') }}
       </v-btn>
     </v-card-actions>
   </v-card>

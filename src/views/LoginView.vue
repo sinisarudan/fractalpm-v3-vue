@@ -12,6 +12,9 @@ import { useRouter } from 'vue-router';
 import Notification from '@/models/notifications/Notification';
 import { useNotificationsStore } from '@/stores/notifications';
 import { NotifLevel } from '@/models/notifications/NotifLevel';
+import { useI18n } from 'vue-i18n';
+
+const i18n = useI18n();
 
 const usersStore = useUsersStore();
 const notificationsStore = useNotificationsStore();
@@ -47,14 +50,14 @@ const hidePass = ref(true);
 const form = ref();
 
 const emailRules = ref([
-  (v) => (v && v.length > 0) || 'E-mail is required',
-  (v) => (v && v.length <= EMailMaxLength) || `Maximum ${EMailMaxLength} characters`,
+  (v) => (v && v.length > 0) || i18n.t('errors.emailRequired'),
+  (v) => (v && v.length <= EMailMaxLength) || i18n.t('errors.maximum', { no: EMailMaxLength }),
   (v) =>
-    !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/.test(v) || 'The email you used is not valid.'
+    !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/.test(v) || i18n.t('errors.invalidEmail')
 ]);
 
 const passRules = ref([
-  (v) => (v && v.length > 0) || 'Password is required'
+  (v) => (v && v.length > 0) || i18n.t('errors.passwordRequired')
 ]);
 
 /**
@@ -92,7 +95,7 @@ const userLoggedIn = async (userToLogIn) => {
     notificationsStore.add(new Notification(`Welcome ${user.first_name}! You have Successfully Logged In.`, NotifLevel.SUCCESS));
     router.push({ name: 'home' });
   } else {
-    notificationsStore.add(new Notification('Login Error.', NotifLevel.ERROR));
+    notificationsStore.add(new Notification(i18n.t('login.error'), NotifLevel.ERROR));
   }
 };
 
@@ -129,8 +132,8 @@ const hideAllDialogs = () => {
 
 const passwordChanged = () => {
   hideAllDialogs();
-  notificationsStore.add(new Notification('Your Password has been set successfully.', NotifLevel.SUCCESS));
-  passwordChangedSuccess.value = 'Your Password has been set successfully';
+  notificationsStore.add(new Notification(i18n.t('login.passSetSuccess'), NotifLevel.SUCCESS));
+  passwordChangedSuccess.value = i18n.t('login.passSetSuccess');
 };
 
 /**
@@ -165,10 +168,11 @@ const successDialogShow = computed({
     <div class="login">
       <div class="on-background">
         <div class="on-background-darken-1">
-          <h1>Welcome Back</h1>
+          <!-- TODO: <h1>Welcome Back</h1> -->
+          <h1>{{ $t("login.welcome") }}</h1>
         </div>
         <div>
-          <h2>Start managing your projects the right way.</h2>
+          <h2>{{ $t("login.submessage") }}</h2>
         </div>
       </div>
       <v-form
@@ -177,23 +181,23 @@ const successDialogShow = computed({
         class="form"
       >
         <div class="tf-label">
-          Email
+          {{ $t("placeholders.email") }}
         </div>
         <v-text-field
           v-model="user.email"
           :counter="EMailMaxLength"
-          label="Enter your email"
+          :label="$t('placeholders.enterEmail')"
           :rules="emailRules"
           placeholder="johndoe@gmail.com"
           required
         />
 
         <div class="tf-label">
-          Password
+          {{ $t("placeholders.password") }}
         </div>
         <v-text-field
           v-model="user.password"
-          label="Enter your password"
+          :label="$t('placeholders.enterPassword')"
           :rules="passRules"
           :type="hidePass ? 'password' : 'text'"
           :append-icon="hidePass ? 'mdi-eye-off' : 'mdi-eye'"
@@ -206,18 +210,18 @@ const successDialogShow = computed({
           <a
             href="void:"
             @click.prevent="forgotPasswordShow = true"
-          >Forgot Password?</a>
+          ><h2>{{ $t("login.forgot") }}</h2></a>
         </div>
         <v-btn
           class="primary-button"
           block
           @click="submit"
         >
-          Login
+          {{ $t("login.login") }}
         </v-btn>
         <div class="note">
-          Don't have an account? <RouterLink to="/signup">
-            Signup
+          {{ $t("login.noAccount") }} <RouterLink to="/signup">
+            {{ $t("login.signup") }}
           </RouterLink>
         </div>
       </div>
