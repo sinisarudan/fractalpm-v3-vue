@@ -47,7 +47,9 @@
   "tasks": "کام",
   "kanban": "کنبن",
   "board": "بورڈ",
-  "manageTasks": "کاموں کا انتظام کریں"
+  "manageTasks": "کاموں کا انتظام کریں",
+  "myAccount": "اردو:My Account",
+  "about": "اردو:About"
  },
  "common": {
   "and": "اور",
@@ -80,7 +82,9 @@
   "of": "کی",
   "in": "میں",
   "left": "باقی",
-  "ok": "اردو:OK"
+  "ok": "اردو:OK",
+  "continue": "اردو:Continue",
+  "home": "اردو:Home"
  },
  "notifications": {
   "noNotifications": "کوئی اطلاع نہیں۔"
@@ -112,7 +116,9 @@
   "changePassword": "پاس ورڈ تبدیل کریں",
   "editProfile": "پروفائل میں ترمیم کریں",
   "currentPassword": "موجودہ خفیہ لفظ",
-  "newPassword": "نیا پاس ورڈ"
+  "newPassword": "نیا پاس ورڈ",
+  "userAccount": "اردو:User Account Page",
+  "nameAccount": "اردو:{name}'s account"
  },
  "placeholders": {
   "username": "صارف نام",
@@ -154,7 +160,12 @@
   "digit": "اردو:Has at least 1 digit",
   "maximum": "اردو:Maximum {no} characters",
   "minimumMaximum": "اردو:At least {min} characters long and maximum of {max} characters",
-  "formNotValid": "اردو:The form is not valid."
+  "formNotValid": "اردو:The form is not valid.",
+  "sendCode": "اردو:Error in sending the code",
+  "emailOrPhoneRequired": "اردو:E-mail or Phone is required",
+  "invalidEmailOrPhone": "اردو:The email/phone is not valid",
+  "codeNotValid": "اردو:The code is not valid",
+  "incorrectFormat": "اردو:Incorrect format"
  },
  "login": {
   "welcome": "خوش آمدید",
@@ -172,7 +183,17 @@
   "login": "لاگ ان کریں",
   "logout": "لاگ آوٹ",
   "noAccount": "اردو:Don't have an account?",
-  "error": "اردو:Login error"
+  "error": "اردو:Login error",
+  "trouble": "اردو:Trouble logging in",
+  "emailPhone": "اردو:Email or phone number",
+  "enterCode": "اردو:Enter the code",
+  "pasteCode": "اردو:You can simply paste the 4-digits code",
+  "fourDigitCode": "اردو:A 4-digit code is expected.",
+  "notGettingLink": "اردو:Didn’t get a link?",
+  "resendCode": "اردو:Resend code",
+  "setNewPassword": "اردو:Set New Password",
+  "passSetSuccess": "اردو:Your Password has been set successfully",
+  "notLoggedIn": "اردو:You are not logged in."
  },
  "signup": {
   "create": "بنانا",
@@ -188,7 +209,8 @@
   "checkConfirmationEmail": "اردو:Check for a confirmation email to set a password.",
   "emailOccupied": "اردو:An account with this email already exists",
   "error": "اردو:Signup error",
-  "confirmationError": "اردو:Confirmation email error"
+  "confirmationError": "اردو:Confirmation email error",
+  "successVerification": "اردو:Successful Verification"
  },
  "forgot": {
   "forgot": "ری سیٹ",

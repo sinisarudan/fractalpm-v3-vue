@@ -47,7 +47,9 @@
   "tasks": "Tasks",
   "kanban": "Kanban",
   "board": "Board",
-  "manageTasks": "Manage tasks"
+  "manageTasks": "Manage tasks",
+  "myAccount": "My Account",
+  "about": "About"
  },
  "common": {
   "and": "and",
@@ -80,7 +82,9 @@
   "of": "of",
   "in": "In",
   "left": "left",
-  "ok": "OK"
+  "ok": "OK",
+  "continue": "Continue",
+  "home": "Home"
  },
  "buttons": {
   "delete": "Delete",
@@ -112,7 +116,9 @@
   "changePassword": "Change password",
   "editProfile": "Edit profile",
   "currentPassword": "Current Password",
-  "newPassword": "New Password"
+  "newPassword": "New Password",
+  "userAccount": "User Account Page",
+  "nameAccount": "{name}'s account"
  },
  "placeholders": {
   "username": "Username",
@@ -154,7 +160,12 @@
   "digit": "Has at least 1 digit",
   "maximum": "Maximum {no} characters",
   "minimumMaximum": "At least {min} characters long and maximum of {max} characters",
-  "formNotValid": "The form is not valid."
+  "formNotValid": "The form is not valid.",
+  "sendCode": "Error in sending the code",
+  "emailOrPhoneRequired": "E-mail or Phone is required",
+  "invalidEmailOrPhone": "The email/phone is not valid",
+  "codeNotValid": "The code is not valid",
+  "incorrectFormat": "Incorrect format"
   
  },
  "login": {
@@ -173,7 +184,17 @@
   "login": "Login",
   "logout": "Log Out",
   "noAccount": "Don't have an account?",
-  "error": "Login error"
+  "error": "Login error",
+  "trouble": "Trouble logging in",
+  "emailPhone": "Email or phone number",
+  "enterCode": "Enter the code",
+  "pasteCode": "You can simply paste the 4-digits code",
+  "fourDigitCode": "A 4-digit code is expected.",
+  "notGettingLink": "Didn’t get a link?",
+  "resendCode": "Resend code",
+  "setNewPassword": "Set New Password",
+  "passSetSuccess": "Your Password has been set successfully",
+  "notLoggedIn": "You are not logged in."
  },
  "signup": {
   "create": "Create",
@@ -189,7 +210,8 @@
   "checkConfirmationEmail": "Check for a confirmation email to set a password.",
   "emailOccupied": "An account with this email already exists",
   "error": "Signup error",
-  "confirmationError": "Confirmation email error"
+  "confirmationError": "Confirmation email error",
+  "successVerification": "Successful Verification"
  },
  "forgot": {
   "forgot": "Reset",
