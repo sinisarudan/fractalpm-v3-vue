@@ -9,6 +9,9 @@ import { useUsersStore } from '@/stores/users';
 // import Notification from '@/models/notifications/Notification';
 import { useNotificationsStore } from '@/stores/notifications';
 import { NotifLevel } from '@/models/notifications/NotifLevel';
+import { useI18n } from 'vue-i18n';
+
+const i18n = useI18n();
 
 const usersStore = useUsersStore();
 const notificationsStore = useNotificationsStore();
@@ -43,6 +46,7 @@ onMounted(async () => {
   if (user.value) {
     confirmState.value = 'confirmed';
   } else {
+    notificationsStore.add({ title: i18n.t('signup.confirmationError'), level: NotifLevel.ERROR });
     confirmState.value = 'failed';
   }
 });
@@ -69,6 +73,7 @@ const passwordChanged = async (password) => {
   if (user.value) {
     confirmState.value = 'changed';
   } else {
+    notificationsStore.add({ title: i18n.t('signup.confirmationError'), level: NotifLevel.ERROR });
     confirmState.value = 'set-password-failed';
   }
   // console.log("password", password);
@@ -92,7 +97,7 @@ const passwordChanged = async (password) => {
             block
             @click="resend"
           >
-            Resend Confirmation
+            $t('errors.resendConfirmation')
           </v-btn>
         </div>
         <div v-else-if="confirmState==='confirmed'">
