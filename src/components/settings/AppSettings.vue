@@ -10,7 +10,16 @@ import { useDark } from '@vueuse/core';
 import { useTheme } from 'vuetify';
 import { JSONsafeStringify } from '@/utils/JSONHelpers';
 
+import { useI18n } from 'vue-i18n';
+
+const i18n = useI18n();
+
 const theme = useTheme();
+const languages = [
+  { title: 'en' },
+  { title: 'ur' }
+];
+
 // const darkMode = ref(false);
 
 /**
@@ -26,7 +35,16 @@ const setTheme = () => {
   theme.global.name.value = isDark.value ? 'fractalPMDarkTheme' : 'fractalPMLightTheme';
   // Optional: Get value of current theme
   console.log(`Current theme is dark? ${theme.global.current.value.dark}`);
-  console.log('[AppSettings] theme.global.current', JSONsafeStringify(theme.global.current));
+  // console.log('[AppSettings] theme.global.current', JSONsafeStringify(theme.global.current));
+  console.log('i18n.locale', i18n.locale.value);
+};
+
+/**
+   * changes the language.
+   * @param {string} languageCode
+   */
+const setLanguage = (languageCode) => {
+  i18n.locale.value = languageCode;
 };
 
 </script>
@@ -34,7 +52,7 @@ const setTheme = () => {
 <template>
   <div>
     <div class="theme-switch-wrapped">
-      <!-- <v-switch
+      <v-switch
         v-model="isDark"
         class="theme-switch"
         inset flat
@@ -48,18 +66,68 @@ const setTheme = () => {
             mdi-moon-waxing-crescent
           </v-icon>
         </template>
-      </v-switch> -->
+      </v-switch>
     </div>
-    <v-btn @click="$i18n.locale = 'ur'; console.log('$i18n', $i18n);">
+    <div>
+      <v-menu>
+        <template #activator="{ props }">
+          <v-btn
+            class="lang-btn"
+            block
+            v-bind="props"
+          >
+            <div class="img-text">
+              <v-img :src="`/assets/${i18n.locale.value}-flag.png`" class="lang-flag-image" />
+              {{ $t(`application.${i18n.locale.value}Code`) }}
+              <v-icon>mdi-chevron-down</v-icon>
+            </div>
+          </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item
+            v-for="(language, index) in languages"
+            :key="index"
+            @click="setLanguage(language.title)"
+          >
+            <v-img :src="`/assets/${language.title}-flag.png`" class="lang-flag-image" />
+            <v-list-item-title>{{ $t(`application.${language.title}Code`) }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+    <!-- <v-btn @click="i18n.locale.value = 'ur'; console.log('i18n', i18n);">
       ur
     </v-btn>
-    <v-btn @click="$i18n.locale = 'en'; console.log('$i18n', $i18n);">
+    <v-btn @click="i18n.locale.value = 'en'; console.log('i18n', i18n);">
       en
-    </v-btn>
+    </v-btn> -->
+    </div>
   </div>
 </template>
 
 <style lang="scss">
+.v-list-item__content {
+  display: flex !important;
+  flex-direction: row !important;
+  vertical-align: middle !important;
+}
+.lang-btn {
+  border-radius: 12px !important;
+}
+.v-btn__content {
+  display: flex !important;
+  flex-direction: row !important;
+  vertical-align: middle !important;
+}
+.lang-flag-image {
+  width: 12px !important;
+  height: 12px !important;
+  margin-right: 4px !important;
+}
+.img-text {
+  display: flex;
+  flex-direction: row;
+}
 // @use '@/styles/settings';
 .v-switch__thumb {
       transform: none !important;
