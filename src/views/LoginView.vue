@@ -132,8 +132,8 @@ const hideAllDialogs = () => {
 
 const passwordChanged = () => {
   hideAllDialogs();
-  notificationsStore.add(new Notification('Your Password has been set successfully.', NotifLevel.SUCCESS));
-  passwordChangedSuccess.value = 'Your Password has been set successfully';
+  notificationsStore.add(new Notification(i18n.t('login.passSetSuccess'), NotifLevel.SUCCESS));
+  passwordChangedSuccess.value = i18n.t('login.passSetSuccess');
 };
 
 /**
