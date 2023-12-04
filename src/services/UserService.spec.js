@@ -66,6 +66,6 @@ describe('UserService', () => {
     console.log('getHttpGetSpy.mock.results', getHttpGetSpy.mock.results);
     console.log('result', result);
 
-    expect(result).toEqual({ data: Person.PersonMock });
+    expect(result).toEqual(Person.PersonMock);
   });
 });
