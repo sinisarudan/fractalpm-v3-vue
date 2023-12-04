@@ -56,9 +56,8 @@ export const useUsersStore = defineStore('Users', {
       } else {
         if (response.code === ServerResponseUserServiceCode.EMAIL_EXISTS) {
           return response.code;
-        } else {
-          return ServerResponseUserServiceCode.SIGNUP_ERROR;
         }
+        return ServerResponseUserServiceCode.SIGNUP_ERROR;
       }
     },
     /**

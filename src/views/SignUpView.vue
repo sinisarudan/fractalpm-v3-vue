@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue';
+import { ref, onMounted, computed, watch, toRaw, isProxy } from 'vue';
 import AppLayoutWithIntro from '@/components/AppLayoutWithIntro.vue';
 import Person from '@/models/users/Person';
 import { useUsersStore } from '@/stores/users';
@@ -7,8 +7,8 @@ import { useRouter } from 'vue-router';
 import Notification from '@/models/notifications/Notification';
 import { useNotificationsStore } from '@/stores/notifications';
 import { NotifLevel } from '@/models/notifications/NotifLevel';
+import { ServerResponseUserServiceCode } from '@/services/UserService';
 import { useI18n } from 'vue-i18n';
-import { ServerResponseUserServiceCode } from '@/services/UserService'
 
 const i18n = useI18n();
 
@@ -115,8 +115,11 @@ const validateForm = async () => {
  * @description
  */
 const userSignedUp = async (userToRegister) => {
-  const response = (await usersStore.signup(userToRegister));
-  if (response && response instanceof Person) {
+  const response = await usersStore.signup(userToRegister);
+  // const { responseToRef } = toRef(response);
+  const responseRaw = isProxy(response) ? toRaw(response) : response;
+  // if (response && response instanceof Person) {
+  if (typeof responseRaw !== 'string') {
     const user = response;
     // TODO: add security transformations: hash, salt, pass ...
     // so far password is removed before storing:
