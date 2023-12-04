@@ -51,7 +51,7 @@ const setLanguage = (languageCode) => {
 
 <template>
   <div>
-    <div class="theme-switch-wrapped">
+    <!-- <div class="theme-switch-wrapped">
       <v-switch
         v-model="isDark"
         class="theme-switch"
@@ -67,7 +67,7 @@ const setLanguage = (languageCode) => {
           </v-icon>
         </template>
       </v-switch>
-    </div>
+    </div> -->
     <div>
       <v-menu>
         <template #activator="{ props }">
