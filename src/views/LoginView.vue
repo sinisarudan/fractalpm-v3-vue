@@ -12,6 +12,9 @@ import { useRouter } from 'vue-router';
 import Notification from '@/models/notifications/Notification';
 import { useNotificationsStore } from '@/stores/notifications';
 import { NotifLevel } from '@/models/notifications/NotifLevel';
+import { useI18n } from 'vue-i18n';
+
+const i18n = useI18n();
 
 const usersStore = useUsersStore();
 const notificationsStore = useNotificationsStore();
@@ -47,14 +50,14 @@ const hidePass = ref(true);
 const form = ref();
 
 const emailRules = ref([
-  (v) => (v && v.length > 0) || 'E-mail is required',
-  (v) => (v && v.length <= EMailMaxLength) || `Maximum ${EMailMaxLength} characters`,
+  (v) => (v && v.length > 0) || i18n.t('errors.emailRequired'),
+  (v) => (v && v.length <= EMailMaxLength) || i18n.t('errors.maximum', { no: EMailMaxLength }),
   (v) =>
-    !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/.test(v) || 'The email you used is not valid.'
+    !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,4})+$/.test(v) || i18n.t('errors.invalidEmail')
 ]);
 
 const passRules = ref([
-  (v) => (v && v.length > 0) || 'Password is required'
+  (v) => (v && v.length > 0) || i18n.t('errors.passwordRequired')
 ]);
 
 /**
@@ -92,7 +95,7 @@ const userLoggedIn = async (userToLogIn) => {
     notificationsStore.add(new Notification(`Welcome ${user.first_name}! You have Successfully Logged In.`, NotifLevel.SUCCESS));
     router.push({ name: 'home' });
   } else {
-    notificationsStore.add(new Notification('Login Error.', NotifLevel.ERROR));
+    notificationsStore.add(new Notification(i18n.t('login.error'), NotifLevel.ERROR));
   }
 };
 
@@ -214,7 +217,7 @@ const successDialogShow = computed({
           block
           @click="submit"
         >
-        {{ $t("login.login") }}
+          {{ $t("login.login") }}
         </v-btn>
         <div class="note">
           {{ $t("login.noAccount") }} <RouterLink to="/signup">

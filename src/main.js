@@ -164,7 +164,7 @@ export const i18n = createI18n({
   legacy: false, // you must set `false`, to use Composition API
   locale: 'en',
   // locale: 'ur',
-  fallbackLocale: 'en', 
+  fallbackLocale: 'en',
   messages
 });
 

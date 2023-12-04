@@ -4,9 +4,6 @@ import { ServerResponse } from '@/services/ServerResponse';
 import Person from '@/models/users/Person';
 import { UsersState } from './UsersState';
 
-import { useNotificationsStore } from '@/stores/notifications';
-import { NotifLevel } from '@/models/notifications/NotifLevel';
-
 export const useUsersStore = defineStore('Users', {
   /**
    * Returns a new instance of the UsersState class with default values.
@@ -36,8 +33,6 @@ export const useUsersStore = defineStore('Users', {
         return serverUser;
       } catch (error) {
         console.error('Login error:', error);
-        const notificationsStore = useNotificationsStore();
-        notificationsStore.add({ title: 'Login error', level: NotifLevel.ERROR });
         return undefined;
       }
     },
@@ -47,25 +42,24 @@ export const useUsersStore = defineStore('Users', {
      * @name signup
      * @param {Person} user - The user to signup.
      * @param {boolean} [sendConfirmationEmail = true] - if true, the confirmation email is created (default: true).
-     * @returns {(Promise<Person | undefined>)} A promise that resolves to the registered user or undefined if registration fails.
+     * @returns {(Promise<Person | string>)} A promise that resolves to the registered user or error code (from `ServerResponseUserServiceCode`) if registration fails.
      * @description Asynchronously registers a new user and returns a promise that resolves to the registered user or undefined if registration fails.
      */
     async signup (user, sendConfirmationEmail = true) {
-      const notificationsStore = useNotificationsStore();
       /**
        * @type {ServerResponse}
        */
       const response = await UserService.signup(user, sendConfirmationEmail);
       if (response.status) {
         this.user = response.data;
+        return this.user;
       } else {
-        let title = 'Signup error';
         if (response.code === ServerResponseUserServiceCode.EMAIL_EXISTS) {
-          title = 'Email already exists.';
+          return response.code;
+        } else {
+          return ServerResponseUserServiceCode.SIGNUP_ERROR;
         }
-        notificationsStore.add({ title, level: NotifLevel.ERROR });
       }
-      return this.user;
     },
     /**
      * Sends an OTP code to the specified email address.
@@ -105,7 +99,6 @@ export const useUsersStore = defineStore('Users', {
    */
     async confirmEmail (uid, token, password = undefined) {
       console.log('[users/Store::confirmEmail]', uid, token, password);
-      const notificationsStore = useNotificationsStore();
       /**
        * @type {ServerResponse}
        */
@@ -113,11 +106,6 @@ export const useUsersStore = defineStore('Users', {
       if (response.status) {
         this.user = response.data;
       } else {
-        const title = 'Confirm Email Error';
-        // if (response.code === ServerResponseUserServiceCode.EMAIL_EXISTS) {
-        //   title = 'Email already exists.';
-        // }
-        notificationsStore.add({ title, level: NotifLevel.ERROR });
         this.user = undefined;
       }
       return this.user;
