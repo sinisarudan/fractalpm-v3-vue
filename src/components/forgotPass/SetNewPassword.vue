@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 // import { useUsersStore } from '@/stores/users';
 // import Person from '@/models/users/Person';
 // import { useRouter } from 'vue-router';
@@ -69,6 +69,20 @@ onMounted(() => {
 });
 
 /**
+ * @type {import('vue').Ref<(string | undefined)>}
+ */
+const snackbarMessage = ref();
+
+const showSnackbar = computed({
+  get: () => !!snackbarMessage.value,
+
+  /**
+   * @type {import('vue').Ref<boolean>}
+   */
+  set: (val) => (snackbarMessage.value = val ? '' : undefined)
+});
+
+/**
  * @type {Promise<boolean>}
  */
 const validateForm = async () => {
@@ -83,6 +97,8 @@ const setNewPassword = async () => {
     error.value = undefined;
     // status.value = 'Successful Password Reset';
     emit('password-changed', password.value);
+  } else {
+    snackbarMessage.value = i18n.t('errors.formNotValid');
   }
 };
 
@@ -153,6 +169,22 @@ const setNewPassword = async () => {
       </v-btn>
     </v-card-actions>
   </v-card>
+  <v-snackbar
+    v-model="showSnackbar"
+    :timeout="3000"
+  >
+    {{ snackbarMessage }}
+
+    <template #actions>
+      <v-btn
+        color="blue"
+        variant="text"
+        @click="snackbarMessage = undefined"
+      >
+        {{ $t('common.ok') }}
+      </v-btn>
+    </template>
+  </v-snackbar>
 </template>
 
 <style lang="scss" scoped>
