@@ -84,30 +84,30 @@ const passwordChanged = async (password) => {
 <template>
   <AppLayoutWithIntro>
     <div class="confirm-email">
-      <div><h1>Welcome</h1></div>
+      <div><h1>{{ $t("login.welcome") }}</h1></div>
       <div>
         <div v-if="confirmState==='failed' || confirmState === 'set-password-failed'">
           <h2 v-if="confirmState==='failed'">
-            Email not confirmed
+            {{ $t('login.emailNotConfirmed') }}
           </h2>
           <h2 v-else-if="confirmState==='set-password-failed'">
-            Password setting failed.
+            {{ $t('login.passSetFailure') }}
           </h2>
           <v-btn
             block
             @click="resend"
           >
-            $t('errors.resendConfirmation')
+            {{ $t('login.resendConfirmation') }}
           </v-btn>
         </div>
         <div v-else-if="confirmState==='confirmed'">
-          <h2>Congratulations! Your email is confirmed.</h2>
+          <h2>{{ $t('common.congratulations') }} {{ $t('login.emailConfirmed') }}</h2>
         </div>
         <div v-else-if="confirmState==='changed'">
-          <h2>Congratulations! Your password is set.</h2>
+          <h2>{{ $t('common.congratulations') }} {{ $t('login.passSetSuccess') }}</h2>
         </div>
         <div v-else>
-          <h2>Your email is being confirmed...</h2>
+          <h2>{{ $t('login.emailBeingConfirmed') }}</h2>
         </div>
       </div>
     </div>
