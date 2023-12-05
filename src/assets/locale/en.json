@@ -84,7 +84,8 @@
   "left": "left",
   "ok": "OK",
   "continue": "Continue",
-  "home": "Home"
+  "home": "Home",
+  "congratulations": "Congratulations!"
  },
  "buttons": {
   "delete": "Delete",
@@ -195,8 +196,13 @@
   "resendCode": "Resend code",
   "setNewPassword": "Set New Password",
   "passSetSuccess": "Your Password has been set successfully",
+  "passSetFailure": "Password setting failed.",
   "notLoggedIn": "You are not logged in.",
-  "nameLoggedOut": "{name}, you have successfully logged out"
+  "nameLoggedOut": "{name}, you have successfully logged out", 
+  "emailConfirmed": "Your email is confirmed.",
+  "emailBeingConfirmed": "Your email is being confirmed...",
+  "emailNotConfirmed": "Email not confirmed",
+  "resendConfirmation": "Resend Confirmation"
  },
  "signup": {
   "create": "Create",
@@ -262,9 +268,7 @@
   "noProjects": "No projects have been added yet!",
   "pleaseClick": "Please click 'create project' button to add a project to this organization.",
   "sureRemove": "Are you sure you want to remove",
-  "emailConfirmation": "Email not confirmed",
   "confirmMessage": "To add members in this organization please confirm your email address by clicking on the confirmation link sent to {email}.",
-  "resendConfirmation": "Resend Confirmation",
   "confirmResend": "If you didn't receive a confirmation email, please click on the resend confirmation button below to receive one."
  },
  "tasks": {
