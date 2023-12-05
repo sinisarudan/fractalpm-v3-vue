@@ -84,7 +84,8 @@
   "left": "باقی",
   "ok": "ٹھیک ہے",
   "continue": "جاری رکھیں",
-  "home": "ہوم"
+  "home": "ہوم",
+  "congratulations": "اردو:Congratulations!"
  },
  "notifications": {
   "noNotifications": "کوئی اطلاع نہیں۔"
@@ -194,8 +195,13 @@
   "resendCode": "کوڈ دوبارہ بھیجیں",
   "setNewPassword": "نیا پاس ورڈ مرتب کریں",
   "passSetSuccess": "آپ کا پاس ورڈ کامیابی سے مرتب ہو گیا ہے",
+  "passSetFailure": "اردو:Password setting failed.",
   "notLoggedIn": "آپ لاگ ان نہیں ہیں۔",
-  "nameLoggedOut": "{name}، آپ نے کامیابی سے لاگ آؤٹ کیا ہے"
+  "nameLoggedOut": "{name}، آپ نے کامیابی سے لاگ آؤٹ کیا ہے",
+  "emailConfirmed": "اردو:Your email is confirmed.",
+  "emailBeingConfirmed": "اردو:Your email is being confirmed...",
+  "emailNotConfirmed": "ای میل کی تصدیق نہیں ہوئی۔",
+  "resendConfirmation": "تصدیق دوبارہ بھیجیں"
  },
  "signup": {
   "create": "بنانا",
@@ -261,9 +267,7 @@
   "noProjects": "ابھی تک کوئی پروجیکٹ شامل نہیں کیا گیا ہے!",
   "pleaseClick": "اس تنظیم میں پروجیکٹ شامل کرنے کے لیے براہ کرم 'پروجیکٹ شامل کریں' بٹن پر کلک کریں۔",
   "sureRemove": "کیا آپ واقعی ہٹانا چاہتے ہیں",
-  "emailConfirmation": "ای میل کی تصدیق نہیں ہوئی۔",
   "confirmMessage": "اس تنظیم میں اراکین کو شامل کرنے کے لیے براہ کرم {email} پر بھیجے گئے تصدیقی لنک پر کلک کر کے اپنے ای میل ایڈریس کی تصدیق کریں۔",
-  "resendConfirmation": "تصدیق دوبارہ بھیجیں",
   "confirmResend": "اگر آپ کو تصدیقی ای میل موصول نہیں ہوئی، تو براہ کرم اسے موصول کرنے کے لیے نیچے دیے گئے تصدیقی بٹن پر کلک کریں۔"
  },
  "tasks": {

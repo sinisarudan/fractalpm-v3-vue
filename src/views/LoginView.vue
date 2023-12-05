@@ -28,6 +28,11 @@ const EMailMaxLength = 70;
  */
 const user = ref(Person.PersonInit);
 
+/**
+ * @type {import('vue').Ref<(string | undefined)>}
+ */
+const snackbarMessage = ref();
+
 const showSnackbar = computed({
   get: () => !!snackbarMessage.value,
 
@@ -36,11 +41,6 @@ const showSnackbar = computed({
    */
   set: (val) => (snackbarMessage.value = val ? '' : undefined)
 });
-
-/**
- * @type {import('vue').Ref<(string | undefined)>}
- */
-const snackbarMessage = ref();
 
 /**
  * @type {import('vue').Ref<(boolean)>}
@@ -104,7 +104,7 @@ const submit = async () => {
     // console.log("[submit] user.value", user.value); //WARNING: contains password
     userLoggedIn(user.value);
   } else {
-    snackbarMessage.value = 'Form is not valid';
+    snackbarMessage.value = i18n.t('errors.formNotValid');
   }
 };
 
@@ -168,7 +168,6 @@ const successDialogShow = computed({
     <div class="login">
       <div class="on-background">
         <div class="on-background-darken-1">
-          <!-- TODO: <h1>Welcome Back</h1> -->
           <h1>{{ $t("login.welcome") }}</h1>
         </div>
         <div>
@@ -238,7 +237,7 @@ const successDialogShow = computed({
           variant="text"
           @click="snackbarMessage = undefined"
         >
-          OK
+          {{ $t('common.ok') }}
         </v-btn>
       </template>
     </v-snackbar>
