@@ -50,7 +50,6 @@ const navClicked = () => {
       </RouterLink>
     </v-navigation-drawer>
 
-    <!-- <v-toolbar></v-toolbar> -->
     <v-main>
       <v-container fluid>
         <AppNotifications />
@@ -93,34 +92,14 @@ const navClicked = () => {
 
 <style lang="scss">
 @import "variables";
-// .dark {
-//   color: white;
-//   background-color: rgb(40, 40, 40);
-// }
-// [theme='dark'] {
-//   background: #252525;
-//   color: white;
-// }
-// [theme='dim'] {
-//   background: gray;
-//   color: white;
-// }
-// [theme='cafe'] {
-//   background: #c0acac;
-//   color: black;
-// }
 .v-bottom-navigation {
-  // display: flex;
-  // flex-direction: row;
   height: 36px !important;
-  // background-color: red;
 }
 .app-settings {
   margin-left: auto;
   margin-right: 100px;
   height: 24px !important;
   padding: 3px;
-  // background-color: orange;
 }
 .tf-label{
   //styleName: UI/Text/S/Medium;

@@ -175,10 +175,6 @@ const setNewPassword = async () => {
     }
   }
 }
-// .actions {
-//   padding: 5px;
-//   margin: auto;
-// }
 </style>
 
 <style lang="scss">

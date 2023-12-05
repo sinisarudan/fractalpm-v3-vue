@@ -107,38 +107,26 @@ const setLanguage = (languageCode) => {
   flex-direction: row;
   vertical-align: top !important;
   .theme-switch-wrapped {
-    // background-color: yellow;
-    // margin: 0px !important;
-    // padding: 0px !important;
-    // height: 24px !important;
     .v-switch__thumb {
       transform: none !important;
-      // width: 24px !important;
-      // height: 24px !important;
-      // left: -4px !important;
     }
     .v-switch .v-selection-control {
       min-height: 24px !important;
       height: 24px !important;
     }
-    // opacity: 0.3;
     position: relative;
-    .theme-switch {
-      // width: 16px !important;
-      // height: 12px !important;
-    }
+    // .theme-switch {
+    //   // width: 16px !important;
+    //   // height: 12px !important;
+    // }
     .light {
       position: absolute;
       left: 5px;
-      // top: 10px;
-      // z-index: 1000 !important;
       pointer-events: none;
     }
     .dark {
       position: absolute;
       right: 20px;
-      // top: 23px;
-      // z-index: 1000 !important;
       pointer-events: none;
     }
   }
