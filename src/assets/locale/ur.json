@@ -85,7 +85,7 @@
   "ok": "ٹھیک ہے",
   "continue": "جاری رکھیں",
   "home": "ہوم",
-  "congratulations": "اردو:Congratulations!"
+  "congratulations": "کانگریٹیولیشنز"
  },
  "notifications": {
   "noNotifications": "کوئی اطلاع نہیں۔"
@@ -195,11 +195,11 @@
   "resendCode": "کوڈ دوبارہ بھیجیں",
   "setNewPassword": "نیا پاس ورڈ مرتب کریں",
   "passSetSuccess": "آپ کا پاس ورڈ کامیابی سے مرتب ہو گیا ہے",
-  "passSetFailure": "اردو:Password setting failed.",
+  "passSetFailure": "پاسورڈ سیٹنگ فیل ہوگئی۔",
   "notLoggedIn": "آپ لاگ ان نہیں ہیں۔",
   "nameLoggedOut": "{name}، آپ نے کامیابی سے لاگ آؤٹ کیا ہے",
-  "emailConfirmed": "اردو:Your email is confirmed.",
-  "emailBeingConfirmed": "اردو:Your email is being confirmed...",
+  "emailConfirmed": "آپکا ای میل تصدیق ہوا ہے۔",
+  "emailBeingConfirmed": "آپکا ای میل تصدیق ہورہا ہے۔...",
   "emailNotConfirmed": "ای میل کی تصدیق نہیں ہوئی۔",
   "resendConfirmation": "تصدیق دوبارہ بھیجیں"
  },
