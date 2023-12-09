@@ -35,14 +35,14 @@ describe('UserService', () => {
   // TODO: should be adjusted to the new login checks that require prior registering:
   test.todo('logins', async () => {
     const user = Person.PersonMock;
-    user.id = undefined;
+    user.entity_id = undefined;
     const userFromService = await UserService.login(user);
-    expect(userFromService.id).toBeDefined();
+    expect(userFromService.entity_id).toBeDefined();
     expect(userFromService.email).toEqual(user.email);
   });
   test('register', async () => {
     const user = Person.PersonMock;
-    user.id = undefined;
+    user.entity_id = undefined;
     const userFromService = await UserService.signup(user);
     expect(userFromService.id).toBeDefined();
     expect(userFromService.email).toEqual(user.email);

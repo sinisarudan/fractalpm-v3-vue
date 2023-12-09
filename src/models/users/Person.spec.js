@@ -7,7 +7,7 @@ import Person from '@/models/users/Person';
 describe('Person', () => {
   test('constructor', async () => {
     const person = new Person('Sinisa', 'Rudan', 's.r@gmail.com', 'pass');
-    expect(person.id).toBeUndefined();
+    expect(person.entity_id).toBeUndefined();
     expect(person.email).toEqual('s.r@gmail.com');
   });
 });
