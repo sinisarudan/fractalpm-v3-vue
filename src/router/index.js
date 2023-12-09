@@ -25,6 +25,14 @@ const routes = [
     props: route => ({ uid: route.query.uid, token: route.query.token })
   },
   {
+    path: '/projects',
+    name: 'Projects',
+    // route level code-splitting
+    // this generates a separate chunk (SignUpView.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/ProjectsView.vue')
+  },
+  {
     path: '/signup',
     name: 'SignUpView',
     // route level code-splitting

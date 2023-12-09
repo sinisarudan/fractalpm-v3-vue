@@ -41,7 +41,7 @@ const confirmState = ref('');
 const user = ref(Person.PersonInit);
 
 onMounted(async () => {
-  console.log('mobile.value', mobile.value);
+  // console.log('mobile.value', mobile.value);
   user.value = await usersStore.confirmEmail(props.uid, props.token);
   if (user.value) {
     confirmState.value = 'confirmed';
