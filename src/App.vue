@@ -32,21 +32,40 @@ const navClicked = () => {
         to="/"
         @click="drawer = false"
       >
-        {{ $t('common.home') }}
+        <span><v-icon>mdi-home</v-icon></span>
+        <span>{{ $t('common.home') }}</span>
+      </RouterLink>
+      <RouterLink
+        class="router-link"
+        to="/projects"
+        @click="drawer = false"
+      >
+        <span><v-icon>mdi-package theme</v-icon></span>
+        <span>{{ $t('sidebar.projects') }}</span>
+      </RouterLink>
+      <RouterLink
+        class="router-link"
+        to="/organizations"
+        @click="drawer = false"
+      >
+        <span><v-icon>mdi-briefcase</v-icon></span>
+        <span>{{ $t('sidebar.organizations') }}</span>
       </RouterLink>
       <RouterLink
         class="router-link"
         to="/user_account"
         @click="drawer = false"
       >
-        {{ $t('sidebar.myAccount') }}
+        <span><v-icon>mdi-account</v-icon></span>
+        <span> {{ $t('sidebar.myAccount') }}</span>
       </RouterLink>
       <RouterLink
         class="router-link"
         to="/about"
         @click="drawer = false"
       >
-        {{ $t('sidebar.about') }}
+        <span><v-icon>mdi-information</v-icon></span>
+        <span>{{ $t('sidebar.about') }}</span>
       </RouterLink>
     </v-navigation-drawer>
 
