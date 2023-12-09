@@ -34,7 +34,8 @@ export const useProjectsStore = defineStore('Projects', {
       if (response.status) {
         this.projects = response.data;
       } else {
-        this.projects = undefined;
+        this.projects = [];
+        return ServerResponseProjectServiceCode.ERROR_REQUEST;
       }
       return this.projects;
     }

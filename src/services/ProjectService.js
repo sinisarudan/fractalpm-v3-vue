@@ -19,17 +19,19 @@ export class ProjectServiceMockups {
    */
   static MAX_ID = 1;
 
+  static DESC = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mi proin sed libero enim. Nascetur ridiculus mus mauris vitae ultricies. Nec nam aliquam sem et tortor consequat. Ultrices vitae auctor eu augue ut lectus arcu bibendum. Sit amet cursus sit amet dictum sit amet. Purus in mollis nunc sed id semper risus in.';
+
   /**
    * a list of projects:
    * @type {Project[]}
    */
   static projects = [
-    Project.ProjectMock('Project_' + ProjectServiceMockups.MAX_ID++),
-    Project.ProjectMock('Project_' + ProjectServiceMockups.MAX_ID++),
-    Project.ProjectMock('Project_' + ProjectServiceMockups.MAX_ID++),
-    Project.ProjectMock('Project_' + ProjectServiceMockups.MAX_ID++),
-    Project.ProjectMock('Project_' + ProjectServiceMockups.MAX_ID++),
-    Project.ProjectMock('Project' + ProjectServiceMockups.MAX_ID++)
+    Project.ProjectMock('Project_' + ProjectServiceMockups.MAX_ID++, 'MPR' + ProjectServiceMockups.MAX_ID, ProjectServiceMockups.DESC),
+    Project.ProjectMock('Project_' + ProjectServiceMockups.MAX_ID++, 'MPR' + ProjectServiceMockups.MAX_ID, ProjectServiceMockups.DESC),
+    Project.ProjectMock('Project_' + ProjectServiceMockups.MAX_ID++, 'MPR' + ProjectServiceMockups.MAX_ID, ProjectServiceMockups.DESC),
+    Project.ProjectMock('Project_' + ProjectServiceMockups.MAX_ID++, 'MPR' + ProjectServiceMockups.MAX_ID, ProjectServiceMockups.DESC),
+    Project.ProjectMock('Project_' + ProjectServiceMockups.MAX_ID++, 'MPR' + ProjectServiceMockups.MAX_ID, ProjectServiceMockups.DESC),
+    Project.ProjectMock('Project' + ProjectServiceMockups.MAX_ID++, 'MPR' + ProjectServiceMockups.MAX_ID, ProjectServiceMockups.DESC)
   ];
 
   /**
@@ -73,7 +75,7 @@ export class Config {
 /**
  * @type {Config}
  */
-export const ConfigDefault = { LOCAL_MOCKUP_DATA: true };
+export const ConfigDefault = { LOCAL_MOCKUP_DATA: false };
 
 /**
  * providing (server-oriented) services for Projects
@@ -101,7 +103,7 @@ export class ProjectService {
        */
       let response;
       try {
-        response = await http.get(`/get_projects_for_user?userId=${userId}`);
+        response = await http.get(`/get_projects_for_user?user_id=${userId}`);
         console.log(`[response=${response}`);
         return response.data;
       } catch (error) {
