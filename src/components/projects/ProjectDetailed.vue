@@ -18,28 +18,38 @@ onMounted(() => {
   // notifications.expanded = false;
 });
 
-const limitString = (input, maxLength = 150) => {
-  if (!input || input.length <= maxLength) {
-    return input;
-  } else {
-    return input.substring(0, maxLength - 3) + '...';
-  }
-};
-
 </script>
 
 <template>
   <v-card class="project">
-    <v-card-title class="bg-secondary">
-      <v-icon>mdi-package theme</v-icon>{{ props.project.name }}
-    </v-card-title>
+    <v-card-title><v-icon>mdi-package theme</v-icon>{{ props.project.name }}</v-card-title>
     <v-card-subtitle>{{ props.project.code }}</v-card-subtitle>
 
     <v-divider />
 
-    <v-card-text>{{ limitString(props.project.description) }}</v-card-text>
+    <v-card-text>{{ props.project.description }}</v-card-text>
 
     <v-divider />
+
+    <v-list density="compact">
+      <v-list-group>
+        <v-list v-for="phase in props.project.phases" :key="phase.entity_id">
+          <v-list-title>{{ phase.name }}</v-list-title>
+          <v-list-subtitle>{{ phase.description }}</v-list-subtitle>
+        </v-list>
+      </v-list-group>
+    </v-list>
+
+    <v-divider />
+
+    <v-list density="compact">
+      <v-list-group>
+        <v-list v-for="attachment in props.project.attachments" :key="attachment.entity_id">
+          <v-list-title>{{ attachment.name }}</v-list-title>
+          <v-list-subtitle>{{ attachment.type }}</v-list-subtitle>
+        </v-list>
+      </v-list-group>
+    </v-list>
   </v-card>
 </template>
 

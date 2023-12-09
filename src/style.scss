@@ -16,6 +16,33 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.breakable {
+  white-space: normal !important;
+  word-break: break-word !important;
+}
+
+.fpm-title {
+  text-align: left;
+  h1 {
+      font-family: Manrope;
+      font-size: 40px;
+      font-weight: 800;
+      line-height: 56px;
+      letter-spacing: 0.20000000298023224px;
+      text-align: left;
+  }
+  .subtitle {
+      //styleName: UI/Text/M/Regular;
+      font-family: Inter;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0px;
+      text-align: left;
+      margin-bottom: 15px;
+  }
+}
+
 /**
 ******************
 * Vuetify Theme and Components

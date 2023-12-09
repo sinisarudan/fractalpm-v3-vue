@@ -1,6 +1,6 @@
 <script setup>
 import ProjectOverview from '@/components/projects/ProjectOverview.vue';
-import { onMounted } from 'vue';
+import { onMounted, isProxy, toRaw } from 'vue';
 import { useUsersStore } from '@/stores/users';
 import { useProjectsStore } from '@/stores/projects';
 import { useRouter } from 'vue-router';
@@ -19,24 +19,55 @@ const createProject = () => {
 
 };
 
-onMounted(() => {
+onMounted(async () => {
+  getProjectsForUser();
   if (usersStore.user) {
     projectsStore.getProjectsForUser(usersStore.user.entity_id);
   }
 });
 
+const getProjectsForUser = async() => {
+  if (usersStore.user) {
+    const response = await projectsStore.getProjectsForUser(usersStore.user.entity_id);;
+    // const { responseToRef } = toRef(response);
+    const responseRaw = isProxy(response) ? toRaw(response) : response;
+    // if (response && response instanceof Project[]) {
+    if (typeof responseRaw !== 'string') {
+      // const projects = response;
+    } else { // ERROR
+      // we could also check if the `response` is one of the `ServerResponseUserServiceCode` codes by `if(Object.values(ServerResponseUserServiceCode).includes(response))`
+      const title = i18n.t('Error in retrieving projects');
+      notificationsStore.add({ title, level: NotifLevel.ERROR });
+    }
+  }
+}
+
 </script>
 
 <template>
   <div class="projects">
-    <div><h2>{{ $t('user.userAccount') }}</h2></div>
     <div
       v-if="usersStore.user"
       class="project-info"
     >
-      <h1>{{ $t('user.nameAccount', { name: usersStore.user?.first_name}) }}</h1>
-      <div class="info-field">
-        projectsStore.projects: {{ projectsStore.projects }}
+      <div class="fpm-title on-background-darken-1">
+        <h1> {{ $t('projects.myProjects', { name: usersStore.user?.first_name}) }}</h1>
+        <div class="subtitle">
+          {{ $t("projects.all") }}
+        </div>
+      </div>
+      <div class="app-actions">
+        <v-btn
+          v-if="usersStore.user"
+          class="primary-button"
+          variant="flat"
+          @click="createProject"
+        >
+          Create a Project <!-- {{ $t('common.logout') }} -->
+        </v-btn>
+      </div>
+      <div class="projects-list">
+        <!-- projectsStore.projects: {{ projectsStore.projects }} -->
         <v-row>
           <v-col
             v-for="project in projectsStore.projects"
@@ -45,6 +76,7 @@ onMounted(() => {
             sm="6"
             md="4"
             lg="3"
+            class="project-col"
           >
             <ProjectOverview :project="project" />
           </v-col>
@@ -57,21 +89,14 @@ onMounted(() => {
     >
       {{ $t('login.notLoggedIn') }}
     </div>
-    <div class="app-actions">
-      <v-btn
-        v-if="usersStore.user"
-        class="primary-button"
-        variant="flat"
-        @click="createProject"
-      >
-        Create a Project <!-- {{ $t('common.logout') }} -->
-      </v-btn>
-    </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
 @import "../variables";
+.project-col {
+  min-width: 300px;
+}
 h1 {
     //styleName: Hero/S;
     font-family: Manrope;
@@ -97,24 +122,12 @@ h1 {
   gap: 20px;
 }
 .projects {
-  display: flex;
-  flex-direction: column;
   gap: 20px;
   margin: 15px;
   padding: 15px;
-  min-width: 400px;
-  .project-info {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-    justify-content: space-evenly;
-    .info-field {
-      background-color: lightblue;
-      padding: 10px;
-      border-radius: 12px;
-      width: 100%;
-    }
+  .projects-list {
+    margin-top: 15px;
+    // padding-top: 15px;
   }
 }
 </style>
