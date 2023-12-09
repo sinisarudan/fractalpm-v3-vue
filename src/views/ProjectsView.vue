@@ -1,5 +1,5 @@
 <script setup>
-import FpmProject from '@/components/projects/FpmProject.vue';
+import ProjectOverview from '@/components/projects/ProjectOverview.vue';
 import { onMounted } from 'vue';
 import { useUsersStore } from '@/stores/users';
 import { useProjectsStore } from '@/stores/projects';
@@ -46,7 +46,7 @@ onMounted(() => {
             md="4"
             lg="3"
           >
-            <FpmProject :project="project" />
+            <ProjectOverview :project="project" />
           </v-col>
         </v-row>
       </div>
