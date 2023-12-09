@@ -49,7 +49,7 @@ export default class Project extends VersionedModel {
    * @param {Phase[]} phases
    * @param {Attachment[]} attachments
    */
-  constructor (name, code, organization, description = '', phases = [], attachments = []) {
+  constructor (name, code, description = '', organization, phases = [], attachments = []) {
     super();
 
     this.name = name;
@@ -64,8 +64,8 @@ export default class Project extends VersionedModel {
  * a static method
  * @returns {Project} A mock instance of the Project class.
  */
-  static ProjectMock (name, code) {
-    return new Project(name || 'MockProject', code || 'MPR', undefined, 'MockProject description');
+  static ProjectMock (name, code, description) {
+    return new Project(name || 'MockProject', code || 'MPR', description || 'MockProject description', undefined);
   }
 
   /**
@@ -73,6 +73,6 @@ export default class Project extends VersionedModel {
  * @returns {Project} An empty instance of the Project class.
  */
   static get ProjectInit () {
-    return new Project('', '', undefined, '', [], []);
+    return new Project('', '', '', undefined, [], []);
   }
 }
