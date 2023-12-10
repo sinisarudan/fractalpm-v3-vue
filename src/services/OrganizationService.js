@@ -75,7 +75,7 @@ export class Config {
 /**
  * @type {Config}
  */
-export const ConfigDefault = { LOCAL_MOCKUP_DATA: true };
+export const ConfigDefault = { LOCAL_MOCKUP_DATA: false };
 
 /**
  * providing (server-oriented) services for Organizations
