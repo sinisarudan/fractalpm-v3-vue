@@ -1,13 +1,9 @@
+import { VersionedModel } from '../VersionedModel';
+
 /**
  * @class
  */
-export default class Person {
-  /**
-   * The unique identifier for the person.
-   * @type {(string | undefined)}
-   */
-  id;
-
+export default class Person extends VersionedModel {
   /**
    * @type {string}
    */
@@ -38,12 +34,12 @@ export default class Person {
    * @param {string} email - The email address of the person.
    * @param {string} password - The password of the person.
    */
-  constructor (first_name, last_name, email, password, id = undefined) {
+  constructor (first_name, last_name, email, password, entity_id = undefined) {
+    super(entity_id);
     this.first_name = first_name;
     this.last_name = last_name;
     this.email = email;
     this.password = password;
-    this.id = id;
   }
 
   /** used for security reasons, logging etc

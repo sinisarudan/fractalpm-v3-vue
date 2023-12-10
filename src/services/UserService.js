@@ -95,7 +95,7 @@ export class UserService {
         console.warn(`[UserService:: register] User with email '${user.email} already registered'`, mockupInstance.registeredUsers[foundIndex]);
         return Promise.resolve(undefined);
       }
-      user.id = mockupInstance.MAX_ID++;
+      user.entity_id = mockupInstance.MAX_ID++;
       mockupInstance.registeredUsers.push(user);
       // TODO: to see if we want to cover `sendConfirmationEmail` in the mock up
       return Promise.resolve(user);
