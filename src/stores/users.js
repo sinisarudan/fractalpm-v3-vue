@@ -25,15 +25,17 @@ export const useUsersStore = defineStore('Users', {
    * @description Asynchronously logs in a user and returns a promise that resolves to the logged-in user or `undefined` if login fails.
    */
     async login (user) {
-      try {
-        const serverUser = await UserService.login(user);
-        if (serverUser) {
-          this.user = serverUser;
-        }
-        return serverUser;
-      } catch (error) {
-        console.error('Login error:', error);
-        return undefined;
+      const response = await UserService.login(user);
+      if (response.status && response.data.user && response.data.token) {
+        this.user = response.data.user;
+        this.token = response.data.token;
+        // TODO:
+        localStorage.loggedInUser = JSON.stringify(JSON.stringify(this.user));
+        // TODO Token:
+        console.log(`[login] user:${this.user}; ${this.token}`);
+        return this.user;
+      } else {
+        return ServerResponseUserServiceCode.SIGNUP_ERROR;
       }
     },
 
