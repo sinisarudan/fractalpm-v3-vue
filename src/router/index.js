@@ -33,6 +33,14 @@ const routes = [
     component: () => import('../views/ProjectsView.vue')
   },
   {
+    path: '/organizations',
+    name: 'Organizations',
+    // route level code-splitting
+    // this generates a separate chunk (SignUpView.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('../views/OrganizationsView.vue')
+  },
+  {
     path: '/signup',
     name: 'SignUpView',
     // route level code-splitting
