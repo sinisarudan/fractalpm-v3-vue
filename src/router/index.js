@@ -17,7 +17,7 @@ const routes = [
   },
   {
     path: '/confirm_email',
-    name: 'ConfirmEmail',
+    name: 'confirmEmail',
     // route level code-splitting
     // this generates a separate chunk (SignUpView.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: '/projects',
-    name: 'Projects',
+    name: 'projects',
     // route level code-splitting
     // this generates a separate chunk (SignUpView.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -34,7 +34,7 @@ const routes = [
   },
   {
     path: '/organizations',
-    name: 'Organizations',
+    name: 'organizations',
     // route level code-splitting
     // this generates a separate chunk (SignUpView.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -42,7 +42,7 @@ const routes = [
   },
   {
     path: '/signup',
-    name: 'SignUpView',
+    name: 'signUpView',
     // route level code-splitting
     // this generates a separate chunk (SignUpView.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -50,7 +50,7 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'LoginView',
+    name: 'loginView',
     // route level code-splitting
     // this generates a separate chunk (LoginView.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -58,7 +58,7 @@ const routes = [
   },
   {
     path: '/user_account',
-    name: 'UserAccountView',
+    name: 'userAccountView',
     // route level code-splitting
     // this generates a separate chunk (UserAccountView.[hash].js) for this route
     // which is lazy-loaded when the route is visited.

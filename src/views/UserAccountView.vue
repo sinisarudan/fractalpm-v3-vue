@@ -39,9 +39,11 @@ const logout = () => {
         class="user-info"
       >
         <h1>{{ $t('user.nameAccount', { name: usersStore.user?.first_name}) }}</h1>
+        <!-- TODO: until provided by Person (bc. email is not part of it but of login_method)
         <div class="info-field">
           <span>{{ $t('placeholders.email') }}: </span><span>{{ usersStore.user?.email }}</span>
         </div>
+        -->
         <div class="info-field">
           <span>{{ $t('common.firstName') }}: </span><span>{{ usersStore.user?.first_name }}</span>
         </div>

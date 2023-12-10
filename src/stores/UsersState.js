@@ -12,9 +12,16 @@ export class UsersState {
   user;
 
   /**
+     * The user token.
+     * @type {(string | undefined)}
+     */
+  token;
+
+  /**
    * @param {(Person | undefined)} user - The user information or undefined if not available.
    */
-  constructor (user) {
+  constructor (user, token) {
     this.user = user;
+    this.token = token;
   }
 }

@@ -64,7 +64,7 @@ const navClicked = () => {
 };
 
 const openUserAccount = () => {
-  router.push({ name: 'UserAccountView' });
+  router.push({ name: 'userAccountView' });
 };
 
 // onMounted(() => {

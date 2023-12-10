@@ -107,7 +107,7 @@ export class UserService {
       let response;
       try {
         response = await http.post('/signup', user);
-        console.log(`[response=${response}`);
+        console.log(`[signup] response=${response}`);
         return response.data;
       } catch (error) {
         // Handle error, including 400 Bad Request
@@ -122,7 +122,7 @@ export class UserService {
           return error.response.data;
         } else if (error.request) {
           // The request was made, but no response was received
-          console.log('No response received');
+          console.error('No response received');
         } else {
           // Something happened in setting up the request that triggered an Error
           console.error('Error during request setup:', error.message);
@@ -157,9 +157,10 @@ export class UserService {
         return Promise.resolve(undefined);
       }
     } else {
+      let response;
       try {
-        const response = await http.post('/login', user);
-        console.log(`[registeredUser=${response.data}`);
+        response = await http.get(`/login?email=${user.email}&password=${user.password}`);
+        console.log(`[login] response=${response}`);
         return response.data;
       } catch (error) {
         // Handle error, including 400 Bad Request
@@ -167,14 +168,15 @@ export class UserService {
           // The request was made, and the server responded with a status code
           console.warn('Response status:', error.response.status);
           console.warn('Response data:', error.response.data);
+          return error.response.data;
         } else if (error.request) {
           // The request was made, but no response was received
-          console.log('No response received');
+          console.error('No response received');
         } else {
           // Something happened in setting up the request that triggered an Error
           console.error('Error during request setup:', error.message);
         }
-        return undefined;
+        return new ServerResponse(ServerResponseCode.ERROR_REQUEST, false);
       }
     }
   }

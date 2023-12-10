@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed, watch } from 'vue';
+import { ref, onMounted, computed, watch, isProxy, toRaw } from 'vue';
 import { useDisplay } from 'vuetify';
 import AppLayoutWithIntro from '@/components/AppLayoutWithIntro.vue';
 import ForgotPass from '@/components/forgotPass/ForgotPass.vue';
@@ -86,15 +86,16 @@ const validateForm = async () => {
  * @description
  */
 const userLoggedIn = async (userToLogIn) => {
-  const user = (await usersStore.login(userToLogIn));
-  if (user) {
-    // TODO: add security transformations: hash, salt, pass ...
-    // so far password is removed before storing:
-    localStorage.loggedInUser = JSON.stringify({ ...JSON.parse(JSON.stringify(user)), password: undefined });
-
+  const response = await usersStore.login(userToLogIn);
+  // const { responseToRef } = toRef(response);
+  const responseRaw = isProxy(response) ? toRaw(response) : response;
+  // if (response && response instanceof {Person, string}) {
+  if (typeof responseRaw !== 'string') {
+    const user = response;
     notificationsStore.add(new Notification(`Welcome ${user.first_name}! You have Successfully Logged In.`, NotifLevel.SUCCESS));
-    router.push({ name: 'home' });
-  } else {
+    router.push({ name: 'projects' });
+  } else { // ERROR
+    // we could also check if the `response` is one of the `ServerResponseUserServiceCode` codes by `if(Object.values(ServerResponseUserServiceCode).includes(response))`
     notificationsStore.add(new Notification(i18n.t('login.error'), NotifLevel.ERROR));
   }
 };
