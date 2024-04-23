@@ -1,6 +1,7 @@
 <script setup>
 import ProjectOverview from '@/components/projects/ProjectOverview.vue';
-import { onMounted, isProxy, toRaw } from 'vue';
+import { onMounted, isProxy, toRaw, ref, computed } from 'vue';
+import { useDisplay } from 'vuetify';
 import { useUsersStore } from '@/stores/users';
 import { useProjectsStore } from '@/stores/projects';
 import { useRouter } from 'vue-router';
@@ -8,6 +9,10 @@ import Notification from '@/models/notifications/Notification';
 import { useNotificationsStore } from '@/stores/notifications';
 import { NotifLevel } from '@/models/notifications/NotifLevel';
 import { useI18n } from 'vue-i18n';
+import Project from '@/models/projects/Project';
+import ProjectDetailed from '@/components/projects/ProjectDetailed.vue';
+
+const { mobile } = useDisplay();
 
 const i18n = useI18n();
 
@@ -15,20 +20,37 @@ const projectsStore = useProjectsStore();
 const usersStore = useUsersStore();
 const notificationsStore = useNotificationsStore();
 
-const createProject = () => {
+/**
+ * @type {import('vue').Ref<Project>}
+ */
+const projectDetailed = ref();
 
+const projectDetailedShow = computed({
+  get: () => !!projectDetailed.value,
+
+  /**
+   * @type {import('vue').Ref<boolean>}
+   */
+  set: (val) => {
+    projectDetailed.value = (val ? val : undefined);
+  }
+});
+
+const createProject = () => {
+  notificationsStore.add({ title: 'Projects creation is not supported yet', level: NotifLevel.INFO });
 };
+
 
 onMounted(async () => {
   getProjectsForUser();
   if (usersStore.user) {
-    projectsStore.getProjectsForUser(usersStore.user.entity_id);
+    await projectsStore.getProjectsForUser(usersStore.user.entity_id);
   }
 });
 
-const getProjectsForUser = async() => {
+const getProjectsForUser = async () => {
   if (usersStore.user) {
-    const response = await projectsStore.getProjectsForUser(usersStore.user.entity_id);;
+    const response = await projectsStore.getProjectsForUser(usersStore.user.entity_id); ;
     // const { responseToRef } = toRef(response);
     const responseRaw = isProxy(response) ? toRaw(response) : response;
     // if (response && response instanceof Project[]) {
@@ -40,7 +62,21 @@ const getProjectsForUser = async() => {
       notificationsStore.add({ title, level: NotifLevel.ERROR });
     }
   }
-}
+};
+
+/**
+ * @function
+ * @name showProject
+ * @param {Project} project
+ */
+const showProject = (project) => {
+  console.log(`[showProject] ${project.name}`, project);
+  projectDetailed.value = project;
+};
+
+const hideProjectDetailed = () => {
+  projectDetailed.value = undefined;
+};
 
 </script>
 
@@ -78,7 +114,7 @@ const getProjectsForUser = async() => {
             lg="3"
             class="project-col"
           >
-            <ProjectOverview :project="project" />
+            <ProjectOverview :project="project" @click="showProject(project)" />
           </v-col>
         </v-row>
       </div>
@@ -89,6 +125,30 @@ const getProjectsForUser = async() => {
     >
       {{ $t('login.notLoggedIn') }}
     </div>
+    <template>
+      <v-row justify="center">
+        <v-dialog
+          v-model="projectDetailedShow"
+          :fullscreen="mobile"
+          :max-width="mobile ? 'none' : '1000px'"
+          data-testid="login-details-show-dialog"
+        >
+          <ProjectDetailed :project="projectDetailed" />
+          <v-btn
+            size="xs"
+            color="transparent"
+            variant="flat"
+            icon
+            class="close-button"
+            @click="hideProjectDetailed"
+          >
+            <v-icon color="white">
+              mdi-close
+            </v-icon>
+          </v-btn>
+        </v-dialog>
+      </v-row>
+    </template>
   </div>
 </template>
 

@@ -16,7 +16,7 @@ const usersStore = useUsersStore();
 const notificationsStore = useNotificationsStore();
 
 const createOrganization = () => {
-
+  notificationsStore.add({ title: 'Organizations creation is not supported yet', level: NotifLevel.INFO });
 };
 
 onMounted(async () => {

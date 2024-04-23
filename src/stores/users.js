@@ -26,16 +26,20 @@ export const useUsersStore = defineStore('Users', {
    */
     async login (user) {
       const response = await UserService.login(user);
+      // if service call was successful (both `status` and `data` of the `response` are OK):
       if (response.status && response.data.user && response.data.token) {
+        // saving in the (Pinia) store:
         this.user = response.data.user;
         this.token = response.data.token;
+
         // TODO:
         localStorage.loggedInUser = JSON.stringify(JSON.stringify(this.user));
         // TODO Token:
         console.log(`[login] user:${this.user}; ${this.token}`);
         return this.user;
+      // if service call failed, we return more specific error (compared to ServerResponseCode.ERROR_REQUEST) :
       } else {
-        return ServerResponseUserServiceCode.SIGNUP_ERROR;
+        return ServerResponseUserServiceCode.LOGIN_ERROR;
       }
     },
 
