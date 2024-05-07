@@ -9,6 +9,7 @@ The Vue3 web application for FractalPM
 - Vuetify
 - Vite
 - Pinia
+- vue-i18n
 - Vitest
 - Playwright
 
