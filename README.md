@@ -13,6 +13,16 @@ The Vue3 web application for FractalPM
 - Vitest
 - Playwright
 
+## See it LIVE - Screenshots and recordings
+
+<img src="./doc/FractalPM-signin-en.jpg" alt="FractalPM - Projects">
+
+<img src="./doc/FractalPM-signin-i18n-ur.jpg" alt="FractalPM - Projects">
+
+<img src="./doc/FractalPM-Projects.jpg" alt="FractalPM - Projects">
+
+- See more Screenshots and recordings in the [LIVE.md](./doc/live.md)
+
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable *Vetur*) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
